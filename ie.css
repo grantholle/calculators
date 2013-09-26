@@ -1,0 +1,165 @@
+/* 	Theme Name: The Site Name
+	Theme URL: http://www.siteurl.com
+	Description: Site description
+	Author: 40Digits
+	Author URI: http://40digits.com
+	Version: 1.0 */
+/* line 17, ../../../../../../../Scout.app/Contents/Resources/vendor/gems/gems/compass-0.12.2/frameworks/compass/stylesheets/compass/reset/_utilities.scss */
+html, body, div, span, applet, object, iframe,
+h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+a, abbr, acronym, address, big, cite, code,
+del, dfn, em, img, ins, kbd, q, s, samp,
+small, strike, strong, sub, sup, tt, var,
+b, u, i, center,
+dl, dt, dd, ol, ul, li,
+fieldset, form, label, legend,
+table, caption, tbody, tfoot, thead, tr, th, td,
+article, aside, canvas, details, embed,
+figure, figcaption, footer, header, hgroup,
+menu, nav, output, ruby, section, summary,
+time, mark, audio, video {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  font: inherit;
+  font-size: 100%;
+  vertical-align: baseline;
+}
+
+/* line 22, ../../../../../../../Scout.app/Contents/Resources/vendor/gems/gems/compass-0.12.2/frameworks/compass/stylesheets/compass/reset/_utilities.scss */
+html {
+  line-height: 1;
+}
+
+/* line 24, ../../../../../../../Scout.app/Contents/Resources/vendor/gems/gems/compass-0.12.2/frameworks/compass/stylesheets/compass/reset/_utilities.scss */
+ol, ul {
+  list-style: none;
+}
+
+/* line 26, ../../../../../../../Scout.app/Contents/Resources/vendor/gems/gems/compass-0.12.2/frameworks/compass/stylesheets/compass/reset/_utilities.scss */
+table {
+  border-collapse: collapse;
+  border-spacing: 0;
+}
+
+/* line 28, ../../../../../../../Scout.app/Contents/Resources/vendor/gems/gems/compass-0.12.2/frameworks/compass/stylesheets/compass/reset/_utilities.scss */
+caption, th, td {
+  text-align: left;
+  font-weight: normal;
+  vertical-align: middle;
+}
+
+/* line 30, ../../../../../../../Scout.app/Contents/Resources/vendor/gems/gems/compass-0.12.2/frameworks/compass/stylesheets/compass/reset/_utilities.scss */
+q, blockquote {
+  quotes: none;
+}
+/* line 103, ../../../../../../../Scout.app/Contents/Resources/vendor/gems/gems/compass-0.12.2/frameworks/compass/stylesheets/compass/reset/_utilities.scss */
+q:before, q:after, blockquote:before, blockquote:after {
+  content: "";
+  content: none;
+}
+
+/* line 32, ../../../../../../../Scout.app/Contents/Resources/vendor/gems/gems/compass-0.12.2/frameworks/compass/stylesheets/compass/reset/_utilities.scss */
+a img {
+  border: none;
+}
+
+/* line 116, ../../../../../../../Scout.app/Contents/Resources/vendor/gems/gems/compass-0.12.2/frameworks/compass/stylesheets/compass/reset/_utilities.scss */
+article, aside, details, figcaption, figure, footer, header, hgroup, menu, nav, section, summary {
+  display: block;
+}
+
+/* Media Queries */
+/* phones landscape up */
+/* tablets up */
+/* desktops & tablets landscape up */
+/* large desktops up */
+/* phone portrait down */
+/* phones landscape down */
+/* tablet portrait down */
+/* desktops down */
+/* phones landscape up */
+/* tablets up */
+/* desktops up */
+/* large screens up */
+/* phones portrait */
+/* phones landscape down */
+/* tablet portrait down */
+/* desktops down */
+/* tablets portrait mode only */
+/* tablets landscape only */
+/* line 1, scss/_responsive.scss */
+*, *:before, *:after {
+  -moz-box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+  box-sizing: border-box;
+}
+
+/* line 7, scss/_responsive.scss */
+body {
+  font-family: "HelveticaNeueLight", "HelveticaNeue-Light", "Helvetica Neue Light", "HelveticaNeue", "Helvetica Neue", 'TeXGyreHerosRegular', "Helvetica", "Tahoma", "Geneva", "Arial", sans-serif;
+  font-weight: 300;
+  font-stretch: normal;
+  font-size: 16px;
+  color: #8c929d;
+  background: #dae1e2;
+}
+
+/* line 17, scss/_responsive.scss */
+.container {
+  width: 100%;
+  padding: 2em;
+  margin: 0 auto;
+  position: absolute;
+  top: 10%;
+  left: 0;
+  right: 0;
+  background: #e7ebec;
+  border-radius: 5px;
+}
+
+/* line 33, scss/_responsive.scss */
+h2 {
+  font-size: 1.5em;
+  font-weight: normal;
+  color: #3c3f48;
+  line-height: 1.2em;
+  margin-bottom: .625em;
+}
+
+/* line 41, scss/_responsive.scss */
+p {
+  line-height: 1.5em;
+  margin-bottom: 2em;
+}
+
+/* line 46, scss/_responsive.scss */
+span {
+  display: block;
+  position: relative;
+  margin-top: 1.5em;
+  color: #e15a00;
+  font-size: .95em;
+}
+/* line 53, scss/_responsive.scss */
+span:after {
+  background: #34323e;
+  display: block;
+  content: "";
+  color: #8a909c;
+  margin-top: 5px;
+  border-radius: 3px;
+  padding: 10px 20px;
+  font-size: .95em;
+}
+
+/* line 66, scss/_responsive.scss */
+.device-on:after {
+  content: " 'mq-min-large' desktop and greater (>=960px)";
+  content: " 'mq-min-xlarge' large screen and greater (>=1440px)";
+}
+
+/* line 96, scss/_responsive.scss */
+.style-for:after {
+  content: " 'mq-max-large' desktop down (<=1439px)";
+}

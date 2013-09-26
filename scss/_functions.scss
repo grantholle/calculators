@@ -1,0 +1,182 @@
+///////////////////////
+// Variables
+///////////////////////
+
+@function em($px, $context: 16) {
+    @return ($px/$context)+0em;
+}    
+
+/* Media Queries */
+$m-query: false !default;
+
+$mq-min-small: em(480); /* phones landscape up */
+$mq-min-medium: em(768); /* tablets up */
+$mq-min-large: em(960); /* desktops & tablets landscape up */
+$mq-min-xlarge: em(1440); /* large desktops up */
+
+$mq-max-mini: em(479); /* phone portrait down */
+$mq-max-small: em(767); /* phones landscape down */
+$mq-max-medium: em(959); /* tablet portrait down */
+$mq-max-large: em(1439); /* desktops down */
+
+
+///////////////////////
+// Mixins
+///////////////////////
+
+// MIN-WIDTH
+// ---------
+
+/* phones landscape up */
+@mixin mq-min-small {
+    @if $m-query {
+        @if $m-query <= $mq-min-small {
+            @content;
+        }
+    }
+    @else {
+        @media screen and (min-width: $mq-min-small) {
+            @content;
+        }
+    }
+}
+
+/* tablets up */
+@mixin mq-min-medium {
+    @if $m-query {
+        @if $m-query <= $mq-min-medium {
+            @content;
+        }
+    }
+    @else {
+        @media screen and (min-width: $mq-min-medium) {
+            @content;
+        }
+    }
+}
+
+/* desktops up */
+@mixin mq-min-large {
+    @if $m-query {
+        @if $m-query <= $mq-min-large {
+            @content;
+        }
+    }
+    @else {
+        @media screen and (min-width: $mq-min-large) {
+            @content;
+        }
+    }
+}
+
+/* large screens up */
+@mixin mq-min-xlarge {
+    @if $m-query {
+        @if $m-query <= $mq-min-xlarge {
+            @content;
+        }
+    }
+    @else {
+        @media screen and (min-width: $mq-min-xlarge) {
+            @content;
+        }
+    }
+}
+
+
+
+
+
+// MAX-WIDTH
+// ---------
+
+/* phones portrait */
+@mixin mq-max-mini {
+    @if $m-query {
+        @if $m-query <= $mq-max-mini {
+            @content;
+        }
+    }
+    @else {
+        @media screen and (max-width: $mq-max-mini) {
+            @content;
+        }
+    }
+}
+
+/* phones landscape down */
+@mixin mq-max-small {
+    @if $m-query {
+        @if $m-query <= $mq-max-small {
+            @content;
+        }
+    }
+    @else {
+        @media screen and (max-width: $mq-max-small) {
+            @content;
+        }
+    }
+}
+
+/* tablet portrait down */
+@mixin mq-max-medium {
+    @if $m-query {
+        @if $m-query <= $mq-max-medium {
+            @content;
+        }
+    }
+    @else {
+        @media screen and (max-width: $mq-max-medium) {
+            @content;
+        }
+    }
+}
+
+/* desktops down */
+@mixin mq-max-large {
+    @if $m-query {
+        @if $m-query <= $mq-max-large {
+            @content;
+        }
+    }
+    @else {
+        @media screen and (max-width: $mq-max-large) {
+            @content;
+        }
+    }
+}
+
+
+
+
+
+// Portrait & Landscape Mode
+// -------------------------
+
+/* tablets portrait mode only */
+@mixin mq-portrait {
+    @if $m-query {
+        @if $m-query <= $mq-min-medium {
+            @content;
+        }
+    }
+    @else {
+        @media screen and (min-device-width: $mq-min-medium) and (max-device-width: $mq-max-medium) and (orientation: portrait) {
+	        @content;
+	    }
+    }
+}
+
+/* tablets landscape only */
+@mixin mq-landscape {
+    @if $m-query {
+        @if $m-query <= $mq-min-medium {
+            @content;
+        }
+    }
+    @else {
+        @media screen and (min-device-width: $mq-min-medium) and (max-device-width: 1024px) and (orientation: landscape) {
+	        @content;
+	    }
+    }
+}
