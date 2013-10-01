@@ -6,13 +6,57 @@
 	Version: 1.0 */
 
 
-///////////////////////
-// Imports
-///////////////////////
 
-@import "compass/reset";
-@import "functions";
 
+
+//----------------------------------*\
+// COMPASS
+//----------------------------------*/
+
+@import 'compass/reset';
+
+//----------------------------------*\
+// MIXINS
+//----------------------------------*/
+
+@import 'mixins/_mix-fonts.scss';
+@import 'mixins/_mix-general.scss';
+@import 'mixins/_mix-media-queries.scss';
+
+//----------------------------------*\
+// MODULES
+//----------------------------------*/
+
+// Default Modules
+@import 'modules/_variables.scss';
+@import 'modules/_wordpress-default.scss';
+@import 'modules/_fonts.scss';
+@import 'modules/_defaults.scss';
+
+// Optional Modules
+@import 'modules/_media-queries.scss';
+@import 'modules/_responsive-grid.scss';
+
+//----------------------------------*\
+// PARTIALS
+//----------------------------------*/
+
+@import 'partials/_header.scss';
+@import 'partials/_nav.scss';
+@import 'partials/_sidebar.scss';
+@import 'partials/_footer.scss';
+
+//----------------------------------*\
+// VENDOR
+//----------------------------------*/
+
+@import 'vendor/_vendor.scss';
+
+//----------------------------------*\
+// APP
+//----------------------------------*/
+
+@import 'app/_app.scss';
 @import "responsive";
 
 

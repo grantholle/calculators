@@ -1,33 +1,16 @@
-///////////////////////
-// Variables
-///////////////////////
-
-@function em($px, $context: 16) {
-    @return ($px/$context)+0em;
-}    
-
-/* Media Queries */
-$m-query: false !default;
-
-$mq-min-small: em(480); /* phones landscape up */
-$mq-min-medium: em(768); /* tablets up */
-$mq-min-large: em(960); /* desktops & tablets landscape up */
-$mq-min-xlarge: em(1440); /* large desktops up */
-
-$mq-max-mini: em(479); /* phone portrait down */
-$mq-max-small: em(767); /* phones landscape down */
-$mq-max-medium: em(959); /* tablet portrait down */
-$mq-max-large: em(1439); /* desktops down */
+/**
+*
+* Media query functions to help output content conditonally based on screen width.
+*
+**/
 
 
-///////////////////////
-// Mixins
-///////////////////////
 
+//----------------------------------*\
 // MIN-WIDTH
-// ---------
+//----------------------------------*/
 
-/* phones landscape up */
+// Phone Landscape Up
 @mixin mq-min-small {
     @if $m-query {
         @if $m-query <= $mq-min-small {
@@ -41,7 +24,7 @@ $mq-max-large: em(1439); /* desktops down */
     }
 }
 
-/* tablets up */
+// Tablets Up
 @mixin mq-min-medium {
     @if $m-query {
         @if $m-query <= $mq-min-medium {
@@ -55,7 +38,7 @@ $mq-max-large: em(1439); /* desktops down */
     }
 }
 
-/* desktops up */
+// Desktops Up
 @mixin mq-min-large {
     @if $m-query {
         @if $m-query <= $mq-min-large {
@@ -69,7 +52,7 @@ $mq-max-large: em(1439); /* desktops down */
     }
 }
 
-/* large screens up */
+// Large Screens Up
 @mixin mq-min-xlarge {
     @if $m-query {
         @if $m-query <= $mq-min-xlarge {
@@ -83,14 +66,11 @@ $mq-max-large: em(1439); /* desktops down */
     }
 }
 
-
-
-
-
+//----------------------------------*\
 // MAX-WIDTH
-// ---------
+//----------------------------------*/
 
-/* phones portrait */
+// Phone Portrait Down
 @mixin mq-max-mini {
     @if $m-query {
         @if $m-query <= $mq-max-mini {
@@ -104,7 +84,7 @@ $mq-max-large: em(1439); /* desktops down */
     }
 }
 
-/* phones landscape down */
+// Phone Landscape Down
 @mixin mq-max-small {
     @if $m-query {
         @if $m-query <= $mq-max-small {
@@ -118,7 +98,7 @@ $mq-max-large: em(1439); /* desktops down */
     }
 }
 
-/* tablet portrait down */
+// Tablet Portrait Down
 @mixin mq-max-medium {
     @if $m-query {
         @if $m-query <= $mq-max-medium {
@@ -132,7 +112,7 @@ $mq-max-large: em(1439); /* desktops down */
     }
 }
 
-/* desktops down */
+// Desktops Down
 @mixin mq-max-large {
     @if $m-query {
         @if $m-query <= $mq-max-large {
@@ -146,14 +126,11 @@ $mq-max-large: em(1439); /* desktops down */
     }
 }
 
+//----------------------------------*\
+// MISC QUERIES
+//----------------------------------*/
 
-
-
-
-// Portrait & Landscape Mode
-// -------------------------
-
-/* tablets portrait mode only */
+// Tablet Portrait Only
 @mixin mq-portrait {
     @if $m-query {
         @if $m-query <= $mq-min-medium {
@@ -167,7 +144,7 @@ $mq-max-large: em(1439); /* desktops down */
     }
 }
 
-/* tablets landscape only */
+// Tablet Landscape Only
 @mixin mq-landscape {
     @if $m-query {
         @if $m-query <= $mq-min-medium {

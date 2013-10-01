@@ -1,0 +1,14 @@
+/**
+*
+* Font mixins to be used on the site. This is handy especially when utilizing third party services like typekit or fonts.com
+* Start all font mixins with 'font-'
+*
+**/
+
+
+// Generic Font Stack
+@mixin font-generic {
+	font-family: Arial, "Helvetica Neue", Helvetica, sans-serif;
+	font-weight: normal;
+	@include font-smoothing;
+}

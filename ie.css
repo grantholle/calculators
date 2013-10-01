@@ -4,7 +4,7 @@
 	Author: 40Digits
 	Author URI: http://40digits.com
 	Version: 1.0 */
-/* line 17, ../../../../../../../Scout.app/Contents/Resources/vendor/gems/gems/compass-0.12.2/frameworks/compass/stylesheets/compass/reset/_utilities.scss */
+/* line 17, ../../Applications/Scout.app/Contents/Resources/vendor/gems/gems/compass-0.12.2/frameworks/compass/stylesheets/compass/reset/_utilities.scss */
 html, body, div, span, applet, object, iframe,
 h1, h2, h3, h4, h5, h6, p, blockquote, pre,
 a, abbr, acronym, address, big, cite, code,
@@ -26,50 +26,60 @@ time, mark, audio, video {
   vertical-align: baseline;
 }
 
-/* line 22, ../../../../../../../Scout.app/Contents/Resources/vendor/gems/gems/compass-0.12.2/frameworks/compass/stylesheets/compass/reset/_utilities.scss */
+/* line 22, ../../Applications/Scout.app/Contents/Resources/vendor/gems/gems/compass-0.12.2/frameworks/compass/stylesheets/compass/reset/_utilities.scss */
 html {
   line-height: 1;
 }
 
-/* line 24, ../../../../../../../Scout.app/Contents/Resources/vendor/gems/gems/compass-0.12.2/frameworks/compass/stylesheets/compass/reset/_utilities.scss */
+/* line 24, ../../Applications/Scout.app/Contents/Resources/vendor/gems/gems/compass-0.12.2/frameworks/compass/stylesheets/compass/reset/_utilities.scss */
 ol, ul {
   list-style: none;
 }
 
-/* line 26, ../../../../../../../Scout.app/Contents/Resources/vendor/gems/gems/compass-0.12.2/frameworks/compass/stylesheets/compass/reset/_utilities.scss */
+/* line 26, ../../Applications/Scout.app/Contents/Resources/vendor/gems/gems/compass-0.12.2/frameworks/compass/stylesheets/compass/reset/_utilities.scss */
 table {
   border-collapse: collapse;
   border-spacing: 0;
 }
 
-/* line 28, ../../../../../../../Scout.app/Contents/Resources/vendor/gems/gems/compass-0.12.2/frameworks/compass/stylesheets/compass/reset/_utilities.scss */
+/* line 28, ../../Applications/Scout.app/Contents/Resources/vendor/gems/gems/compass-0.12.2/frameworks/compass/stylesheets/compass/reset/_utilities.scss */
 caption, th, td {
   text-align: left;
   font-weight: normal;
   vertical-align: middle;
 }
 
-/* line 30, ../../../../../../../Scout.app/Contents/Resources/vendor/gems/gems/compass-0.12.2/frameworks/compass/stylesheets/compass/reset/_utilities.scss */
+/* line 30, ../../Applications/Scout.app/Contents/Resources/vendor/gems/gems/compass-0.12.2/frameworks/compass/stylesheets/compass/reset/_utilities.scss */
 q, blockquote {
   quotes: none;
 }
-/* line 103, ../../../../../../../Scout.app/Contents/Resources/vendor/gems/gems/compass-0.12.2/frameworks/compass/stylesheets/compass/reset/_utilities.scss */
+/* line 103, ../../Applications/Scout.app/Contents/Resources/vendor/gems/gems/compass-0.12.2/frameworks/compass/stylesheets/compass/reset/_utilities.scss */
 q:before, q:after, blockquote:before, blockquote:after {
   content: "";
   content: none;
 }
 
-/* line 32, ../../../../../../../Scout.app/Contents/Resources/vendor/gems/gems/compass-0.12.2/frameworks/compass/stylesheets/compass/reset/_utilities.scss */
+/* line 32, ../../Applications/Scout.app/Contents/Resources/vendor/gems/gems/compass-0.12.2/frameworks/compass/stylesheets/compass/reset/_utilities.scss */
 a img {
   border: none;
 }
 
-/* line 116, ../../../../../../../Scout.app/Contents/Resources/vendor/gems/gems/compass-0.12.2/frameworks/compass/stylesheets/compass/reset/_utilities.scss */
+/* line 116, ../../Applications/Scout.app/Contents/Resources/vendor/gems/gems/compass-0.12.2/frameworks/compass/stylesheets/compass/reset/_utilities.scss */
 article, aside, details, figcaption, figure, footer, header, hgroup, menu, nav, section, summary {
   display: block;
 }
 
-/* Media Queries */
+/**
+*
+* Font mixins to be used on the site. This is handy especially when utilizing third party services like typekit or fonts.com
+* Start all font mixins with 'font-'
+*
+**/
+/**
+*
+* Media query functions to help output content conditonally based on screen width.
+*
+**/
 /* phones landscape up */
 /* tablets up */
 /* desktops & tablets landscape up */
@@ -78,16 +88,182 @@ article, aside, details, figcaption, figure, footer, header, hgroup, menu, nav, 
 /* phones landscape down */
 /* tablet portrait down */
 /* desktops down */
-/* phones landscape up */
-/* tablets up */
-/* desktops up */
-/* large screens up */
-/* phones portrait */
-/* phones landscape down */
-/* tablet portrait down */
-/* desktops down */
-/* tablets portrait mode only */
-/* tablets landscape only */
+/**
+*
+* Define and include @font-face in here or other outside services for fonts.
+*
+**/
+/**
+*
+* Default styles utilized on the site. 
+*
+**/
+/* line 9, scss/modules/_defaults.scss */
+*, *:before, *:after {
+  -moz-box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+  box-sizing: border-box;
+}
+
+/* line 16, scss/modules/_defaults.scss */
+.cf:before, .cf:after {
+  content: "";
+  display: table;
+}
+
+/* line 17, scss/modules/_defaults.scss */
+.cf:after {
+  clear: both;
+}
+
+/* line 18, scss/modules/_defaults.scss */
+.cf {
+  zoom: 1;
+}
+
+/* line 21, scss/modules/_defaults.scss */
+body {
+  background: #FFF;
+  font-size: 16px;
+  color: #000;
+}
+
+/* line 27, scss/modules/_defaults.scss */
+h1, h2, h3, h4, h5, h6 {
+  position: relative;
+  line-height: 1.1em;
+  margin-bottom: 0.5em;
+}
+/* line 32, scss/modules/_defaults.scss */
+h1 a, h2 a, h3 a, h4 a, h5 a, h6 a {
+  color: #454545;
+}
+
+/* line 37, scss/modules/_defaults.scss */
+h1 {
+  font-size: 2em;
+  font-size: 2.75em;
+  font-size: 3em;
+}
+
+/* line 50, scss/modules/_defaults.scss */
+h2 {
+  font-size: 1em;
+  font-size: 2.3125em;
+  font-size: 2em;
+}
+
+/* line 63, scss/modules/_defaults.scss */
+h3 {
+  font-size: 1em;
+  font-size: 1.6875em;
+  font-size: 1em;
+}
+
+/* line 76, scss/modules/_defaults.scss */
+h4 {
+  font-size: 1em;
+  font-size: 1.4375em;
+  font-size: 1em;
+}
+
+/* line 89, scss/modules/_defaults.scss */
+h5 {
+  font-size: 0em;
+  font-size: 1.125em;
+  font-size: 1em;
+}
+
+/* line 102, scss/modules/_defaults.scss */
+h6 {
+  font-size: 1em;
+}
+
+/* line 106, scss/modules/_defaults.scss */
+p {
+  font-size: 1em;
+  line-height: 1.5em;
+  margin-bottom: 1.25em;
+  -webkit-font-smoothing: antialiased;
+  text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.004);
+}
+
+/* line 113, scss/modules/_defaults.scss */
+a {
+  color: #454545;
+}
+/* line 116, scss/modules/_defaults.scss */
+a:hover {
+  color: #454545;
+}
+
+/* line 1, scss/modules/_responsive-grid.scss */
+.row {
+  width: 100%;
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 0;
+  margin-bottom: 0;
+  max-width: 80em;
+}
+/* line 10, scss/modules/_responsive-grid.scss */
+.row .columns, .row.columns {
+  padding-left: 10px;
+  padding-right: 10px;
+}
+/* line 20, scss/modules/_responsive-grid.scss */
+.row .col-1 {
+  width: 8.33333%;
+}
+/* line 21, scss/modules/_responsive-grid.scss */
+.row .col-2 {
+  width: 16.66667%;
+}
+/* line 22, scss/modules/_responsive-grid.scss */
+.row .col-3 {
+  width: 25%;
+}
+/* line 23, scss/modules/_responsive-grid.scss */
+.row .col-4 {
+  width: 33.33333%;
+}
+/* line 24, scss/modules/_responsive-grid.scss */
+.row .col-5 {
+  width: 41.66667%;
+}
+/* line 25, scss/modules/_responsive-grid.scss */
+.row .col-6 {
+  width: 50%;
+}
+/* line 26, scss/modules/_responsive-grid.scss */
+.row .col-7 {
+  width: 58.33333%;
+}
+/* line 27, scss/modules/_responsive-grid.scss */
+.row .col-8 {
+  width: 66.66667%;
+}
+/* line 28, scss/modules/_responsive-grid.scss */
+.row .col-9 {
+  width: 75%;
+}
+/* line 29, scss/modules/_responsive-grid.scss */
+.row .col-10 {
+  width: 83.33333%;
+}
+/* line 30, scss/modules/_responsive-grid.scss */
+.row .col-11 {
+  width: 91.66667%;
+}
+/* line 31, scss/modules/_responsive-grid.scss */
+.row .col-12 {
+  width: 100%;
+}
+/* line 33, scss/modules/_responsive-grid.scss */
+.row [class*='col-'] {
+  float: left;
+}
+
 /* line 1, scss/_responsive.scss */
 *, *:before, *:after {
   -moz-box-sizing: border-box;
