@@ -1,0 +1,40 @@
+// Convert pixels into em units
+@function em($px, $context: 16) {
+    @return ($px/$context)+0em;
+}    
+
+// Colors
+$color-color-name: #343434;
+$color-href: #454545;
+$color-href-hover: #454545;
+
+// Structure
+$gutter: em(10);
+$max-width: em(1280); 
+
+// Headlines
+$h1-font-size: em(44);
+$h2-font-size: em(37);
+$h3-font-size: em(27);
+$h4-font-size: em(23);
+$h5-font-size: em(18);
+$h6-font-size: 1em;
+$headline-line-height: 1.1em;
+$headline-bottom-margin: .5em; 
+
+// Paragraphs
+$paragraph-font-size: 1em;
+$paragraph-bottom-margin: em(20);
+
+// Media Queries
+$m-query: false !default;
+
+$mq-min-small: em(480); /* phones landscape up */
+$mq-min-medium: em(768); /* tablets up */
+$mq-min-large: em(960); /* desktops & tablets landscape up */
+$mq-min-xlarge: em(1440); /* large desktops up */
+
+$mq-max-mini: em(479); /* phone portrait down */
+$mq-max-small: em(767); /* phones landscape down */
+$mq-max-medium: em(959); /* tablet portrait down */
+$mq-max-large: em(1439); /* desktops down */

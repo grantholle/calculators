@@ -4,7 +4,7 @@
 	Author: 40Digits
 	Author URI: http://40digits.com
 	Version: 1.0 */
-/* line 17, ../../Applications/Scout.app/Contents/Resources/vendor/gems/gems/compass-0.12.2/frameworks/compass/stylesheets/compass/reset/_utilities.scss */
+/* line 17, ../../../Applications/Scout.app/Contents/Resources/vendor/gems/gems/compass-0.12.2/frameworks/compass/stylesheets/compass/reset/_utilities.scss */
 html, body, div, span, applet, object, iframe,
 h1, h2, h3, h4, h5, h6, p, blockquote, pre,
 a, abbr, acronym, address, big, cite, code,
@@ -26,45 +26,45 @@ time, mark, audio, video {
   vertical-align: baseline;
 }
 
-/* line 22, ../../Applications/Scout.app/Contents/Resources/vendor/gems/gems/compass-0.12.2/frameworks/compass/stylesheets/compass/reset/_utilities.scss */
+/* line 22, ../../../Applications/Scout.app/Contents/Resources/vendor/gems/gems/compass-0.12.2/frameworks/compass/stylesheets/compass/reset/_utilities.scss */
 html {
   line-height: 1;
 }
 
-/* line 24, ../../Applications/Scout.app/Contents/Resources/vendor/gems/gems/compass-0.12.2/frameworks/compass/stylesheets/compass/reset/_utilities.scss */
+/* line 24, ../../../Applications/Scout.app/Contents/Resources/vendor/gems/gems/compass-0.12.2/frameworks/compass/stylesheets/compass/reset/_utilities.scss */
 ol, ul {
   list-style: none;
 }
 
-/* line 26, ../../Applications/Scout.app/Contents/Resources/vendor/gems/gems/compass-0.12.2/frameworks/compass/stylesheets/compass/reset/_utilities.scss */
+/* line 26, ../../../Applications/Scout.app/Contents/Resources/vendor/gems/gems/compass-0.12.2/frameworks/compass/stylesheets/compass/reset/_utilities.scss */
 table {
   border-collapse: collapse;
   border-spacing: 0;
 }
 
-/* line 28, ../../Applications/Scout.app/Contents/Resources/vendor/gems/gems/compass-0.12.2/frameworks/compass/stylesheets/compass/reset/_utilities.scss */
+/* line 28, ../../../Applications/Scout.app/Contents/Resources/vendor/gems/gems/compass-0.12.2/frameworks/compass/stylesheets/compass/reset/_utilities.scss */
 caption, th, td {
   text-align: left;
   font-weight: normal;
   vertical-align: middle;
 }
 
-/* line 30, ../../Applications/Scout.app/Contents/Resources/vendor/gems/gems/compass-0.12.2/frameworks/compass/stylesheets/compass/reset/_utilities.scss */
+/* line 30, ../../../Applications/Scout.app/Contents/Resources/vendor/gems/gems/compass-0.12.2/frameworks/compass/stylesheets/compass/reset/_utilities.scss */
 q, blockquote {
   quotes: none;
 }
-/* line 103, ../../Applications/Scout.app/Contents/Resources/vendor/gems/gems/compass-0.12.2/frameworks/compass/stylesheets/compass/reset/_utilities.scss */
+/* line 103, ../../../Applications/Scout.app/Contents/Resources/vendor/gems/gems/compass-0.12.2/frameworks/compass/stylesheets/compass/reset/_utilities.scss */
 q:before, q:after, blockquote:before, blockquote:after {
   content: "";
   content: none;
 }
 
-/* line 32, ../../Applications/Scout.app/Contents/Resources/vendor/gems/gems/compass-0.12.2/frameworks/compass/stylesheets/compass/reset/_utilities.scss */
+/* line 32, ../../../Applications/Scout.app/Contents/Resources/vendor/gems/gems/compass-0.12.2/frameworks/compass/stylesheets/compass/reset/_utilities.scss */
 a img {
   border: none;
 }
 
-/* line 116, ../../Applications/Scout.app/Contents/Resources/vendor/gems/gems/compass-0.12.2/frameworks/compass/stylesheets/compass/reset/_utilities.scss */
+/* line 116, ../../../Applications/Scout.app/Contents/Resources/vendor/gems/gems/compass-0.12.2/frameworks/compass/stylesheets/compass/reset/_utilities.scss */
 article, aside, details, figcaption, figure, footer, header, hgroup, menu, nav, section, summary {
   display: block;
 }
@@ -95,7 +95,7 @@ article, aside, details, figcaption, figure, footer, header, hgroup, menu, nav, 
 **/
 /**
 *
-* Base styling utilized on the site. Extend upon these to achieve the effect you require.
+* Default styles utilized on the site. 
 *
 **/
 /* line 9, scss/modules/_defaults.scss */
@@ -186,24 +186,18 @@ p {
   margin-bottom: 1.25em;
   -webkit-font-smoothing: antialiased;
   text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.004);
-  font-size: 1.125em;
 }
 
-/* line 117, scss/modules/_defaults.scss */
+/* line 113, scss/modules/_defaults.scss */
 a {
   color: #454545;
 }
-/* line 120, scss/modules/_defaults.scss */
+/* line 116, scss/modules/_defaults.scss */
 a:hover {
   color: #454545;
 }
 
-/**
-*
-* Responsive grid structure.
-*
-**/
-/* line 7, scss/modules/_responsive-grid.scss */
+/* line 1, scss/modules/_responsive-grid.scss */
 .row {
   width: 100%;
   margin-left: auto;
@@ -212,60 +206,60 @@ a:hover {
   margin-bottom: 0;
   max-width: 80em;
 }
-/* line 16, scss/modules/_responsive-grid.scss */
+/* line 10, scss/modules/_responsive-grid.scss */
 .row .columns, .row.columns {
   padding-left: 10px;
   padding-right: 10px;
 }
-/* line 26, scss/modules/_responsive-grid.scss */
+/* line 20, scss/modules/_responsive-grid.scss */
 .row .col-1 {
   width: 8.33333%;
 }
-/* line 27, scss/modules/_responsive-grid.scss */
+/* line 21, scss/modules/_responsive-grid.scss */
 .row .col-2 {
   width: 16.66667%;
 }
-/* line 28, scss/modules/_responsive-grid.scss */
+/* line 22, scss/modules/_responsive-grid.scss */
 .row .col-3 {
   width: 25%;
 }
-/* line 29, scss/modules/_responsive-grid.scss */
+/* line 23, scss/modules/_responsive-grid.scss */
 .row .col-4 {
   width: 33.33333%;
 }
-/* line 30, scss/modules/_responsive-grid.scss */
+/* line 24, scss/modules/_responsive-grid.scss */
 .row .col-5 {
   width: 41.66667%;
 }
-/* line 31, scss/modules/_responsive-grid.scss */
+/* line 25, scss/modules/_responsive-grid.scss */
 .row .col-6 {
   width: 50%;
 }
-/* line 32, scss/modules/_responsive-grid.scss */
+/* line 26, scss/modules/_responsive-grid.scss */
 .row .col-7 {
   width: 58.33333%;
 }
-/* line 33, scss/modules/_responsive-grid.scss */
+/* line 27, scss/modules/_responsive-grid.scss */
 .row .col-8 {
   width: 66.66667%;
 }
-/* line 34, scss/modules/_responsive-grid.scss */
+/* line 28, scss/modules/_responsive-grid.scss */
 .row .col-9 {
   width: 75%;
 }
-/* line 35, scss/modules/_responsive-grid.scss */
+/* line 29, scss/modules/_responsive-grid.scss */
 .row .col-10 {
   width: 83.33333%;
 }
-/* line 36, scss/modules/_responsive-grid.scss */
+/* line 30, scss/modules/_responsive-grid.scss */
 .row .col-11 {
   width: 91.66667%;
 }
-/* line 37, scss/modules/_responsive-grid.scss */
+/* line 31, scss/modules/_responsive-grid.scss */
 .row .col-12 {
   width: 100%;
 }
-/* line 39, scss/modules/_responsive-grid.scss */
+/* line 33, scss/modules/_responsive-grid.scss */
 .row [class*='col-'] {
   float: left;
 }
@@ -295,3 +289,78 @@ a:hover {
 * Custom styling utilized for blog and any other content pages where the client inputs their own content through an editor.
 *
 **/
+/* line 1, scss/app/_responsive.scss */
+*, *:before, *:after {
+  -moz-box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+  box-sizing: border-box;
+}
+
+/* line 7, scss/app/_responsive.scss */
+body {
+  font-family: "HelveticaNeueLight", "HelveticaNeue-Light", "Helvetica Neue Light", "HelveticaNeue", "Helvetica Neue", 'TeXGyreHerosRegular', "Helvetica", "Tahoma", "Geneva", "Arial", sans-serif;
+  font-weight: 300;
+  font-stretch: normal;
+  font-size: 16px;
+  color: #8c929d;
+  background: #dae1e2;
+}
+
+/* line 17, scss/app/_responsive.scss */
+.container {
+  width: 100%;
+  padding: 2em;
+  margin: 0 auto;
+  position: absolute;
+  top: 10%;
+  left: 0;
+  right: 0;
+  background: #e7ebec;
+  border-radius: 5px;
+}
+
+/* line 33, scss/app/_responsive.scss */
+h2 {
+  font-size: 1.5em;
+  font-weight: normal;
+  color: #3c3f48;
+  line-height: 1.2em;
+  margin-bottom: .625em;
+}
+
+/* line 41, scss/app/_responsive.scss */
+p {
+  line-height: 1.5em;
+  margin-bottom: 2em;
+}
+
+/* line 46, scss/app/_responsive.scss */
+span {
+  display: block;
+  position: relative;
+  margin-top: 1.5em;
+  color: #e15a00;
+  font-size: .95em;
+}
+/* line 53, scss/app/_responsive.scss */
+span:after {
+  background: #34323e;
+  display: block;
+  content: "";
+  color: #8a909c;
+  margin-top: 5px;
+  border-radius: 3px;
+  padding: 10px 20px;
+  font-size: .95em;
+}
+
+/* line 66, scss/app/_responsive.scss */
+.device-on:after {
+  content: " 'mq-min-large' desktop and greater (>=960px)";
+  content: " 'mq-min-xlarge' large screen and greater (>=1440px)";
+}
+
+/* line 96, scss/app/_responsive.scss */
+.style-for:after {
+  content: " 'mq-max-large' desktop down (<=1439px)";
+}
