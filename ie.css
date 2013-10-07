@@ -4,7 +4,7 @@
 	Author: 40Digits
 	Author URI: http://40digits.com
 	Version: 1.0 */
-/* line 17, /Applications/Scout.app/Contents/Resources/vendor/gems/gems/compass-0.12.2/frameworks/compass/stylesheets/compass/reset/_utilities.scss */
+/* line 17, ../../Applications/Scout.app/Contents/Resources/vendor/gems/gems/compass-0.12.2/frameworks/compass/stylesheets/compass/reset/_utilities.scss */
 html, body, div, span, applet, object, iframe,
 h1, h2, h3, h4, h5, h6, p, blockquote, pre,
 a, abbr, acronym, address, big, cite, code,
@@ -26,45 +26,45 @@ time, mark, audio, video {
   vertical-align: baseline;
 }
 
-/* line 22, /Applications/Scout.app/Contents/Resources/vendor/gems/gems/compass-0.12.2/frameworks/compass/stylesheets/compass/reset/_utilities.scss */
+/* line 22, ../../Applications/Scout.app/Contents/Resources/vendor/gems/gems/compass-0.12.2/frameworks/compass/stylesheets/compass/reset/_utilities.scss */
 html {
   line-height: 1;
 }
 
-/* line 24, /Applications/Scout.app/Contents/Resources/vendor/gems/gems/compass-0.12.2/frameworks/compass/stylesheets/compass/reset/_utilities.scss */
+/* line 24, ../../Applications/Scout.app/Contents/Resources/vendor/gems/gems/compass-0.12.2/frameworks/compass/stylesheets/compass/reset/_utilities.scss */
 ol, ul {
   list-style: none;
 }
 
-/* line 26, /Applications/Scout.app/Contents/Resources/vendor/gems/gems/compass-0.12.2/frameworks/compass/stylesheets/compass/reset/_utilities.scss */
+/* line 26, ../../Applications/Scout.app/Contents/Resources/vendor/gems/gems/compass-0.12.2/frameworks/compass/stylesheets/compass/reset/_utilities.scss */
 table {
   border-collapse: collapse;
   border-spacing: 0;
 }
 
-/* line 28, /Applications/Scout.app/Contents/Resources/vendor/gems/gems/compass-0.12.2/frameworks/compass/stylesheets/compass/reset/_utilities.scss */
+/* line 28, ../../Applications/Scout.app/Contents/Resources/vendor/gems/gems/compass-0.12.2/frameworks/compass/stylesheets/compass/reset/_utilities.scss */
 caption, th, td {
   text-align: left;
   font-weight: normal;
   vertical-align: middle;
 }
 
-/* line 30, /Applications/Scout.app/Contents/Resources/vendor/gems/gems/compass-0.12.2/frameworks/compass/stylesheets/compass/reset/_utilities.scss */
+/* line 30, ../../Applications/Scout.app/Contents/Resources/vendor/gems/gems/compass-0.12.2/frameworks/compass/stylesheets/compass/reset/_utilities.scss */
 q, blockquote {
   quotes: none;
 }
-/* line 103, /Applications/Scout.app/Contents/Resources/vendor/gems/gems/compass-0.12.2/frameworks/compass/stylesheets/compass/reset/_utilities.scss */
+/* line 103, ../../Applications/Scout.app/Contents/Resources/vendor/gems/gems/compass-0.12.2/frameworks/compass/stylesheets/compass/reset/_utilities.scss */
 q:before, q:after, blockquote:before, blockquote:after {
   content: "";
   content: none;
 }
 
-/* line 32, /Applications/Scout.app/Contents/Resources/vendor/gems/gems/compass-0.12.2/frameworks/compass/stylesheets/compass/reset/_utilities.scss */
+/* line 32, ../../Applications/Scout.app/Contents/Resources/vendor/gems/gems/compass-0.12.2/frameworks/compass/stylesheets/compass/reset/_utilities.scss */
 a img {
   border: none;
 }
 
-/* line 116, /Applications/Scout.app/Contents/Resources/vendor/gems/gems/compass-0.12.2/frameworks/compass/stylesheets/compass/reset/_utilities.scss */
+/* line 116, ../../Applications/Scout.app/Contents/Resources/vendor/gems/gems/compass-0.12.2/frameworks/compass/stylesheets/compass/reset/_utilities.scss */
 article, aside, details, figcaption, figure, footer, header, hgroup, menu, nav, section, summary {
   display: block;
 }
@@ -98,88 +98,88 @@ article, aside, details, figcaption, figure, footer, header, hgroup, menu, nav, 
 * Base styling utilized on the site. Extend upon these to achieve the effect you require.
 *
 **/
-/* line 9, /projects/FortySass/scss/modules/_defaults.scss */
+/* line 9, scss/modules/_defaults.scss */
 *, *:before, *:after {
   -moz-box-sizing: border-box;
   -webkit-box-sizing: border-box;
   box-sizing: border-box;
 }
 
-/* line 16, /projects/FortySass/scss/modules/_defaults.scss */
+/* line 16, scss/modules/_defaults.scss */
 .cf:before, .cf:after {
   content: "";
   display: table;
 }
 
-/* line 17, /projects/FortySass/scss/modules/_defaults.scss */
+/* line 17, scss/modules/_defaults.scss */
 .cf:after {
   clear: both;
 }
 
-/* line 18, /projects/FortySass/scss/modules/_defaults.scss */
+/* line 18, scss/modules/_defaults.scss */
 .cf {
   zoom: 1;
 }
 
-/* line 21, /projects/FortySass/scss/modules/_defaults.scss */
+/* line 21, scss/modules/_defaults.scss */
 body {
   background: #FFF;
   font-size: 16px;
   color: #000;
 }
 
-/* line 27, /projects/FortySass/scss/modules/_defaults.scss */
+/* line 27, scss/modules/_defaults.scss */
 h1, h2, h3, h4, h5, h6 {
   position: relative;
   line-height: 1.1em;
   margin-bottom: 0.5em;
 }
-/* line 32, /projects/FortySass/scss/modules/_defaults.scss */
+/* line 32, scss/modules/_defaults.scss */
 h1 a, h2 a, h3 a, h4 a, h5 a, h6 a {
   color: #454545;
 }
 
-/* line 37, /projects/FortySass/scss/modules/_defaults.scss */
+/* line 37, scss/modules/_defaults.scss */
 h1 {
   font-size: 2em;
   font-size: 2.75em;
   font-size: 3em;
 }
 
-/* line 50, /projects/FortySass/scss/modules/_defaults.scss */
+/* line 50, scss/modules/_defaults.scss */
 h2 {
   font-size: 1em;
   font-size: 2.3125em;
   font-size: 2em;
 }
 
-/* line 63, /projects/FortySass/scss/modules/_defaults.scss */
+/* line 63, scss/modules/_defaults.scss */
 h3 {
   font-size: 1em;
   font-size: 1.6875em;
   font-size: 1em;
 }
 
-/* line 76, /projects/FortySass/scss/modules/_defaults.scss */
+/* line 76, scss/modules/_defaults.scss */
 h4 {
   font-size: 1em;
   font-size: 1.4375em;
   font-size: 1em;
 }
 
-/* line 89, /projects/FortySass/scss/modules/_defaults.scss */
+/* line 89, scss/modules/_defaults.scss */
 h5 {
   font-size: 0em;
   font-size: 1.125em;
   font-size: 1em;
 }
 
-/* line 102, /projects/FortySass/scss/modules/_defaults.scss */
+/* line 102, scss/modules/_defaults.scss */
 h6 {
   font-size: 1em;
 }
 
-/* line 106, /projects/FortySass/scss/modules/_defaults.scss */
+/* line 106, scss/modules/_defaults.scss */
 p {
   font-size: 1em;
   line-height: 1.5em;
@@ -189,11 +189,11 @@ p {
   font-size: 1.125em;
 }
 
-/* line 117, /projects/FortySass/scss/modules/_defaults.scss */
+/* line 117, scss/modules/_defaults.scss */
 a {
   color: #454545;
 }
-/* line 120, /projects/FortySass/scss/modules/_defaults.scss */
+/* line 120, scss/modules/_defaults.scss */
 a:hover {
   color: #454545;
 }
@@ -203,7 +203,7 @@ a:hover {
 * Responsive grid structure.
 *
 **/
-/* line 7, /projects/FortySass/scss/modules/_responsive-grid.scss */
+/* line 7, scss/modules/_responsive-grid.scss */
 .row {
   width: 100%;
   margin-left: auto;
@@ -212,60 +212,60 @@ a:hover {
   margin-bottom: 0;
   max-width: 80em;
 }
-/* line 16, /projects/FortySass/scss/modules/_responsive-grid.scss */
+/* line 16, scss/modules/_responsive-grid.scss */
 .row .columns, .row.columns {
   padding-left: 10px;
   padding-right: 10px;
 }
-/* line 26, /projects/FortySass/scss/modules/_responsive-grid.scss */
+/* line 26, scss/modules/_responsive-grid.scss */
 .row .col-1 {
   width: 8.33333%;
 }
-/* line 27, /projects/FortySass/scss/modules/_responsive-grid.scss */
+/* line 27, scss/modules/_responsive-grid.scss */
 .row .col-2 {
   width: 16.66667%;
 }
-/* line 28, /projects/FortySass/scss/modules/_responsive-grid.scss */
+/* line 28, scss/modules/_responsive-grid.scss */
 .row .col-3 {
   width: 25%;
 }
-/* line 29, /projects/FortySass/scss/modules/_responsive-grid.scss */
+/* line 29, scss/modules/_responsive-grid.scss */
 .row .col-4 {
   width: 33.33333%;
 }
-/* line 30, /projects/FortySass/scss/modules/_responsive-grid.scss */
+/* line 30, scss/modules/_responsive-grid.scss */
 .row .col-5 {
   width: 41.66667%;
 }
-/* line 31, /projects/FortySass/scss/modules/_responsive-grid.scss */
+/* line 31, scss/modules/_responsive-grid.scss */
 .row .col-6 {
   width: 50%;
 }
-/* line 32, /projects/FortySass/scss/modules/_responsive-grid.scss */
+/* line 32, scss/modules/_responsive-grid.scss */
 .row .col-7 {
   width: 58.33333%;
 }
-/* line 33, /projects/FortySass/scss/modules/_responsive-grid.scss */
+/* line 33, scss/modules/_responsive-grid.scss */
 .row .col-8 {
   width: 66.66667%;
 }
-/* line 34, /projects/FortySass/scss/modules/_responsive-grid.scss */
+/* line 34, scss/modules/_responsive-grid.scss */
 .row .col-9 {
   width: 75%;
 }
-/* line 35, /projects/FortySass/scss/modules/_responsive-grid.scss */
+/* line 35, scss/modules/_responsive-grid.scss */
 .row .col-10 {
   width: 83.33333%;
 }
-/* line 36, /projects/FortySass/scss/modules/_responsive-grid.scss */
+/* line 36, scss/modules/_responsive-grid.scss */
 .row .col-11 {
   width: 91.66667%;
 }
-/* line 37, /projects/FortySass/scss/modules/_responsive-grid.scss */
+/* line 37, scss/modules/_responsive-grid.scss */
 .row .col-12 {
   width: 100%;
 }
-/* line 39, /projects/FortySass/scss/modules/_responsive-grid.scss */
+/* line 39, scss/modules/_responsive-grid.scss */
 .row [class*='col-'] {
   float: left;
 }
@@ -295,21 +295,21 @@ a:hover {
 * Custom styling utilized for blog and any other content pages where the client inputs their own content through an editor.
 *
 **/
-/* line 10, /projects/FortySass/scss/partials/_custom.scss */
+/* line 10, scss/partials/_custom.scss */
 .custom ul, .custom ol {
   margin-bottom: 1.625em;
   padding-left: 2em;
 }
-/* line 15, /projects/FortySass/scss/partials/_custom.scss */
+/* line 15, scss/partials/_custom.scss */
 .custom li {
   line-height: 1.5em;
   font-size: 1.25em;
 }
-/* line 20, /projects/FortySass/scss/partials/_custom.scss */
+/* line 20, scss/partials/_custom.scss */
 .custom ol {
   list-style-type: decimal;
 }
-/* line 24, /projects/FortySass/scss/partials/_custom.scss */
+/* line 24, scss/partials/_custom.scss */
 .custom ul {
   list-style-type: disc;
 }

@@ -4,13 +4,22 @@
 }    
 
 // Colors
-$color-color-name: #343434;
 $color-href: #454545;
 $color-href-hover: #454545;
 
 // Structure
 $gutter: em(10);
 $max-width: em(1280); 
+
+// Horizontal Gutter
+$gutter-small-horizontal: 10px;
+$gutter-medium-horizontal: 20px;
+$gutter-large-horizontal: 40px;
+
+// vertical Gutter
+$gutter-small-vertical: 10px;
+$gutter-medium-vertical: 20px;
+$gutter-large-vertical: 40px;
 
 // Headlines
 $h1-font-size: em(44);
@@ -38,3 +47,9 @@ $mq-max-mini: em(479); /* phone portrait down */
 $mq-max-small: em(767); /* phones landscape down */
 $mq-max-medium: em(959); /* tablet portrait down */
 $mq-max-large: em(1439); /* desktops down */
+
+
+
+
+
+
