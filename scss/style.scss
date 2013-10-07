@@ -16,19 +16,24 @@
 @import 'compass/reset';
 
 //----------------------------------*\
+// Variables
+//----------------------------------*/
+
+@import 'modules/_variables.scss';
+
+//----------------------------------*\
 // MIXINS
 //----------------------------------*/
 
-@import 'mixins/_mix-fonts.scss';
-@import 'mixins/_mix-general.scss';
 @import 'mixins/_mix-media-queries.scss';
+@import 'mixins/_mix-general.scss';
+@import 'mixins/_mix-fonts.scss';
 
 //----------------------------------*\
 // MODULES
 //----------------------------------*/
 
 // Default Modules
-@import 'modules/_variables.scss';
 @import 'modules/_wordpress-default.scss';
 @import 'modules/_fonts.scss';
 @import 'modules/_defaults.scss';

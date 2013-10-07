@@ -4,13 +4,35 @@
 }    
 
 // Colors
-$color-color-name: #343434;
+$color-brown: #322f31;
+$color-blue: #1e85d4;
+$color-orange: #ee7421;
+$color-orange-logo: #f58026;
+$color-yellow: #f7f0b5;
+$color-grey-light: #818285;
+$color-grey-light-alt: #6e6d6e;
+$color-grey-dark: #4d494c;
+$color-grey-medium: #3f3b3d;
+$color-eggshell: #e6e5e1;
+$color-eggshell-light: #eeedeb;
+$color-eggshell-dark: #dbdbd9;
+
 $color-href: #454545;
 $color-href-hover: #454545;
 
 // Structure
 $gutter: em(10);
 $max-width: em(1280); 
+
+// Horizontal Gutter
+$gutter-small-horizontal: 10px;
+$gutter-medium-horizontal: 20px;
+$gutter-large-horizontal: 40px;
+
+// vertical Gutter
+$gutter-small-vertical: 10px;
+$gutter-medium-vertical: 20px;
+$gutter-large-vertical: 40px;
 
 // Headlines
 $h1-font-size: em(44);
@@ -38,3 +60,9 @@ $mq-max-mini: em(479); /* phone portrait down */
 $mq-max-small: em(767); /* phones landscape down */
 $mq-max-medium: em(959); /* tablet portrait down */
 $mq-max-large: em(1439); /* desktops down */
+
+
+
+
+
+

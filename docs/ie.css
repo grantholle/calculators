@@ -69,17 +69,6 @@ article, aside, details, figcaption, figure, footer, header, hgroup, menu, nav, 
   display: block;
 }
 
-/**
-*
-* Font mixins to be used on the site. This is handy especially when utilizing third party services like typekit or fonts.com
-* Start all font mixins with 'font-'
-*
-**/
-/**
-*
-* Media query functions to help output content conditonally based on screen width.
-*
-**/
 /* phones landscape up */
 /* tablets up */
 /* desktops & tablets landscape up */
@@ -90,9 +79,68 @@ article, aside, details, figcaption, figure, footer, header, hgroup, menu, nav, 
 /* desktops down */
 /**
 *
+* Media query functions to help output content conditonally based on screen width.
+*
+**/
+/* line 35, scss/mixins/_mix-general.scss */
+header .row, .site-wrap {
+  padding-left: 10px;
+  padding-right: 10px;
+  padding-left: 40px;
+  padding-right: 40px;
+}
+
+/* line 51, scss/mixins/_mix-general.scss */
+header h1 {
+  padding-top: 10px;
+  padding-bottom: 10px;
+  padding-top: 40px;
+  padding-bottom: 40px;
+}
+
+/**
+*
+* Font mixins to be used on the site. This is handy especially when utilizing third party services like typekit or fonts.com
+* Start all font mixins with 'font-'
+*
+**/
+/**
+*
 * Define and include @font-face in here or other outside services for fonts.
 *
 **/
+@font-face {
+  font-family: 'Brandon-Grotesque';
+  src: url("fonts/brandon_reg-webfont.eot");
+  src: url("fonts/brandon_reg-webfont.eot?#iefix") format("embedded-opentype"), url("fonts/brandon_reg-webfont.svg#brandon_grotesque_regularRg") format("svg"), url("fonts/brandon_reg-webfont.woff") format("woff"), url("fonts/brandon_reg-webfont.ttf") format("truetype");
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'Brandon-Grotesque';
+  src: url("fonts/brandon_med-webfont.eot");
+  src: url("fonts/brandon_med-webfont.eot?#iefix") format("embedded-opentype"), url("fonts/brandon_med-webfont.svg#brandon_grotesquemedium") format("svg"), url("fonts/brandon_med-webfont.woff") format("woff"), url("fonts/brandon_med-webfont.ttf") format("truetype");
+  font-weight: 500;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'Brandon-Grotesque';
+  src: url("fonts/brandon_bld-webfont.eot");
+  src: url("fonts/brandon_bld-webfont.eot?#iefix") format("embedded-opentype"), url("fonts/brandon_bld-webfont.svg#brandon_grotesquebold") format("svg"), url("fonts/brandon_bld-webfont.woff") format("woff"), url("fonts/brandon_bld-webfont.ttf") format("truetype");
+  font-weight: bold;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "FF-Tisa4";
+  src: url("fonts/TisaCompPro-Light.eot");
+  src: url("fonts/TisaCompPro-Light.eot?#iefix") format("embedded-opentype"), url("fonts/TisaCompPro-Light.woff") format("woff"), url("fonts/TisaCompPro-Light.ttf") format("truetype"), url("fonts/TisaCompPro-Light.svg#TisaCompPro-Light") format("svg");
+  font-weight: normal;
+  font-style: normal;
+}
+
 /**
 *
 * Default styles utilized on the site. 
@@ -123,76 +171,85 @@ article, aside, details, figcaption, figure, footer, header, hgroup, menu, nav, 
 
 /* line 21, scss/modules/_defaults.scss */
 body {
-  background: #FFF;
+  font-family: "ff-tisa-web-pro", serif;
+  font-weight: 400;
+  -webkit-font-smoothing: antialiased;
+  text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.004);
+  background: #e6e5e1;
   font-size: 16px;
   color: #000;
 }
 
-/* line 27, scss/modules/_defaults.scss */
+/* line 28, scss/modules/_defaults.scss */
 h1, h2, h3, h4, h5, h6 {
+  font-family: "Brandon-Grotesque", sans-serif;
+  font-weight: normal;
   position: relative;
   line-height: 1.1em;
   margin-bottom: 0.5em;
+  text-transform: uppercase;
 }
-/* line 32, scss/modules/_defaults.scss */
+/* line 35, scss/modules/_defaults.scss */
 h1 a, h2 a, h3 a, h4 a, h5 a, h6 a {
   color: #454545;
 }
 
-/* line 37, scss/modules/_defaults.scss */
+/* line 40, scss/modules/_defaults.scss */
 h1 {
-  font-size: 2em;
+  font-family: "Brandon-Grotesque", sans-serif;
+  font-weight: normal;
+  font-size: 2.0625em;
   font-size: 2.75em;
-  font-size: 3em;
+  font-size: 3.025em;
 }
 
-/* line 50, scss/modules/_defaults.scss */
+/* line 54, scss/modules/_defaults.scss */
 h2 {
-  font-size: 1em;
+  font-size: 1.73438em;
   font-size: 2.3125em;
-  font-size: 2em;
+  font-size: 2.54375em;
 }
 
-/* line 63, scss/modules/_defaults.scss */
+/* line 67, scss/modules/_defaults.scss */
 h3 {
-  font-size: 1em;
+  font-size: 1.26563em;
   font-size: 1.6875em;
-  font-size: 1em;
+  font-size: 1.85625em;
 }
 
-/* line 76, scss/modules/_defaults.scss */
+/* line 80, scss/modules/_defaults.scss */
 h4 {
-  font-size: 1em;
+  font-size: 1.07813em;
   font-size: 1.4375em;
-  font-size: 1em;
+  font-size: 1.58125em;
 }
 
-/* line 89, scss/modules/_defaults.scss */
+/* line 93, scss/modules/_defaults.scss */
 h5 {
-  font-size: 0em;
+  font-size: 0.84375em;
   font-size: 1.125em;
-  font-size: 1em;
+  font-size: 1.2375em;
 }
 
-/* line 102, scss/modules/_defaults.scss */
+/* line 106, scss/modules/_defaults.scss */
 h6 {
   font-size: 1em;
 }
 
-/* line 106, scss/modules/_defaults.scss */
+/* line 110, scss/modules/_defaults.scss */
 p {
-  font-size: 1em;
+  font-size: 1.25em;
   line-height: 1.5em;
   margin-bottom: 1.25em;
   -webkit-font-smoothing: antialiased;
   text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.004);
 }
 
-/* line 113, scss/modules/_defaults.scss */
+/* line 117, scss/modules/_defaults.scss */
 a {
   color: #454545;
 }
-/* line 116, scss/modules/_defaults.scss */
+/* line 120, scss/modules/_defaults.scss */
 a:hover {
   color: #454545;
 }
@@ -269,11 +326,45 @@ a:hover {
 * Styling that applies only to the header of the site.
 *
 **/
+/* line 7, scss/partials/_header.scss */
+header {
+  background: #1e85d4;
+  margin-bottom: 3em;
+}
+/* line 15, scss/partials/_header.scss */
+header h1 {
+  color: #FFF;
+  margin-bottom: 0;
+}
+
 /**
 *
 * Styling that applies only to the global navigation of the site.
 *
 **/
+/* line 7, scss/partials/_nav.scss */
+nav {
+  padding-right: 20px;
+}
+/* line 15, scss/partials/_nav.scss */
+nav ul {
+  zoom: 1;
+  background-color: transparent;
+  background-color: rgba(255, 255, 255, 0.7);
+  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr=#B3FFFFFF,endColorstr=#B3FFFFFF);
+  zoom: 1;
+  border-radius: 4px;
+}
+/* line 5, scss/mixins/_mix-general.scss */
+nav ul:before, nav ul:after {
+  content: "";
+  display: table;
+}
+/* line 6, scss/mixins/_mix-general.scss */
+nav ul:after {
+  clear: both;
+}
+
 /**
 *
 * Styling that applies only to the sidebars of the site.
@@ -289,24 +380,31 @@ a:hover {
 * Custom styling utilized for blog and any other content pages where the client inputs their own content through an editor.
 *
 **/
+/* line 10, scss/partials/_custom.scss */
+.custom ul, .custom ol {
+  margin-bottom: 1.625em;
+  padding-left: 2em;
+}
+/* line 15, scss/partials/_custom.scss */
+.custom li {
+  line-height: 1.5em;
+  font-size: 1.25em;
+}
+/* line 20, scss/partials/_custom.scss */
+.custom ol {
+  list-style-type: decimal;
+}
+/* line 24, scss/partials/_custom.scss */
+.custom ul {
+  list-style-type: disc;
+}
+
+/**
+*
+* Styling that to the structure of the site.
+*
+**/
 /* line 1, scss/app/_responsive.scss */
-*, *:before, *:after {
-  -moz-box-sizing: border-box;
-  -webkit-box-sizing: border-box;
-  box-sizing: border-box;
-}
-
-/* line 7, scss/app/_responsive.scss */
-body {
-  font-family: "HelveticaNeueLight", "HelveticaNeue-Light", "Helvetica Neue Light", "HelveticaNeue", "Helvetica Neue", 'TeXGyreHerosRegular', "Helvetica", "Tahoma", "Geneva", "Arial", sans-serif;
-  font-weight: 300;
-  font-stretch: normal;
-  font-size: 16px;
-  color: #8c929d;
-  background: #dae1e2;
-}
-
-/* line 17, scss/app/_responsive.scss */
 .container {
   width: 100%;
   padding: 2em;
@@ -318,32 +416,29 @@ body {
   background: #e7ebec;
   border-radius: 5px;
 }
-
-/* line 33, scss/app/_responsive.scss */
-h2 {
+/* line 16, scss/app/_responsive.scss */
+.container h2 {
   font-size: 1.5em;
   font-weight: normal;
   color: #3c3f48;
   line-height: 1.2em;
   margin-bottom: .625em;
 }
-
-/* line 41, scss/app/_responsive.scss */
-p {
+/* line 24, scss/app/_responsive.scss */
+.container p {
   line-height: 1.5em;
   margin-bottom: 2em;
 }
-
-/* line 46, scss/app/_responsive.scss */
-span {
+/* line 29, scss/app/_responsive.scss */
+.container span {
   display: block;
   position: relative;
   margin-top: 1.5em;
   color: #e15a00;
   font-size: .95em;
 }
-/* line 53, scss/app/_responsive.scss */
-span:after {
+/* line 36, scss/app/_responsive.scss */
+.container span:after {
   background: #34323e;
   display: block;
   content: "";
@@ -354,13 +449,13 @@ span:after {
   font-size: .95em;
 }
 
-/* line 66, scss/app/_responsive.scss */
+/* line 52, scss/app/_responsive.scss */
 .device-on:after {
   content: " 'mq-min-large' desktop and greater (>=960px)";
   content: " 'mq-min-xlarge' large screen and greater (>=1440px)";
 }
 
-/* line 96, scss/app/_responsive.scss */
+/* line 82, scss/app/_responsive.scss */
 .style-for:after {
   content: " 'mq-max-large' desktop down (<=1439px)";
 }

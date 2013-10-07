@@ -12,3 +12,16 @@
 	font-weight: normal;
 	@include font-smoothing;
 }
+
+// Brandon Grotesque
+@mixin font-brandon {
+	font-family: "Brandon-Grotesque", sans-serif;
+	font-weight: normal;
+}
+
+// FF Tisa Web Pro
+@mixin font-tisa {
+	font-family: "ff-tisa-web-pro", serif;
+	font-weight: 400;
+	@include font-smoothing;
+}

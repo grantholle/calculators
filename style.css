@@ -69,17 +69,6 @@ article, aside, details, figcaption, figure, footer, header, hgroup, menu, nav, 
   display: block;
 }
 
-/**
-*
-* Font mixins to be used on the site. This is handy especially when utilizing third party services like typekit or fonts.com
-* Start all font mixins with 'font-'
-*
-**/
-/**
-*
-* Media query functions to help output content conditonally based on screen width.
-*
-**/
 /* phones landscape up */
 /* tablets up */
 /* desktops & tablets landscape up */
@@ -88,6 +77,17 @@ article, aside, details, figcaption, figure, footer, header, hgroup, menu, nav, 
 /* phones landscape down */
 /* tablet portrait down */
 /* desktops down */
+/**
+*
+* Media query functions to help output content conditonally based on screen width.
+*
+**/
+/**
+*
+* Font mixins to be used on the site. This is handy especially when utilizing third party services like typekit or fonts.com
+* Start all font mixins with 'font-'
+*
+**/
 /**
 *
 * Define and include @font-face in here or other outside services for fonts.
@@ -394,3 +394,21 @@ a:hover {
 * Custom styling utilized for blog and any other content pages where the client inputs their own content through an editor.
 *
 **/
+/* line 10, scss/partials/_custom.scss */
+.custom ul, .custom ol {
+  margin-bottom: 1.625em;
+  padding-left: 2em;
+}
+/* line 15, scss/partials/_custom.scss */
+.custom li {
+  line-height: 1.5em;
+  font-size: 1.25em;
+}
+/* line 20, scss/partials/_custom.scss */
+.custom ol {
+  list-style-type: decimal;
+}
+/* line 24, scss/partials/_custom.scss */
+.custom ul {
+  list-style-type: disc;
+}

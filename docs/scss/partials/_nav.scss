@@ -3,3 +3,18 @@
 * Styling that applies only to the global navigation of the site.
 *
 **/
+
+nav {
+	padding-right: 20px;
+
+	@include mq-min-medium {
+		float: left;
+		width: 18%;
+	}
+	
+	ul {
+		@include cf;
+		@include rgba(#FFF, .7);
+		border-radius: 4px;
+	}
+}

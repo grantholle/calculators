@@ -7,5 +7,22 @@
 .custom {
 	// Your CSS in here
 
+	ul, ol {
+		margin-bottom: 1.625em;
+		padding-left: 2em;
+	}
+
+	li {
+		line-height: 1.5em;
+		font-size: em(20);
+	}
+
+	ol {
+		list-style-type: decimal;
+	}
+
+	ul {
+		list-style-type: disc;
+	}
 
 }

@@ -1,0 +1,16 @@
+/**
+*
+* Styling that to the structure of the site.
+*
+**/
+
+.site-wrap {
+	@extend %horizontal-padding;
+}
+
+#home {
+	@include mq-min-medium {
+		float: left;
+		width: 82%;
+	}
+}
