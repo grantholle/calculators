@@ -141,12 +141,12 @@ h1 a, h2 a, h3 a, h4 a, h5 a, h6 a {
 
 /* line 37, scss/modules/_defaults.scss */
 h1 {
-  font-size: 2em;
+  font-size: 2.0625em;
 }
 @media screen and (min-width: 48em) {
   /* line 37, scss/modules/_defaults.scss */
   h1 {
-    font-size: 2em;
+    font-size: 2.2em;
   }
 }
 @media screen and (min-width: 60em) {
@@ -158,18 +158,18 @@ h1 {
 @media screen and (min-width: 90em) {
   /* line 37, scss/modules/_defaults.scss */
   h1 {
-    font-size: 3em;
+    font-size: 3.025em;
   }
 }
 
 /* line 50, scss/modules/_defaults.scss */
 h2 {
-  font-size: 1em;
+  font-size: 1.73438em;
 }
 @media screen and (min-width: 48em) {
   /* line 50, scss/modules/_defaults.scss */
   h2 {
-    font-size: 1em;
+    font-size: 1.85em;
   }
 }
 @media screen and (min-width: 60em) {
@@ -181,18 +181,18 @@ h2 {
 @media screen and (min-width: 90em) {
   /* line 50, scss/modules/_defaults.scss */
   h2 {
-    font-size: 2em;
+    font-size: 2.54375em;
   }
 }
 
 /* line 63, scss/modules/_defaults.scss */
 h3 {
-  font-size: 1em;
+  font-size: 1.26563em;
 }
 @media screen and (min-width: 48em) {
   /* line 63, scss/modules/_defaults.scss */
   h3 {
-    font-size: 1em;
+    font-size: 1.35em;
   }
 }
 @media screen and (min-width: 60em) {
@@ -204,18 +204,18 @@ h3 {
 @media screen and (min-width: 90em) {
   /* line 63, scss/modules/_defaults.scss */
   h3 {
-    font-size: 1em;
+    font-size: 1.85625em;
   }
 }
 
 /* line 76, scss/modules/_defaults.scss */
 h4 {
-  font-size: 1em;
+  font-size: 1.07813em;
 }
 @media screen and (min-width: 48em) {
   /* line 76, scss/modules/_defaults.scss */
   h4 {
-    font-size: 1em;
+    font-size: 1.15em;
   }
 }
 @media screen and (min-width: 60em) {
@@ -227,18 +227,18 @@ h4 {
 @media screen and (min-width: 90em) {
   /* line 76, scss/modules/_defaults.scss */
   h4 {
-    font-size: 1em;
+    font-size: 1.58125em;
   }
 }
 
 /* line 89, scss/modules/_defaults.scss */
 h5 {
-  font-size: 0em;
+  font-size: 0.84375em;
 }
 @media screen and (min-width: 48em) {
   /* line 89, scss/modules/_defaults.scss */
   h5 {
-    font-size: 0em;
+    font-size: 0.9em;
   }
 }
 @media screen and (min-width: 60em) {
@@ -250,7 +250,7 @@ h5 {
 @media screen and (min-width: 90em) {
   /* line 89, scss/modules/_defaults.scss */
   h5 {
-    font-size: 1em;
+    font-size: 1.2375em;
   }
 }
 

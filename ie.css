@@ -141,37 +141,37 @@ h1 a, h2 a, h3 a, h4 a, h5 a, h6 a {
 
 /* line 37, scss/modules/_defaults.scss */
 h1 {
-  font-size: 2em;
+  font-size: 2.0625em;
   font-size: 2.75em;
-  font-size: 3em;
+  font-size: 3.025em;
 }
 
 /* line 50, scss/modules/_defaults.scss */
 h2 {
-  font-size: 1em;
+  font-size: 1.73438em;
   font-size: 2.3125em;
-  font-size: 2em;
+  font-size: 2.54375em;
 }
 
 /* line 63, scss/modules/_defaults.scss */
 h3 {
-  font-size: 1em;
+  font-size: 1.26563em;
   font-size: 1.6875em;
-  font-size: 1em;
+  font-size: 1.85625em;
 }
 
 /* line 76, scss/modules/_defaults.scss */
 h4 {
-  font-size: 1em;
+  font-size: 1.07813em;
   font-size: 1.4375em;
-  font-size: 1em;
+  font-size: 1.58125em;
 }
 
 /* line 89, scss/modules/_defaults.scss */
 h5 {
-  font-size: 0em;
+  font-size: 0.84375em;
   font-size: 1.125em;
-  font-size: 1em;
+  font-size: 1.2375em;
 }
 
 /* line 102, scss/modules/_defaults.scss */
