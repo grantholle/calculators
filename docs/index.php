@@ -3,8 +3,10 @@
 <div id="home" class="custom">
 
 	<section id="structure">
-		<h2>Object Orient CSS</h2>
-		<p>The purpose of OOCSS is to encourage code reuse and, ultimately, faster and more efficient stylesheets that are easier to add and maintain. More importantly you are extending and reusing existing styles based on existing rule sets.</p>
+		<h2>About</h2>
+		<h3>Object Oriented CSS</h3>
+		<p>Object Oriented CSS, as the name suggests, is implementing the concepts of OOP in structuring and building CSS rules, which are easy to reuse, thereby reducing the loading time and increasing the performance of web pages incredibly! The key point here is, to identify, build and style modular reusable ‘objects’ in a page, and to reuse it in multiple instances by extending them with additional features wherever needed. Here an ‘object’ refers to the basic HTML markup and its CSS rules.</p>
+		<p>This is neither a framework nor a technology, but an approach adopted in building the rules, so as to make the code more reusable, maintainable and scalable.</p>
 
 		<h3>There are 2 main principles of OOCSS:</h3>
 		<ol>
@@ -38,7 +40,7 @@
 		<h3>External Resources</h3>
 		<ul>
 			<li><a href="https://github.com/stubbornella/oocss/wiki">https://github.com/stubbornella/oocss/wiki</a></li>
-			<li><a href="http://www.vanseodesign.com/css/object-oriented-css/">http://www.vanseodesign.com/css/object-oriented-css//a></li>
+			<li><a href="http://www.vanseodesign.com/css/object-oriented-css/">http://www.vanseodesign.com/css/object-oriented-css</a></li>
 		</ul>
 
 		<h3>Object Oriented SASS</h3>

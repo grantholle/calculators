@@ -201,7 +201,7 @@ body {
   text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.004);
   background: #e6e5e1;
   font-size: 16px;
-  color: #000;
+  color: #322f31;
 }
 
 /* line 28, scss/modules/_defaults.scss */
@@ -462,7 +462,12 @@ header h1 {
 **/
 /* line 7, scss/partials/_nav.scss */
 nav {
-  padding-right: 20px;
+  background-color: transparent;
+  background-color: rgba(255, 255, 255, 0.7);
+  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr=#B3FFFFFF,endColorstr=#B3FFFFFF);
+  zoom: 1;
+  border-radius: 4px;
+  padding: 20px;
 }
 @media screen and (min-width: 48em) {
   /* line 7, scss/partials/_nav.scss */
@@ -471,14 +476,9 @@ nav {
     width: 18%;
   }
 }
-/* line 15, scss/partials/_nav.scss */
+/* line 17, scss/partials/_nav.scss */
 nav ul {
   zoom: 1;
-  background-color: transparent;
-  background-color: rgba(255, 255, 255, 0.7);
-  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr=#B3FFFFFF,endColorstr=#B3FFFFFF);
-  zoom: 1;
-  border-radius: 4px;
 }
 /* line 5, scss/mixins/_mix-general.scss */
 nav ul:before, nav ul:after {
@@ -488,6 +488,25 @@ nav ul:before, nav ul:after {
 /* line 6, scss/mixins/_mix-general.scss */
 nav ul:after {
   clear: both;
+}
+/* line 20, scss/partials/_nav.scss */
+nav ul li {
+  line-height: 1.5em;
+}
+/* line 23, scss/partials/_nav.scss */
+nav ul li > ul {
+  padding-left: 20px;
+}
+/* line 28, scss/partials/_nav.scss */
+nav ul a {
+  font-family: "Brandon-Grotesque", sans-serif;
+  font-weight: normal;
+  text-decoration: none;
+  text-transform: uppercase;
+}
+/* line 33, scss/partials/_nav.scss */
+nav ul a:hover {
+  color: #ee7421;
 }
 
 /**
@@ -507,21 +526,38 @@ nav ul:after {
 **/
 /* line 10, scss/partials/_custom.scss */
 .custom ul, .custom ol {
-  margin-bottom: 1.625em;
-  padding-left: 2em;
+  margin-bottom: 2.25em;
+  padding-left: 4em;
 }
 /* line 15, scss/partials/_custom.scss */
 .custom li {
   line-height: 1.5em;
   font-size: 1.25em;
+  margin-bottom: 5px;
 }
-/* line 20, scss/partials/_custom.scss */
+/* line 21, scss/partials/_custom.scss */
 .custom ol {
   list-style-type: decimal;
 }
-/* line 24, scss/partials/_custom.scss */
+/* line 25, scss/partials/_custom.scss */
 .custom ul {
   list-style-type: disc;
+}
+/* line 29, scss/partials/_custom.scss */
+.custom h2 {
+  color: #ee7421;
+}
+/* line 33, scss/partials/_custom.scss */
+.custom h3, .custom h4 {
+  color: #1e85d4;
+}
+/* line 37, scss/partials/_custom.scss */
+.custom p {
+  margin-bottom: 40px;
+}
+/* line 41, scss/partials/_custom.scss */
+.custom strong {
+  font-weight: bold;
 }
 
 /**
@@ -534,6 +570,7 @@ nav ul:after {
   #home {
     float: left;
     width: 82%;
+    padding-left: 40px;
   }
 }
 

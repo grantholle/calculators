@@ -5,7 +5,9 @@
 **/
 
 nav {
-	padding-right: 20px;
+	@include rgba(#FFF, .7);
+	border-radius: 4px;
+	padding: 20px;
 
 	@include mq-min-medium {
 		float: left;
@@ -14,7 +16,23 @@ nav {
 	
 	ul {
 		@include cf;
-		@include rgba(#FFF, .7);
-		border-radius: 4px;
+
+		li {
+			line-height: 1.5em;
+
+			>ul {
+				padding-left: 20px;
+			}
+		}
+
+		a {
+			@include font-brandon;
+			text-decoration: none;
+			text-transform: uppercase;
+
+			&:hover {
+				color: $color-orange;
+			}
+		}
 	}
 }

@@ -8,13 +8,14 @@
 	// Your CSS in here
 
 	ul, ol {
-		margin-bottom: 1.625em;
-		padding-left: 2em;
+		margin-bottom: 2.25em;
+		padding-left: 4em;
 	}
 
 	li {
 		line-height: 1.5em;
 		font-size: em(20);
+		margin-bottom: 5px;
 	}
 
 	ol {
@@ -23,6 +24,22 @@
 
 	ul {
 		list-style-type: disc;
+	}
+
+	h2 {
+		color: $color-orange;
+	}
+
+	h3, h4 {
+		color: $color-blue;
+	}
+
+	p {
+		margin-bottom: 40px;
+	}
+
+	strong {
+		font-weight: bold;
 	}
 
 }
