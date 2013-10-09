@@ -82,6 +82,26 @@ article, aside, details, figcaption, figure, footer, header, hgroup, menu, nav, 
 * Media query functions to help output content conditonally based on screen width.
 *
 **/
+/* line 2, scss/mixins/_mix-general.scss */
+nav ul, #home {
+  zoom: 1;
+}
+/* line 5, scss/mixins/_mix-general.scss */
+nav ul:before, #home:before, nav ul:after, #home:after {
+  content: "";
+  display: table;
+}
+/* line 6, scss/mixins/_mix-general.scss */
+nav ul:after, #home:after {
+  clear: both;
+}
+
+/* line 10, scss/mixins/_mix-general.scss */
+body, h5, h6, p {
+  -webkit-font-smoothing: antialiased;
+  text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.004);
+}
+
 /* line 35, scss/mixins/_mix-general.scss */
 header .row, .site-wrap {
   padding-left: 10px;
@@ -141,6 +161,14 @@ header h1 {
   font-style: normal;
 }
 
+@font-face {
+  font-family: 'fontello';
+  src: url("fonts/fontello.eot?30255345");
+  src: url("fonts/fontello.eot?30255345#iefix") format("embedded-opentype"), url("fonts/fontello.woff?30255345") format("woff"), url("fonts/fontello.ttf?30255345") format("truetype"), url("fonts/fontello.svg?30255345#fontello") format("svg");
+  font-weight: normal;
+  font-style: normal;
+}
+
 /**
 *
 * Default styles utilized on the site. 
@@ -172,9 +200,8 @@ header h1 {
 /* line 21, scss/modules/_defaults.scss */
 body {
   font-family: "ff-tisa-web-pro", serif;
-  font-weight: 400;
-  -webkit-font-smoothing: antialiased;
-  text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.004);
+  font-style: normal;
+  font-weight: normal;
   background: #e6e5e1;
   font-size: 16px;
   color: #322f31;
@@ -191,67 +218,71 @@ h1, h2, h3, h4, h5, h6 {
 }
 /* line 35, scss/modules/_defaults.scss */
 h1 a, h2 a, h3 a, h4 a, h5 a, h6 a {
-  color: #454545;
+  color: #ee7421;
 }
 
 /* line 40, scss/modules/_defaults.scss */
 h1 {
-  font-family: "Brandon-Grotesque", sans-serif;
-  font-weight: normal;
   font-size: 2.0625em;
   font-size: 2.75em;
   font-size: 3.025em;
 }
 
-/* line 54, scss/modules/_defaults.scss */
+/* line 53, scss/modules/_defaults.scss */
 h2 {
   font-size: 1.73438em;
   font-size: 2.3125em;
   font-size: 2.54375em;
 }
 
-/* line 67, scss/modules/_defaults.scss */
+/* line 66, scss/modules/_defaults.scss */
 h3 {
   font-size: 1.26563em;
   font-size: 1.6875em;
   font-size: 1.85625em;
 }
 
-/* line 80, scss/modules/_defaults.scss */
+/* line 79, scss/modules/_defaults.scss */
 h4 {
   font-size: 1.07813em;
   font-size: 1.4375em;
   font-size: 1.58125em;
 }
 
-/* line 93, scss/modules/_defaults.scss */
+/* line 92, scss/modules/_defaults.scss */
 h5 {
+  font-family: "ff-tisa-web-pro", serif;
+  font-style: normal;
+  font-weight: normal;
   font-size: 0.84375em;
+  font-weight: bold;
   font-size: 1.125em;
   font-size: 1.2375em;
 }
 
-/* line 106, scss/modules/_defaults.scss */
+/* line 107, scss/modules/_defaults.scss */
 h6 {
+  font-family: "ff-tisa-web-pro", serif;
+  font-style: normal;
+  font-weight: normal;
+  font-weight: bold;
   font-size: 1em;
 }
 
-/* line 110, scss/modules/_defaults.scss */
+/* line 113, scss/modules/_defaults.scss */
 p {
   font-size: 1.25em;
   line-height: 1.5em;
   margin-bottom: 1.25em;
-  -webkit-font-smoothing: antialiased;
-  text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.004);
 }
 
-/* line 117, scss/modules/_defaults.scss */
-a {
-  color: #454545;
-}
 /* line 120, scss/modules/_defaults.scss */
+a {
+  color: #ee7421;
+}
+/* line 123, scss/modules/_defaults.scss */
 a:hover {
-  color: #454545;
+  color: #ee7421;
 }
 
 /* line 1, scss/modules/_responsive-grid.scss */
@@ -351,19 +382,6 @@ nav {
   border-radius: 4px;
   padding: 20px;
 }
-/* line 17, scss/partials/_nav.scss */
-nav ul {
-  zoom: 1;
-}
-/* line 5, scss/mixins/_mix-general.scss */
-nav ul:before, nav ul:after {
-  content: "";
-  display: table;
-}
-/* line 6, scss/mixins/_mix-general.scss */
-nav ul:after {
-  clear: both;
-}
 /* line 20, scss/partials/_nav.scss */
 nav ul li {
   line-height: 1.5em;
@@ -402,37 +420,218 @@ nav ul a:hover {
 /* line 10, scss/partials/_custom.scss */
 .custom ul, .custom ol {
   margin-bottom: 2.25em;
-  padding-left: 4em;
+  margin-left: 25px;
 }
-/* line 15, scss/partials/_custom.scss */
+/* line 14, scss/partials/_custom.scss */
+.custom ul ul, .custom ul ol, .custom ol ul, .custom ol ol {
+  margin-left: 40px;
+  margin-bottom: 0;
+}
+/* line 18, scss/partials/_custom.scss */
+.custom ul ul li, .custom ul ol li, .custom ol ul li, .custom ol ol li {
+  font-size: 18px;
+  color: rgba(50, 47, 49, 0.7);
+}
+/* line 25, scss/partials/_custom.scss */
 .custom li {
   line-height: 1.5em;
-  font-size: 1.25em;
+  font-size: 20px;
   margin-bottom: 5px;
 }
-/* line 21, scss/partials/_custom.scss */
+/* line 30, scss/partials/_custom.scss */
+.custom li p {
+  font-size: inherit;
+}
+/* line 35, scss/partials/_custom.scss */
 .custom ol {
   list-style-type: decimal;
 }
-/* line 25, scss/partials/_custom.scss */
+/* line 39, scss/partials/_custom.scss */
 .custom ul {
   list-style-type: disc;
 }
-/* line 29, scss/partials/_custom.scss */
+/* line 43, scss/partials/_custom.scss */
 .custom h2 {
   color: #ee7421;
 }
-/* line 33, scss/partials/_custom.scss */
+/* line 47, scss/partials/_custom.scss */
 .custom h3, .custom h4 {
   color: #1e85d4;
 }
-/* line 37, scss/partials/_custom.scss */
-.custom p {
-  margin-bottom: 40px;
-}
-/* line 41, scss/partials/_custom.scss */
+/* line 51, scss/partials/_custom.scss */
 .custom strong {
   font-weight: bold;
+}
+
+/**
+ * okaidia theme for JavaScript, CSS and HTML
+ * Loosely based on Monokai textmate theme by http://www.monokai.nl/
+ * @author ocodia
+ */
+/* line 8, scss/vendor/_prism.scss */
+code[class*="language-"],
+pre[class*="language-"] {
+  color: #f8f8f2;
+  text-shadow: 0 1px rgba(0, 0, 0, 0.3);
+  font-family: Consolas, Monaco, 'Andale Mono', monospace;
+  font-size: 15px;
+  line-height: 1.2em;
+  direction: ltr;
+  text-align: left;
+  white-space: pre;
+  word-spacing: normal;
+  -moz-tab-size: 4;
+  -o-tab-size: 4;
+  tab-size: 4;
+  -webkit-hyphens: none;
+  -moz-hyphens: none;
+  -ms-hyphens: none;
+  hyphens: none;
+}
+
+/* Code blocks */
+/* line 30, scss/vendor/_prism.scss */
+pre[class*="language-"] {
+  padding: 1em;
+  margin: .5em 0;
+  margin-bottom: 40px;
+  overflow: auto;
+  border-radius: 0.3em;
+}
+
+/* line 39, scss/vendor/_prism.scss */
+:not(pre) > code[class*="language-"],
+pre[class*="language-"] {
+  background: #272822;
+}
+
+/* Inline code */
+/* line 44, scss/vendor/_prism.scss */
+:not(pre) > code[class*="language-"] {
+  padding: .1em;
+  border-radius: .3em;
+}
+
+/* line 52, scss/vendor/_prism.scss */
+.token.comment,
+.token.prolog,
+.token.doctype,
+.token.cdata {
+  color: slategray;
+}
+
+/* line 56, scss/vendor/_prism.scss */
+.token.punctuation {
+  color: #f8f8f2;
+}
+
+/* line 60, scss/vendor/_prism.scss */
+.namespace {
+  opacity: .7;
+}
+
+/* line 67, scss/vendor/_prism.scss */
+.token.property,
+.token.tag,
+.token.constant,
+.token.symbol {
+  color: #f92672;
+}
+
+/* line 72, scss/vendor/_prism.scss */
+.token.boolean,
+.token.number {
+  color: #ae81ff;
+}
+
+/* line 79, scss/vendor/_prism.scss */
+.token.selector,
+.token.attr-name,
+.token.string,
+.token.builtin {
+  color: #a6e22e;
+}
+
+/* line 89, scss/vendor/_prism.scss */
+.token.operator,
+.token.entity,
+.token.url,
+.language-css .token.string,
+.style .token.string,
+.token.variable {
+  color: #f8f8f2;
+}
+
+/* line 95, scss/vendor/_prism.scss */
+.token.atrule,
+.token.attr-value {
+  color: #e6db74;
+}
+
+/* line 100, scss/vendor/_prism.scss */
+.token.keyword {
+  color: #66d9ef;
+}
+
+/* line 105, scss/vendor/_prism.scss */
+.token.regex,
+.token.important {
+  color: #fd971f;
+}
+
+/* line 109, scss/vendor/_prism.scss */
+.token.important {
+  font-weight: bold;
+}
+
+/* line 113, scss/vendor/_prism.scss */
+.token.entity {
+  cursor: help;
+}
+
+/* line 117, scss/vendor/_prism.scss */
+pre.line-numbers {
+  position: relative;
+  padding-left: 3.8em;
+  counter-reset: linenumber;
+}
+
+/* line 123, scss/vendor/_prism.scss */
+pre.line-numbers > code {
+  position: relative;
+}
+
+/* line 127, scss/vendor/_prism.scss */
+.line-numbers .line-numbers-rows {
+  position: absolute;
+  pointer-events: none;
+  top: 0;
+  font-size: 100%;
+  left: -3.8em;
+  width: 3em;
+  /* works for line-numbers below 1000 lines */
+  letter-spacing: -1px;
+  border-right: 1px solid #999;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+
+/* line 144, scss/vendor/_prism.scss */
+.line-numbers-rows > span {
+  pointer-events: none;
+  display: block;
+  counter-increment: linenumber;
+}
+
+/* line 150, scss/vendor/_prism.scss */
+.line-numbers-rows > span:before {
+  content: counter(linenumber);
+  color: #999;
+  display: block;
+  padding-right: 0.8em;
+  text-align: right;
 }
 
 /**
@@ -440,6 +639,53 @@ nav ul a:hover {
 * Styling that to the structure of the site.
 *
 **/
+/* line 7, scss/app/_structure.scss */
+[class^="icon-"]:before, [class*=" icon-"]:before {
+  font-family: "fontello";
+  font-size: 16px;
+  font-style: normal;
+  font-weight: normal;
+  speak: none;
+  display: inline-block;
+  text-decoration: inherit;
+  width: 1em;
+  margin-right: .2em;
+  text-align: center;
+  font-variant: normal;
+  text-transform: none;
+  line-height: 1em;
+  margin-left: .2em;
+  position: absolute;
+  left: -25px;
+  color: rgba(30, 133, 212, 0.7);
+}
+
+/* line 27, scss/app/_structure.scss */
+.icon-file:before {
+  content: '\e801';
+  top: 7px;
+}
+
+/* '' */
+/* line 28, scss/app/_structure.scss */
+.icon-folder:before {
+  content: '\e800';
+  top: 8px;
+}
+
+/* '' */
+/* line 46, scss/app/_structure.scss */
+.file-structure li {
+  position: relative;
+  list-style-type: none;
+  padding-left: 5px;
+}
+
+/* line 53, scss/app/_structure.scss */
+section {
+  margin-bottom: 5em;
+}
+
 /* line 1, scss/app/_responsive.scss */
 .container {
   width: 100%;

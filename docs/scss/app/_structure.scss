@@ -4,15 +4,52 @@
 *
 **/
 
+ [class^="icon-"]:before, [class*=" icon-"]:before {
+	font-family: "fontello";
+	font-size: 16px;
+	font-style: normal;
+	font-weight: normal;
+	speak: none; 
+	display: inline-block;
+	text-decoration: inherit;
+	width: 1em;
+	margin-right: .2em;
+	text-align: center;
+	font-variant: normal;
+	text-transform: none;
+	line-height: 1em;
+	margin-left: .2em;
+	position: absolute;
+	left: -25px;
+	color: rgba($color-blue, .7);
+}
+ 
+.icon-file:before { content: '\e801'; top: 7px;} /* '' */
+.icon-folder:before { content: '\e800'; top: 8px;} /* '' */
+
 .site-wrap {
 	@extend %horizontal-padding;
 }
 
 #home {
+	@extend %cf;
 	@include mq-min-medium {
 		float: left;
 		width: 82%;
 
 		padding-left: 40px;
 	}
+}
+
+.file-structure {
+
+	li {
+		position: relative;
+		list-style-type: none;
+		padding-left: 5px;
+	}
+}
+
+section {
+	margin-bottom: 5em;
 }

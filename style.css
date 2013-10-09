@@ -82,10 +82,16 @@ article, aside, details, figcaption, figure, footer, header, hgroup, menu, nav, 
 * Media query functions to help output content conditonally based on screen width.
 *
 **/
+/* line 10, scss/mixins/_mix-general.scss */
+p {
+  -webkit-font-smoothing: antialiased;
+  text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.004);
+}
+
 /**
 *
 * Font mixins to be used on the site. This is handy especially when utilizing third party services like typekit or fonts.com
-* Start all font mixins with 'font-'
+* Start all names with 'font-' .... couple examples to get you started with.
 *
 **/
 /**
@@ -264,8 +270,6 @@ p {
   font-size: 1em;
   line-height: 1.5em;
   margin-bottom: 1.25em;
-  -webkit-font-smoothing: antialiased;
-  text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.004);
 }
 @media screen and (min-width: 90em) {
   /* line 106, scss/modules/_defaults.scss */

@@ -19,14 +19,14 @@
 
 // General
 body {
-	@include font-tisa;
+	@include font(font-tisa);
 	background: $color-eggshell;
 	font-size: 16px;
 	color: $color-brown;
 }
 
 h1, h2, h3, h4, h5, h6 {
-	@include font-brandon;
+	@include font(font-brandon);
 	position: relative;
 	line-height: $headline-line-height;
 	margin-bottom: $headline-bottom-margin;
@@ -38,7 +38,6 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 h1 {
-	@include font-brandon;
 	font-size: ($h1-font-size * .75);
 	@include mq-min-medium {
 		font-size: ($h1-font-size * .80);
@@ -91,7 +90,9 @@ h4 {
 }
 
 h5 {
+	@include font(font-tisa);
 	font-size: ($h5-font-size * .75);
+	font-weight: bold;
 	@include mq-min-medium {
 		font-size: ($h5-font-size * .80);
 	}
@@ -104,6 +105,8 @@ h5 {
 }
 
 h6 {
+	@include font(font-tisa);
+	font-weight: bold;
 	font-size: $h6-font-size;
 }
 
@@ -111,7 +114,7 @@ p {
 	font-size: 1.25em;
 	line-height: 1.5em;
 	margin-bottom: $paragraph-bottom-margin;
-	@include font-smoothing;
+	@extend %font-smoothing;
 }
 
 a {

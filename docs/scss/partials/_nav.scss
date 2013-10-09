@@ -15,7 +15,7 @@ nav {
 	}
 	
 	ul {
-		@include cf;
+		@extend %cf;
 
 		li {
 			line-height: 1.5em;
@@ -26,7 +26,7 @@ nav {
 		}
 
 		a {
-			@include font-brandon;
+			@include font(font-brandon);
 			text-decoration: none;
 			text-transform: uppercase;
 

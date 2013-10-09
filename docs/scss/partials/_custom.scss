@@ -9,13 +9,27 @@
 
 	ul, ol {
 		margin-bottom: 2.25em;
-		padding-left: 4em;
+		margin-left: 25px;
+
+		ul, ol {
+			margin-left: 40px;
+			margin-bottom: 0;
+
+			li {
+				font-size: 18px;
+				color: rgba($color-brown, .7);
+			}
+		}
 	}
 
 	li {
 		line-height: 1.5em;
-		font-size: em(20);
+		font-size: 20px;
 		margin-bottom: 5px;
+
+		p {
+			font-size: inherit;
+		}
 	}
 
 	ol {
@@ -32,10 +46,6 @@
 
 	h3, h4 {
 		color: $color-blue;
-	}
-
-	p {
-		margin-bottom: 40px;
 	}
 
 	strong {
