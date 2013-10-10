@@ -279,10 +279,22 @@ p {
 /* line 120, scss/modules/_defaults.scss */
 a {
   color: #ee7421;
+  text-decoration: none;
 }
-/* line 123, scss/modules/_defaults.scss */
+/* line 124, scss/modules/_defaults.scss */
 a:hover {
   color: #ee7421;
+  text-decoration: underline;
+}
+
+/* line 131, scss/modules/_defaults.scss */
+code {
+  font-family: Consolas, Monaco, 'Andale Mono', monospace;
+  background-color: #FFF;
+  border-radius: 4px;
+  color: #419de4;
+  padding: 4px 5px;
+  font-size: 15px;
 }
 
 /* line 1, scss/modules/_responsive-grid.scss */
@@ -420,59 +432,68 @@ nav ul a:hover {
 /* line 10, scss/partials/_custom.scss */
 .custom ul, .custom ol {
   margin-bottom: 2.25em;
-  margin-left: 25px;
+  margin-left: 50px;
 }
 /* line 14, scss/partials/_custom.scss */
 .custom ul ul, .custom ul ol, .custom ol ul, .custom ol ol {
-  margin-left: 40px;
-  margin-bottom: 0;
+  margin-left: 30px;
 }
-/* line 18, scss/partials/_custom.scss */
+/* line 17, scss/partials/_custom.scss */
 .custom ul ul li, .custom ul ol li, .custom ol ul li, .custom ol ol li {
   font-size: 18px;
-  color: rgba(50, 47, 49, 0.7);
 }
-/* line 25, scss/partials/_custom.scss */
+/* line 22, scss/partials/_custom.scss */
+.custom ul ul li, .custom ol ul li {
+  list-style-type: square;
+}
+/* line 27, scss/partials/_custom.scss */
 .custom li {
   line-height: 1.5em;
   font-size: 20px;
   margin-bottom: 5px;
 }
-/* line 30, scss/partials/_custom.scss */
+/* line 32, scss/partials/_custom.scss */
 .custom li p {
   font-size: inherit;
 }
-/* line 35, scss/partials/_custom.scss */
+/* line 37, scss/partials/_custom.scss */
 .custom ol {
   list-style-type: decimal;
 }
-/* line 39, scss/partials/_custom.scss */
+/* line 41, scss/partials/_custom.scss */
 .custom ul {
   list-style-type: disc;
 }
-/* line 43, scss/partials/_custom.scss */
+/* line 45, scss/partials/_custom.scss */
 .custom h2 {
   color: #ee7421;
 }
-/* line 47, scss/partials/_custom.scss */
+/* line 49, scss/partials/_custom.scss */
 .custom h3, .custom h4 {
   color: #1e85d4;
 }
-/* line 51, scss/partials/_custom.scss */
+/* line 53, scss/partials/_custom.scss */
 .custom strong {
   font-weight: bold;
 }
+/* line 60, scss/partials/_custom.scss */
+.custom p + h2,
+.custom p + h3,
+.custom p + h4,
+.custom p + h5 {
+  margin-top: 40px;
+}
 
 /**
- * okaidia theme for JavaScript, CSS and HTML
- * Loosely based on Monokai textmate theme by http://www.monokai.nl/
- * @author ocodia
+ * prism.js default theme for JavaScript, CSS and HTML
+ * Based on dabblet (http://dabblet.com)
+ * @author Lea Verou
  */
 /* line 8, scss/vendor/_prism.scss */
 code[class*="language-"],
 pre[class*="language-"] {
-  color: #f8f8f2;
-  text-shadow: 0 1px rgba(0, 0, 0, 0.3);
+  color: black;
+  text-shadow: 0 1px white;
   font-family: Consolas, Monaco, 'Andale Mono', monospace;
   font-size: 15px;
   line-height: 1.2em;
@@ -480,6 +501,7 @@ pre[class*="language-"] {
   text-align: left;
   white-space: pre;
   word-spacing: normal;
+  background-color: inherit;
   -moz-tab-size: 4;
   -o-tab-size: 4;
   tab-size: 4;
@@ -489,30 +511,53 @@ pre[class*="language-"] {
   hyphens: none;
 }
 
+/* line 31, scss/vendor/_prism.scss */
+pre[class*="language-"]::-moz-selection, pre[class*="language-"] ::-moz-selection,
+code[class*="language-"]::-moz-selection, code[class*="language-"] ::-moz-selection {
+  text-shadow: none;
+  background-color: #b3d4fc;
+}
+
+/* line 37, scss/vendor/_prism.scss */
+pre[class*="language-"]::selection, pre[class*="language-"] ::selection,
+code[class*="language-"]::selection, code[class*="language-"] ::selection {
+  text-shadow: none;
+  background-color: #b3d4fc;
+}
+
+@media print {
+  /* line 44, scss/vendor/_prism.scss */
+  code[class*="language-"],
+  pre[class*="language-"] {
+    text-shadow: none;
+  }
+}
 /* Code blocks */
-/* line 30, scss/vendor/_prism.scss */
+/* line 50, scss/vendor/_prism.scss */
 pre[class*="language-"] {
   padding: 1em;
   margin: .5em 0;
-  margin-bottom: 40px;
+  margin-bottom: 30px;
   overflow: auto;
-  border-radius: 0.3em;
+  border-radius: 5px;
+  border: 1px solid #dbdbd9;
+  max-height: 400px;
 }
 
-/* line 39, scss/vendor/_prism.scss */
+/* line 61, scss/vendor/_prism.scss */
 :not(pre) > code[class*="language-"],
 pre[class*="language-"] {
-  background: #272822;
+  background: #f5f2f0;
 }
 
 /* Inline code */
-/* line 44, scss/vendor/_prism.scss */
+/* line 66, scss/vendor/_prism.scss */
 :not(pre) > code[class*="language-"] {
   padding: .1em;
   border-radius: .3em;
 }
 
-/* line 52, scss/vendor/_prism.scss */
+/* line 74, scss/vendor/_prism.scss */
 .token.comment,
 .token.prolog,
 .token.doctype,
@@ -520,88 +565,81 @@ pre[class*="language-"] {
   color: slategray;
 }
 
-/* line 56, scss/vendor/_prism.scss */
+/* line 78, scss/vendor/_prism.scss */
 .token.punctuation {
-  color: #f8f8f2;
+  color: #999;
 }
 
-/* line 60, scss/vendor/_prism.scss */
+/* line 82, scss/vendor/_prism.scss */
 .namespace {
   opacity: .7;
 }
 
-/* line 67, scss/vendor/_prism.scss */
+/* line 91, scss/vendor/_prism.scss */
 .token.property,
 .token.tag,
+.token.boolean,
+.token.number,
 .token.constant,
 .token.symbol {
-  color: #f92672;
+  color: #905;
 }
 
-/* line 72, scss/vendor/_prism.scss */
-.token.boolean,
-.token.number {
-  color: #ae81ff;
-}
-
-/* line 79, scss/vendor/_prism.scss */
+/* line 98, scss/vendor/_prism.scss */
 .token.selector,
 .token.attr-name,
 .token.string,
 .token.builtin {
-  color: #a6e22e;
+  color: #690;
 }
 
-/* line 89, scss/vendor/_prism.scss */
+/* line 107, scss/vendor/_prism.scss */
 .token.operator,
 .token.entity,
 .token.url,
 .language-css .token.string,
 .style .token.string,
 .token.variable {
-  color: #f8f8f2;
+  color: #a67f59;
+  background: rgba(255, 255, 255, 0.5);
 }
 
-/* line 95, scss/vendor/_prism.scss */
+/* line 114, scss/vendor/_prism.scss */
 .token.atrule,
-.token.attr-value {
-  color: #e6db74;
-}
-
-/* line 100, scss/vendor/_prism.scss */
+.token.attr-value,
 .token.keyword {
-  color: #66d9ef;
+  color: #07a;
 }
 
-/* line 105, scss/vendor/_prism.scss */
+/* line 120, scss/vendor/_prism.scss */
 .token.regex,
 .token.important {
-  color: #fd971f;
+  color: #e90;
 }
 
-/* line 109, scss/vendor/_prism.scss */
+/* line 124, scss/vendor/_prism.scss */
 .token.important {
   font-weight: bold;
 }
 
-/* line 113, scss/vendor/_prism.scss */
+/* line 128, scss/vendor/_prism.scss */
 .token.entity {
   cursor: help;
 }
 
-/* line 117, scss/vendor/_prism.scss */
+/* line 132, scss/vendor/_prism.scss */
 pre.line-numbers {
   position: relative;
   padding-left: 3.8em;
   counter-reset: linenumber;
 }
 
-/* line 123, scss/vendor/_prism.scss */
+/* line 138, scss/vendor/_prism.scss */
 pre.line-numbers > code {
   position: relative;
 }
 
-/* line 127, scss/vendor/_prism.scss */
+/* line 142, scss/vendor/_prism.scss */
 .line-numbers .line-numbers-rows {
   position: absolute;
   pointer-events: none;
@@ -618,14 +656,14 @@ pre.line-numbers > code {
   user-select: none;
 }
 
-/* line 144, scss/vendor/_prism.scss */
+/* line 159, scss/vendor/_prism.scss */
 .line-numbers-rows > span {
   pointer-events: none;
   display: block;
   counter-increment: linenumber;
 }
 
-/* line 150, scss/vendor/_prism.scss */
+/* line 165, scss/vendor/_prism.scss */
 .line-numbers-rows > span:before {
   content: counter(linenumber);
   color: #999;
@@ -674,14 +712,21 @@ pre.line-numbers > code {
 }
 
 /* '' */
-/* line 46, scss/app/_structure.scss */
+/* line 43, scss/app/_structure.scss */
+#home section {
+  margin-bottom: 2.5em;
+  padding-bottom: 2.5em;
+  border-bottom: 4px solid #dbdbd9;
+}
+
+/* line 52, scss/app/_structure.scss */
 .file-structure li {
   position: relative;
-  list-style-type: none;
+  list-style-type: none !important;
   padding-left: 5px;
 }
 
-/* line 53, scss/app/_structure.scss */
+/* line 59, scss/app/_structure.scss */
 section {
   margin-bottom: 5em;
 }

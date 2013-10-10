@@ -119,8 +119,20 @@ p {
 
 a {
 	color: $color-href;
+	text-decoration: none;
 
 	&:hover {
 		color: $color-href-hover;
+		text-decoration: underline;
 	}
+}
+
+
+code {
+	font-family: Consolas, Monaco, 'Andale Mono', monospace;
+	background-color: #FFF;
+	border-radius: 4px;
+	color: lighten($color-blue, 10);
+	padding: 4px 5px;
+	font-size: 15px;
 }

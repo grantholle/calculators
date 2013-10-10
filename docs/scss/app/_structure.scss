@@ -39,13 +39,19 @@
 
 		padding-left: 40px;
 	}
+
+	section {
+		margin-bottom: 2.5em;
+		padding-bottom: 2.5em;
+		border-bottom: 4px solid $color-eggshell-dark;
+	}
 }
 
 .file-structure {
 
 	li {
 		position: relative;
-		list-style-type: none;
+		list-style-type: none !important;
 		padding-left: 5px;
 	}
 }
