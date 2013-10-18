@@ -1,0 +1,50 @@
+/**
+ **
+ ** Default structure & component styling on the site.
+ **
+ **
+
+//----------------------------------*\
+// LAYOUT
+//----------------------------------*/
+
+// Max-width Container
+=row($padding: false)
+  max-width: $max-width
+  width: 100%
+  margin: 0 auto
+  @if $padding == true
+    @extend %horizontal-padding
+    @extend %vertical-padding
+
+=gutter
+  padding-left: $gutter
+  padding-right: $gutter
+
+// Horizontal Site Padding
+%horizontal-padding
+  padding-left: $gutter-small-horizontal
+  padding-right: $gutter-small-horizontal
+  +mq-min-medium
+    padding-left: $gutter-medium-horizontal
+    padding-right: $gutter-medium-horizontal
+
+  +mq-min-xlarge
+    padding-left: $gutter-large-horizontal
+    padding-right: $gutter-large-horizontal
+
+// Vertical Site Padding
+%vertical-padding
+  padding-top: $gutter-small-vertical
+  padding-bottom: $gutter-small-vertical
+  +mq-min-medium
+    padding-top: $gutter-medium-vertical
+    padding-bottom: $gutter-medium-vertical
+
+  +mq-min-xlarge
+    padding-top: $gutter-large-vertical
+    padding-bottom: $gutter-large-vertical
+
+//----------------------------------*\
+// WEBSITE COMPONENTS
+//----------------------------------*/

@@ -1,0 +1,113 @@
+/**
+ **
+ ** Base styling utilized on the site. Extend upon these to achieve the effect you require.
+ **
+ **
+
+// Box Sizing
+*, *:before, *:after
+  -moz-box-sizing: border-box
+  -webkit-box-sizing: border-box
+  box-sizing: border-box
+
+// Clear Function
+.cf:before, .cf:after
+  content: ""
+  display: table
+
+.cf:after
+  clear: both
+
+.cf
+  zoom: 1
+
+// General
+body
+  background: #FFF
+  font-size: 16px
+  color: #000
+
+h1, h2, h3, h4, h5, h6
+  position: relative
+  line-height: $headline-line-height
+  margin-bottom: $headline-bottom-margin
+  a
+    color: $color-href
+
+h1
+  font-size: $h1-font-size * 0.75
+  +mq-min-medium
+    font-size: $h1-font-size * 0.8
+
+  +mq-min-large
+    font-size: $h1-font-size
+
+  +mq-min-xlarge
+    font-size: $h1-font-size * 1.1
+
+h2
+  font-size: $h2-font-size * 0.75
+  +mq-min-medium
+    font-size: $h2-font-size * 0.8
+
+  +mq-min-large
+    font-size: $h2-font-size
+
+  +mq-min-xlarge
+    font-size: $h2-font-size * 1.1
+
+h3
+  font-size: $h3-font-size * 0.75
+  +mq-min-medium
+    font-size: $h3-font-size * 0.8
+
+  +mq-min-large
+    font-size: $h3-font-size
+
+  +mq-min-xlarge
+    font-size: $h3-font-size * 1.1
+
+h4
+  font-size: $h4-font-size * 0.75
+  +mq-min-medium
+    font-size: $h4-font-size * 0.8
+
+  +mq-min-large
+    font-size: $h4-font-size
+
+  +mq-min-xlarge
+    font-size: $h4-font-size * 1.1
+
+h5
+  font-size: $h5-font-size * 0.75
+  +mq-min-medium
+    font-size: $h5-font-size * 0.8
+
+  +mq-min-large
+    font-size: $h5-font-size
+
+  +mq-min-xlarge
+    font-size: $h5-font-size * 1.1
+
+h6
+  font-size: $h6-font-size
+
+p
+  font-size: 1em
+  line-height: 1.5em
+  margin-bottom: $paragraph-bottom-margin
+  +font-smoothing
+  +mq-min-xlarge
+    font-size: em(18)
+
+a
+  color: $color-href
+  &:hover
+    color: $color-href-hover
+
+ul, ol, dd
+  line-height: 1.5em
+
+img
+  max-width: 100%
+  height: auto

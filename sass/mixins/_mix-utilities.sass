@@ -1,0 +1,41 @@
+/**
+ **
+ ** Utilities that make development easier.
+ **
+ **
+
+// Clear Function
+=cf
+  zoom: 1
+  &:before,
+  &:after
+    content: ""
+    display: table
+  &:after
+    clear: both
+
+// Font Smoothing
+=font-smoothing
+  -webkit-font-smoothing: antialiased
+  text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.004)
+
+// Alpha Transparency
+=rgba($color, $alpha)
+  $rgba: rgba($color, $alpha)
+  $ie-hex-str: ie-hex-str($rgba)
+  background-color: transparent
+  background-color: $rgba
+  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr=#{$ie-hex-str},endColorstr=#{$ie-hex-str})
+  zoom: 1
+
+// Light Underline
+=underline($color, $opacity)
+  border-bottom: 1px solid $color
+  border-bottom: 1px solid rgba($color, $opacity)
+
+=transition($speed)
+  -webkit-transition: all $speed
+  -moz-transition: all $speed
+  -ms-transition: all $speed
+  -o-transition: all $speed
+  transition: all $speed
