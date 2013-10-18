@@ -61,6 +61,7 @@
 				<span>mixins</span>
 				<ul>
 					<li class="icon-file">mix-fonts.scss</li>
+					<li class="icon-file">mix-utilities.scss</li>
 					<li class="icon-file">mix-general.scss</li>
 					<li class="icon-file">mix-media-queries.scss</li>
 				</ul>
@@ -102,7 +103,7 @@
 		<ul>
 			<li>Comment and explain all mixins, placeholders, and functions where possible.</li>
 			<li>If creating a new mixin sass file, include <span class="highlight">_mix-</span> infront of the filename.</li>
-			<li>Never declare mixins that don't accept parameters. While a rule of thumb, it won't always be possible.</li>
+			<li>Use %placeholders only if you know it will be used across the whole site. Right now it's limited and can't be included inside media queries.</li>
 			<li>Try not to extend on normal selectors.</li>
 			<li>Build reusable styles.</li>
 		</ul>
@@ -154,15 +155,15 @@ Outcome:
 				<strong>mix-utility.scss</strong> - Basic utlity mixins that should get you started with most new projects.
 <pre class="line-numbers language-scss">
 <code>// Clear Function
-%cf {
+@mixin cf {
 	zoom: 1;
 	&:before,
-	&:after {content: ""; display: table;} 
-	&:after {clear: both;}	
+	&:after {content: ""; display: table;}
+	&:after {clear: both;}
 }
 
 // Font Smoothing
-%font-smoothing {
+@mixin font-smoothing {
 	-webkit-font-smoothing: antialiased;
 	text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.004);
 }
@@ -178,16 +179,18 @@ Outcome:
 }
 
 // max-width
-%row {
+@mixin row($padding:false)  {
 	max-width: $max-width;
 	width: 100%;
 	margin: 0 auto;
-	@extend %horizontal-padding;
-	@extend %vertical-padding;
+    @if $padding == true {
+	   @extend %horizontal-padding;
+	   @extend %vertical-padding;
+    }
 }
 
 // Horizontal Site Padding
-%horizontal-padding {
+horizontal-padding {
 	padding-left: $gutter-small-horizontal;
     padding-right: $gutter-small-horizontal;
 
@@ -218,11 +221,11 @@ Outcome:
     }
 }</code>
 </pre>
-				All of the mixins will be dependant on project. 
+				All of the mixins will be dependant on project.
 				<ul>
-					<li><strong>%cf</strong> - Instead of manually including a clear function to your code through a class (which you still have an option), we can also <code>@extend %cf</code> on any selector.</li>
+					<li><strong>@mixin cf</strong> - Instead of manually including a clear function to your code through a class (which you still have an option), we can also <code>@include cf</code> on any selector.</li>
 					<li><strong>@mixing rgba()</strong> - Compass doesn't support RGBA for older browsers, this handy mixin will give you alpha transparency on all backgrounds as far back as IE7. To use, simply add to your selector and adjust accordingly: <code>@include rgba(#000, .7);</code></li>
-					<li><strong>%row</strong> - Use if you are looking at extending at centering an element and scale to max-width of the site. Handy for resonsive sites. You can also add a class through <code>.row</code> to the element.</li>
+					<li><strong>@mixin row</strong> - Use if you are looking at extending at centering an element and scale to max-width of the site. Handy for resonsive sites. You can also add a class through <code>.row</code> to the element. If you want to include padding use <code>@include row(true)</code> and it will automatically include padding to your row.</li>
 					<li><strong>%horizontal-padding & %vertical-padding</strong> - Both are geared for responsive sites where the padding around content adjusts accordingly depending on view.</li>
 				</ul>
 			</li>
@@ -247,7 +250,7 @@ Outcome:
 	@content;
 }
 
-// Large Screens Up 
+// Large Screens Up
 @include mq-min-xlarge {
 	@content;
 }
@@ -306,7 +309,7 @@ Outcome:
 }</code></pre>
 
 <div class="highlight">
-Please note that we're using mobile-first for all of our projects. There will be instances where we'll have to use max-width (desktop-first) in rare cases, more specifically for navigations. 
+Please note that we're using mobile-first for all of our projects. There will be instances where we'll have to use max-width (desktop-first) in rare cases, more specifically for navigations.
 </div>
 			</li>
 		</ul>
