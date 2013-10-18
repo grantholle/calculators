@@ -82,16 +82,20 @@ article, aside, details, figcaption, figure, footer, header, hgroup, menu, nav, 
 * Media query functions to help output content conditonally based on screen width.
 *
 **/
-/* line 10, scss/mixins/_mix-general.scss */
-p {
-  -webkit-font-smoothing: antialiased;
-  text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.004);
-}
-
 /**
 *
 * Font mixins to be used on the site. This is handy especially when utilizing third party services like typekit or fonts.com
 * Start all names with 'font-' .... couple examples to get you started with.
+*
+**/
+/**
+*
+* Utilities that make development easier.
+*
+**/
+/**
+*
+* Default structure & component styling on the site.
 *
 **/
 /**
@@ -270,6 +274,8 @@ p {
   font-size: 1em;
   line-height: 1.5em;
   margin-bottom: 1.25em;
+  -webkit-font-smoothing: antialiased;
+  text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.004);
 }
 @media screen and (min-width: 90em) {
   /* line 106, scss/modules/_defaults.scss */
@@ -278,13 +284,24 @@ p {
   }
 }
 
-/* line 117, scss/modules/_defaults.scss */
+/* line 116, scss/modules/_defaults.scss */
 a {
   color: #454545;
 }
-/* line 120, scss/modules/_defaults.scss */
+/* line 118, scss/modules/_defaults.scss */
 a:hover {
   color: #454545;
+}
+
+/* line 123, scss/modules/_defaults.scss */
+ul, ol, dd {
+  line-height: 1.5em;
+}
+
+/* line 127, scss/modules/_defaults.scss */
+img {
+  max-width: 100%;
+  height: auto;
 }
 
 /**
@@ -398,21 +415,20 @@ a:hover {
 * Custom styling utilized for blog and any other content pages where the client inputs their own content through an editor.
 *
 **/
-/* line 10, scss/partials/_custom.scss */
-.custom ul, .custom ol {
+/* line 10, scss/partials/_wysiwyg.scss */
+.wysiwyg-content ul, .wysiwyg-content ol {
   margin-bottom: 1.625em;
   padding-left: 2em;
 }
-/* line 15, scss/partials/_custom.scss */
-.custom li {
+/* line 15, scss/partials/_wysiwyg.scss */
+.wysiwyg-content li {
   line-height: 1.5em;
-  font-size: 1.25em;
 }
-/* line 20, scss/partials/_custom.scss */
-.custom ol {
+/* line 19, scss/partials/_wysiwyg.scss */
+.wysiwyg-content ol {
   list-style-type: decimal;
 }
-/* line 24, scss/partials/_custom.scss */
-.custom ul {
+/* line 23, scss/partials/_wysiwyg.scss */
+.wysiwyg-content ul {
   list-style-type: disc;
 }

@@ -1,0 +1,44 @@
+/**
+*
+* Utilities that make development easier.
+*
+**/
+
+
+// Clear Function
+@mixin cf {
+	zoom: 1;
+	&:before,
+	&:after {content: ""; display: table;}
+	&:after {clear: both;}
+}
+
+// Font Smoothing
+@mixin font-smoothing {
+	-webkit-font-smoothing: antialiased;
+	text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.004);
+}
+
+// Alpha Transparency
+@mixin rgba($color, $alpha) {
+    $rgba: rgba($color, $alpha);
+    $ie-hex-str: ie-hex-str($rgba);
+    background-color: transparent;
+    background-color: $rgba;
+    filter:progid:DXImageTransform.Microsoft.gradient(startColorstr=#{$ie-hex-str},endColorstr=#{$ie-hex-str});
+    zoom: 1;
+}
+
+// Light Underline
+@mixin underline($color, $opacity) {
+    border-bottom: 1px solid $color;
+    border-bottom: 1px solid rgba($color, $opacity);
+}
+
+@mixin transition($speed) {
+    -webkit-transition: all $speed;
+    -moz-transition: all $speed;
+    -ms-transition: all $speed;
+    -o-transition: all $speed;
+    transition: all $speed;
+}

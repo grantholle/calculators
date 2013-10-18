@@ -840,7 +840,7 @@ pre.line-numbers > code {
 @media screen and (min-width: 48em) {
   /* line 34, scss/app/_structure.scss */
   #home {
-    float: left;
+    float: right;
     width: 82%;
     padding-left: 40px;
   }

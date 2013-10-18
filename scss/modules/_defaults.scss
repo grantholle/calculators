@@ -13,7 +13,7 @@
 }
 
 // Clear Function
-.cf:before, .cf:after {content: ""; display: table;} 
+.cf:before, .cf:after {content: ""; display: table;}
 .cf:after {clear: both;}
 .cf {zoom: 1;}
 
@@ -107,8 +107,7 @@ p {
 	font-size: 1em;
 	line-height: 1.5em;
 	margin-bottom: $paragraph-bottom-margin;
-	@extend %font-smoothing;
-	
+	@include font-smoothing;
 	@include mq-min-xlarge {
 		font-size: em(18);
 	}
@@ -116,8 +115,16 @@ p {
 
 a {
 	color: $color-href;
-
 	&:hover {
 		color: $color-href-hover;
 	}
+}
+
+ul, ol, dd {
+	line-height: 1.5em;
+}
+
+img {
+	max-width: 100%;
+	height: auto;
 }

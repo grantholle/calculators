@@ -26,8 +26,9 @@
 //----------------------------------*/
 
 @import 'mixins/_mix-media-queries.scss';
-@import 'mixins/_mix-general.scss';
 @import 'mixins/_mix-fonts.scss';
+@import 'mixins/_mix-utilities.scss';
+@import 'mixins/_mix-general.scss';
 
 //----------------------------------*\
 // MODULES
@@ -49,7 +50,7 @@
 @import 'partials/_nav.scss';
 @import 'partials/_sidebar.scss';
 @import 'partials/_footer.scss';
-@import 'partials/_custom.scss';
+@import 'partials/_wysiwyg.scss';
 
 //----------------------------------*\
 // VENDOR
