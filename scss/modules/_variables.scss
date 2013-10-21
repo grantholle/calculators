@@ -38,15 +38,15 @@ $paragraph-bottom-margin: em(20);
 // Media Queries
 $m-query: false !default;
 
-$mq-min-small: em(480); /* phones landscape up */
-$mq-min-medium: em(768); /* tablets up */
-$mq-min-large: em(960); /* desktops & tablets landscape up */
-$mq-min-xlarge: em(1440); /* large desktops up */
+$mq-min-small: em(480); // phones landscape up
+$mq-min-medium: em(768); // tablets up
+$mq-min-large: em(960); // desktops & tablets landscape up
+$mq-min-xlarge: em(1440); // large desktops up
 
-$mq-max-mini: em(479); /* phone portrait down */
-$mq-max-small: em(767); /* phones landscape down */
-$mq-max-medium: em(959); /* tablet portrait down */
-$mq-max-large: em(1439); /* desktops down */
+$mq-max-mini: em(479); // phone portrait down
+$mq-max-small: em(767); // phones landscape down
+$mq-max-medium: em(959); // tablet portrait down
+$mq-max-large: em(1439); // desktops down
 
 
 
