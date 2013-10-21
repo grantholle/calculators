@@ -16,3 +16,16 @@ At its basic form, the structure will be split up into several blocks that can b
 * Typography
 * Grid Structure
 * Media Queries
+
+
+SASS/SCSS Conversion
+--------------------
+Before committing any changes, make sure you update the other syntax's source as well. This can be accomplished using `sass-convert`. Run the following commands while in the repository's root:
+
+*SCSS -> SASS*
+
+`sass-convert -R -T sass -F scss scss/ sass/`
+
+*SASS -> SCSS*
+
+`sass-convert -R -T scss -F sass sass/ scss/`
