@@ -1,7 +1,10 @@
 40D Semantic SASS 
 =================
 
-*Temporary Information (more to come)*
+Installation
+------------
+1. You'll need to generate the configuration using your GUI tool or the command line: `compass config [path/to/config_file.rb]`
+2. You can then go in and set your directories and whatnot.
 
 Problem
 -------
@@ -26,7 +29,7 @@ Please keep this repository in SCSS format before all commits. If you prefer SAS
 
 `sass-convert -R --from scss --to sass scss sass && rm -rf scss`
 
-...and then back before you commit:
+...and then **back to SCSS before you commit:**
 
 *SASS -> SCSS*
 
