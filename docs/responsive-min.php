@@ -7,7 +7,7 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
     <meta name="viewport" content="width=device-width, initial-scale=1,maximum-scale=1" />
-	<title>Mobile First</title>
+	<title>Mobile First / Progressive Enhancement</title>
 	<!--[if lte IE 8]>
     	<link rel="stylesheet" href="ie.css">
 	<![endif]-->
@@ -27,7 +27,7 @@
 		<h3>Mobile First Responsive / Progressive Enhancement</h3>
 		<p>Lorizzle tellivizzle uhuh ... yih! sizzle amizzle, its fo rizzle adipiscing elizzle. Nullam sapien velizzle, pimpin' volutpizzle, suscipizzle cool, boofron vizzle, sheezy. Pellentesque gangsta tortizzle Sizzle. Bizzle gangsta izzle dapibizzle yo mamma tempizzle tempizzle. Izzle ghetto nibh izzle i saw beyonces tizzles and my pizzle went crizzle. Shiznit izzle dang. Cool eleifend rhoncizzle nisi.</p>
 		<p>In hac habitasse shit dictumst. Get down get down dapibizzle. Da bomb tellizzle urna, pretizzle ghetto, mattizzle ac, eleifend vitae, nunc. Fo shizzle rizzle. Integer semper velit sizzle purus.</p>
-		<h4>Max-Width Mixins</h4>
+		<h4>Min-Width Mixins</h4>
 		<pre class="line-numbers language-scss"><code>@include mq-min-small {} 			/* phone landscale up */
 @include mq-min-medium {} 			/* tablet portrait up */
 @include mq-min-large {} 			/* desktops and tablets landscape up */
