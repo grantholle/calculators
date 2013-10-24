@@ -1,0 +1,97 @@
+.example-wrap {
+	margin: 0 auto;
+	padding: 10px;
+	width: 280px;
+	margin-top: 100px;
+	background: #FFF;
+
+	@include mq-min-small {
+		width: 480px;
+	}
+	@include mq-min-medium {
+		width: 100%;
+		padding: 0 10%;
+		box-shadow: 20px 20px 0px 0px $color-eggshell-dark;
+	}
+	@include mq-min-large {
+		max-width: 1300px;
+	}
+	@include mq-min-xlarge {
+		padding: 0 20px;
+	}
+
+	// Article Styling
+	article {
+		padding: 40px;
+	}
+
+	// Font Sizes
+	p {
+		font-size: 13px;
+		@include mq-min-medium {
+			font-size: 1em;
+		}
+		@include mq-min-large {
+			font-size: 20px;
+			color: $color-blue;
+		}
+		@include mq-min-xlarge {
+			font-size: 20px;
+		}
+	}
+}
+
+.example-wrap-max {
+	width: 100%;
+	background: #FFF;
+	margin: 0 auto;
+	margin-top: 100px;
+	max-width: 1200px;
+
+	@include mq-max-medium {
+		max-width: auto;
+		width: 700px;
+		padding: 0 5%;
+	}
+
+	@include mq-max-small {
+		width: 100%;
+	}
+
+	// article styling
+	article {
+		padding: 40px;
+		@include mq-max-small {
+			padding: 30px 15px;
+		}
+	}
+
+	// headlines
+	h3 {
+		@include mq-max-medium {
+			color: $color-blue;
+		}
+	}
+	h4 {
+		@include mq-max-mini {
+			text-decoration: underline;
+			text-transform: none;
+		}
+	}
+
+	// paragraphs
+	p {
+		font-size: 20px;
+
+		@include mq-max-medium {
+			font-size: 16px;
+		}
+		@include mq-max-small {
+			font-size: 14px;
+		}
+
+		@include mq-max-mini {
+			font-size: 12px;
+		}
+	}
+}

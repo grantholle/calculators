@@ -38,28 +38,22 @@ $paragraph-bottom-margin: em(20);
 // Media Queries
 $m-query: false !default;
 
-$mq-min-small: em(480);
-
 // phones landscape up
-$mq-min-medium: em(768);
-
+$mq-min-small: em(480);
 // tablets up
-$mq-min-large: em(960);
-
+$mq-min-medium: em(768);
 // desktops & tablets landscape up
+$mq-min-large: em(960);
+// large desktops up
 $mq-min-xlarge: em(1440);
 
-// large desktops up
-
-$mq-max-mini: em(479);
-
 // phone portrait down
-$mq-max-small: em(767);
-
+$mq-max-mini: em(479);
 // phones landscape down
-$mq-max-medium: em(959);
-
+$mq-max-small: em(767);
 // tablet portrait down
+$mq-max-medium: em(959);
+// desktops down
 $mq-max-large: em(1439);
 
-// desktops down
+

@@ -18,51 +18,52 @@
 // Variables
 //----------------------------------*/
 
-@import 'modules/_variables.scss';
+@import 'modules/_variables';
 
 //----------------------------------*\
 // MIXINS
 //----------------------------------*/
 
-@import 'mixins/_mix-media-queries.scss';
-@import 'mixins/_mix-utilities.scss';
-@import 'mixins/_mix-general.scss';
-@import 'mixins/_mix-fonts.scss';
+@import 'mixins/_mix-media-queries';
+@import 'mixins/_mix-utilities';
+@import 'mixins/_mix-general';
+@import 'mixins/_mix-fonts';
 
 //----------------------------------*\
 // MODULES
 //----------------------------------*/
 
 // Default Modules
-@import 'modules/_wordpress-default.scss';
-@import 'modules/_fonts.scss';
-@import 'modules/_defaults.scss';
+@import 'modules/_wordpress-default';
+@import 'modules/_fonts';
+@import 'modules/_defaults';
 
 // Optional Modules
-@import 'modules/_responsive-grid.scss';
+@import 'modules/_responsive-grid';
 
 //----------------------------------*\
 // PARTIALS
 //----------------------------------*/
 
-@import 'partials/_header.scss';
-@import 'partials/_nav.scss';
-@import 'partials/_sidebar.scss';
-@import 'partials/_footer.scss';
-@import 'partials/_custom.scss';
+@import 'partials/_header';
+@import 'partials/_nav';
+@import 'partials/_sidebar';
+@import 'partials/_footer';
+@import 'partials/_custom';
 
 //----------------------------------*\
 // VENDOR
 //----------------------------------*/
 
-@import 'vendor/_vendor.scss';
-@import 'vendor/_prism.scss';
+@import 'vendor/_vendor';
+@import 'vendor/_prism';
 
 //----------------------------------*\
 // APP
 //----------------------------------*/
 
-@import 'app/_structure.scss';
-@import 'app/_responsive.scss';
+@import 'app/_structure';
+@import 'app/_responsive';
+@import 'app/_responsive-examples';
 
 

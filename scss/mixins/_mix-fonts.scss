@@ -2,11 +2,6 @@
 // Start all names with 'font-' .... couple examples to get you started with.
 
 // Generic Font Stack
-@mixin font-generic {
-  font-family: Arial, "Helvetica Neue", Helvetica, sans-serif;
-  font-weight: normal;
-  @include font-smoothing;
-}
 
 @mixin font($family: sans-serif, $weight: normal) {
   // Generic Font Stack
