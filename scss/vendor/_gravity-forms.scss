@@ -1,0 +1,95 @@
+// Because gravity forms doesn't utilize box-sizing. We have to make some adjustments. To apply these styles, apply the .custom-gravity-forms class to your markup.
+
+.custom-gravity-forms {
+
+	.gform_wrapper {
+		position: relative;
+		max-width: 100%;
+
+		.gfield_html {
+			line-height: 1.5em;
+			margin-bottom: 3em;
+		}
+
+		.gform_page_fields {
+			@extend %cf;
+		}
+
+		input[type="submit"],
+		input[type="button"] {
+			position: absolute;
+			right: 0;
+			bottom: 0;
+			&.gform_previous_button {
+				opacity: .5;
+			}
+		}
+
+		// style the error fields
+		div.validation_error {
+			border-radius: 5px;
+			background-color: #FFDFE0;
+			margin-bottom: 1em;
+			padding: 20px;
+			border: 1px solid #C89797;
+			@include font(font-generic);
+			font-size: .9em;
+		}
+
+		// get rid of footer padding
+		.gform_footer {
+			padding: 0;
+		}
+	}
+
+	.gform_wrapper input[type=text], .gform_wrapper input[type=url], .gform_wrapper input[type=email], .gform_wrapper input[type=tel], .gform_wrapper input[type=number], .gform_wrapper input[type=password], textarea {
+		outline-style: none;
+		font-size: inherit;
+		font-family: inherit;
+		padding: 15px;
+		letter-spacing: inherit;
+	}
+
+	.gform_wrapper .gfield_checkbox li, .gform_wrapper .gfield_radio li {
+		margin-bottom: 5px;
+	}
+
+	.gform_wrapper ul.gfield_checkbox, .gform_wrapper ul.gfield_radio {
+		padding-bottom: 1em;
+	}
+
+	.gform_wrapper textarea {
+		margin-bottom: 1em;
+	}
+
+	// get rid of floats for columns on phone
+	.gform_wrapper .top_label li.gfield.gf_left_half,
+	.gform_wrapper .top_label li.gfield.gf_right_half {
+		@include mq-max-small {
+			float: none;
+			width: 100%;
+		}
+	}
+
+	// make all fields 100%
+	.gform_wrapper .top_label li.gfield.gf_left_half input.medium, .gform_wrapper .top_label li.gfield.gf_left_half input.large, .gform_wrapper .top_label li.gfield.gf_left_half select.medium, .gform_wrapper .top_label li.gfield.gf_left_half select.large, .gform_wrapper .top_label li.gfield.gf_right_half input.medium, .gform_wrapper .top_label li.gfield.gf_right_half input.large, .gform_wrapper .top_label li.gfield.gf_right_half select.medium, .gform_wrapper .top_label li.gfield.gf_right_half select.large {
+		width: 100%;
+	}
+
+	.gform_wrapper .top_label input.large, .gform_wrapper .top_label select.large, .gform_wrapper .top_label textarea.textarea {
+		width: 100%;
+	}
+
+	// fake placeholder styling
+	li.gfield  { position:relative;  }
+	li.gfield .gfield_label {
+		position:absolute;
+		top: 17px;
+		left: 15px;
+		font-size: 16px;
+		color: #000;
+		font-weight: normal;
+		margin: 0;
+		cursor: text;
+	}
+}

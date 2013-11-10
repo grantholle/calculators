@@ -3,9 +3,9 @@
   @return $px / $context + 0em;
 }
 
-// Colors
-$color-href: #454545;
-$color-href-hover: #454545;
+// Colors - start all colors with $color-
+$color-href: 			#454545;
+$color-href-hover: 		#454545;
 
 // Structure
 $gutter: em(10);

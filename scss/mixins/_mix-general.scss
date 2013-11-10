@@ -4,7 +4,7 @@
 // LAYOUT
 //----------------------------------
 
-// Max-width Container
+// Max-width Container - you can also use class .row to accomplish the same if you are using the responsive grid.
 @mixin row($padding: false) {
   max-width: $max-width;
   width: 100%;
@@ -15,6 +15,7 @@
   }
 }
 
+// Gutter between columns
 @mixin gutter {
   padding-left: $gutter;
   padding-right: $gutter;

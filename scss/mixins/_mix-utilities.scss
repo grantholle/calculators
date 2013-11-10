@@ -1,7 +1,7 @@
 // Utilities that make development easier.
 
 // Clear Function
-@mixin cf {
+%cf {
   zoom: 1;
   &:before,
   &:after {
@@ -35,10 +35,35 @@
   border-bottom: 1px solid rgba($color, $opacity);
 }
 
-@mixin transition($speed) {
+// Transitions
+@mixin transition($transition-property, $transition-time, $method) {
+  -webkit-transition: $transition-property $transition-time $method;
+  -moz-transition: $transition-property $transition-time $method;
+  -ms-transition: $transition-property $transition-time $method;
+  -o-transition: $transition-property $transition-time $method;
+  transition: $transition-property $transition-time $method;
+}
+
+// Basic Transition
+@mixin transition-simple($speed) {
   -webkit-transition: all $speed;
   -moz-transition: all $speed;
   -ms-transition: all $speed;
   -o-transition: all $speed;
   transition: all $speed;
+}
+
+// Background Size Cover
+%bg-cover {
+  background-repeat: no-repeat;
+  background-size: cover;
+  -ms-behavior: url(images/backgroundsize.min.htc);
+  background-position: center center;
+}
+
+// Absolute center content
+@mixin abs-center {
+  margin: auto;
+  position: absolute;
+  top: 0; left: 0; bottom: 0; right: 0;
 }

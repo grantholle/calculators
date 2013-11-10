@@ -1,18 +1,6 @@
 // Custom styling utilized for blog and any other content pages where the client inputs their own content through an editor.
+// use class .wysiwyg-content inside your markup to pull these styles.
 
 .wysiwyg-content {
-  // Your CSS in here
-  ul, ol {
-    margin-bottom: 1.625em;
-    padding-left: 2em;
-  }
-  li {
-    line-height: 1.5em;
-  }
-  ol {
-    list-style-type: decimal;
-  }
-  ul {
-    list-style-type: disc;
-  }
+
 }
