@@ -10,7 +10,7 @@ Installation
 Documentation
 -------------
 Overview of the framework
-http://wiki.40digits.net/introduction-to-40d-sass-template/
+http://wiki.40digits.net/40d-sass-introduction-to-the-framework/
 
 Category with all posts regarding the framework
 http://wiki.40digits.net/category/learning/documentation/40d-sass-framework/
