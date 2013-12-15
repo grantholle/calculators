@@ -11,6 +11,8 @@ Note: This repository itself is still under construction to meet the needs of 40
 
     `{"id":"com.40Digits.<project name lowercase>","name":"<project name capitalize>"}`
 
+5. Edit `www/config.xml` accordingly to match the new project name.
+
 `.gitignore` files were intentially added and left blank in the `platforms`, `plugins`, `www`, and `merges` folders. It is recomended that as the project grows, that these files should be populated to ignore specific things when necessary. (Except the merges directory--that should always be available.)
 
 ## Documentation
