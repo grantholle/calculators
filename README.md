@@ -9,7 +9,7 @@ Note: This repository itself is still under construction to meet the needs of 40
 2. Rename the project: `cd <project root> && git mv boilerplate <project name>`
 3. In the `.cordova/config.json` file, edit the code to match your new project:
 
-    {"id":"com.40Digits.<project name lowercase>","name":"<project name capitalize>"}
+    `{"id":"com.40Digits.<project name lowercase>","name":"<project name capitalize>"}`
 
 `.gitignore` files were intentially added and left blank in the `platforms`, `plugins`, `www`, and `merges` folders. It is recomended that as the project grows, that these files should be populated to ignore specific things when necessary. (Except the merges directory--that should always be available.)
 
