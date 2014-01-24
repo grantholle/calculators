@@ -19,6 +19,20 @@
   }
 }
 
+// Netbooks
+@mixin mq-min-netbook {
+  @if $m-query {
+    @if $m-query <= $mq-min-netbook {
+      @content;
+    }
+  }
+  @else {
+    @media screen and (min-width: $mq-min-netbook) {
+      @content;
+    }
+  }
+}
+
 // Tablets Up
 @mixin mq-min-medium {
   @if $m-query {
@@ -68,7 +82,7 @@
 // Phone Portrait Down
 @mixin mq-max-mini {
   @if $m-query {
-    @if $m-query <= $mq-max-mini {
+    @if $m-query >= $mq-max-mini {
       @content;
     }
   }
@@ -82,7 +96,7 @@
 // Phone Landscape Down
 @mixin mq-max-small {
   @if $m-query {
-    @if $m-query <= $mq-max-small {
+    @if $m-query >= $mq-max-small {
       @content;
     }
   }
@@ -94,14 +108,42 @@
 }
 
 // Tablet Portrait Down
+@mixin mq-max-netbook {
+  @if $m-query {
+    @if $m-query >= $mq-max-netbook {
+      @content;
+    }
+  }
+  @else {
+    @media screen and (max-width: $mq-max-netbook) {
+      @content;
+    }
+  }
+}
+
+// Tablet Portrait Down
 @mixin mq-max-medium {
   @if $m-query {
-    @if $m-query <= $mq-max-medium {
+    @if $m-query >= $mq-max-medium {
       @content;
     }
   }
   @else {
     @media screen and (max-width: $mq-max-medium) {
+      @content;
+    }
+  }
+}
+
+// Tablet Portrait Down or Landscape Orientation
+@mixin mq-max-tablet {
+  @if $m-query {
+    @if $m-query >= $mq-max-medium {
+      @content;
+    }
+  }
+  @else {
+    @media screen and (max-width: $mq-max-medium), (min-device-width: $mq-min-medium) and (max-device-width: $mq-tablet-landscape) and (orientation: landscape) {
       @content;
     }
   }
@@ -147,7 +189,7 @@
     }
   }
   @else {
-    @media screen and (min-device-width: $mq-min-medium) and (max-device-width: 1024px) and (orientation: landscape) {
+    @media screen and (min-device-width: $mq-min-medium) and (max-device-width: $mq-tablet-landscape) and (orientation: landscape) {
       @content;
     }
   }

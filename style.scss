@@ -34,6 +34,7 @@
 @import "modules/_fonts";
 @import "modules/_defaults";
 @import "modules/_input";
+@import "modules/js-breakpoints";
 
 // WordPress
 @import "modules/_wordpress-default";
@@ -63,4 +64,10 @@
 // APP
 //----------------------------------
 
-@import "app/_general";
+@import "app/_app";
+
+//----------------------------------*\
+// INTERNET EXPLORER
+//----------------------------------
+
+@import "app/ie";

@@ -5,52 +5,65 @@
 //----------------------------------
 
 // Max-width Container - you can also use class .row to accomplish the same if you are using the responsive grid.
-@mixin row($padding: false) {
+%row {
   max-width: $max-width;
   width: 100%;
   margin: 0 auto;
-  @if $padding == true {
-    @extend %horizontal-padding;
-    @extend %vertical-padding;
+}
+
+// max-width container with multiple options, see variables for options
+// ex: @include row(medium)
+@mixin row($width: false) {
+  @if $width == large {
+    max-width: $max-width-large;
+  }
+  @if $width == medium {
+    max-width: $max-width-medium;
+  }
+  @if $width == small {
+    max-width: $max-width-small;
+  }
+  width: 100%;
+  margin: 0 auto;
+}
+
+// gutter between columns, see variables for options
+// ex: @include gutter or @include gutter(large)
+@mixin gutter($size: false) {
+  @if $size == large {
+    padding-left: $gutter;
+    padding-right: $gutter;
+    @include mq-min-medium {
+      padding-left: $gutter-large;
+      padding-right: $gutter-large;
+    }
+  } @else {
+    padding-left: $gutter;
+    padding-right: $gutter;
   }
 }
 
-// Gutter between columns
-@mixin gutter {
-  padding-left: $gutter;
-  padding-right: $gutter;
-}
 
-// Horizontal Site Padding
-%horizontal-padding {
-  padding-left: $gutter-small-horizontal;
-  padding-right: $gutter-small-horizontal;
-  @include mq-min-medium {
-    padding-left: $gutter-medium-horizontal;
-    padding-right: $gutter-medium-horizontal;
-  }
-
-  @include mq-min-xlarge {
-    padding-left: $gutter-large-horizontal;
-    padding-right: $gutter-large-horizontal;
-  }
-}
-
-// Vertical Site Padding
-%vertical-padding {
-  padding-top: $gutter-small-vertical;
-  padding-bottom: $gutter-small-vertical;
-  @include mq-min-medium {
-    padding-top: $gutter-medium-vertical;
-    padding-bottom: $gutter-medium-vertical;
-  }
-
-  @include mq-min-xlarge {
-    padding-top: $gutter-large-vertical;
-    padding-bottom: $gutter-large-vertical;
-  }
-}
 
 //----------------------------------*\
-// WEBSITE COMPONENTS
+// MODULAR STYLES
 //----------------------------------
+
+// please refer to http://wiki.40digits.net/dev-learning/modular-responsive-mixins-placeholders/
+// this is an example where we are adding placeholders and defining the responsive styles for each breakpoint
+
+%hsize-large {
+  font-size: em(20);
+  @include mq-min-netbook {font-size: em(30);}
+  @include mq-min-medium {font-size: em(34);}
+  @include mq-min-large {font-size: em(40);}
+}
+
+%hsize-medium {
+  font-size: em(18);
+  @include mq-min-netbook {font-size: em(24);}
+  @include mq-min-medium {font-size: em(32);}
+  @include mq-min-large {font-size: em(36);}
+}
+
+

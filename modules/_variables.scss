@@ -1,59 +1,44 @@
-// Convert pixels into em units
+// convert pixels into em units
 @function em($px, $context: 16) {
   @return $px / $context + 0em;
 }
 
-// Colors - start all colors with $color-
-$color-href: 			#454545;
-$color-href-hover: 		#454545;
+// colors - start all colors with $color
+$color-name:					#000000;
+$color-href: 					#454545;
+$color-href-hover: 				#454545;
 
-// Structure
-$gutter: em(10);
-$max-width: em(1280);
+// structure
+$gutter: 						em(10);
+$gutter-large:					em(20);
 
-// Horizontal Gutter
-$gutter-small-horizontal: 10px;
-$gutter-medium-horizontal: 20px;
-$gutter-large-horizontal: 40px;
+// rows
+$max-width: 					em(1300);
+$max-width-large: 			 	em(1250);
+$max-width-medium: 				em(1020);
+$max-width-small: 				em(680);
 
-// vertical Gutter
-$gutter-small-vertical: 10px;
-$gutter-medium-vertical: 20px;
-$gutter-large-vertical: 40px;
+// headlines
+$headline-line-height: 			1.1em;
+$headline-bottom-margin: 		0.5em;
 
-// Headlines
-$h1-font-size: em(44);
-$h2-font-size: em(37);
-$h3-font-size: em(27);
-$h4-font-size: em(23);
-$h5-font-size: em(18);
-$h6-font-size: 1em;
-$headline-line-height: 1.1em;
-$headline-bottom-margin: 0.5em;
+// paragraphs
+$paragraph-font-size: 			1em;
+$paragraph-bottom-margin: 		em(20);
 
-// Paragraphs
-$paragraph-font-size: 1em;
-$paragraph-bottom-margin: em(20);
+// media query - options
+$m-query: 						false !default;
+$mq-tablet-landscape: 			em(1280);
 
-// Media Queries
-$m-query: false !default;
-
-// phones landscape up
-$mq-min-small: em(480);
-// tablets up
-$mq-min-medium: em(768);
-// desktops & tablets landscape up
-$mq-min-large: em(960);
-// large desktops up
-$mq-min-xlarge: em(1440);
-
-// phone portrait down
-$mq-max-mini: em(479);
-// phones landscape down
-$mq-max-small: em(767);
-// tablet portrait down
-$mq-max-medium: em(959);
-// desktops down
-$mq-max-large: em(1439);
-
-
+// media query - min-width
+$mq-min-small: 					em(480);
+$mq-min-netbook: 				em(600);
+$mq-min-medium: 				em(768);
+$mq-min-large: 					em(960);
+$mq-min-xlarge: 				em(1440);
+// media query - max-width
+$mq-max-mini: 					em(479);
+$mq-max-small: 					em(599);
+$mq-max-netbook: 				em(767);
+$mq-max-medium: 				em(959);
+$mq-max-large: 					em(1439);
