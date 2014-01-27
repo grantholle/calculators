@@ -14,3 +14,14 @@ div.wp-menu-image:before {margin: 0 !important;}
 	&#menu-posts-partner_spotlight .wp-menu-image:before {@include icon-font(flow);}
 	&#menu-posts-hope_report .wp-menu-image:before {@include icon-font(globe); font-weight: bold !important;}
 }
+
+
+/** ADMIN MENU SEPARATOR
+===================================*/
+
+#adminmenu li.wp-menu-separator {
+	background: #444;
+	border-color: rgba(255, 255, 255, 0.1);
+	height: 5px;
+	margin: 6px 0;
+}
