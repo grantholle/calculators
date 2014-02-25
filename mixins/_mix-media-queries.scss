@@ -194,3 +194,10 @@
     }
   }
 }
+
+// Print
+@mixin mq-print {
+  @media print {
+    @content;
+  }
+}
