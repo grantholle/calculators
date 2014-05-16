@@ -16,56 +16,56 @@
 // Variables
 //----------------------------------
 
-@import "modules/_variables";
+@import "modules/variables";
 
 //----------------------------------*\
 // MIXINS
 //----------------------------------
 
-@import "mixins/_mix-media-queries";
-@import "mixins/_mix-fonts";
-@import "mixins/_mix-utilities";
-@import "mixins/_mix-general";
+@import "mixins/mix-media-queries";
+@import "mixins/mix-fonts";
+@import "mixins/mix-utilities";
+@import "mixins/mix-general";
 
 //----------------------------------*\
 // MODULES
 //----------------------------------
 
 // Default Modules
-@import "modules/_fonts";
-@import "modules/_defaults";
-@import "modules/_input";
+@import "modules/fonts";
+@import "modules/defaults";
+@import "modules/input";
 @import "modules/js-breakpoints";
 
 // WordPress
-@import "modules/_wordpress-default";
+@import "modules/wordpress-default";
 
 // Optional Modules
-// @import "modules/_responsive-grid";
-// @import "modules/_keyframes";
+// @import "modules/responsive-grid";
+// @import "modules/keyframes";
 
 //----------------------------------*\
 // PARTIALS
 //----------------------------------
 
-@import "partials/_header";
-@import "partials/_nav";
-@import "partials/_sidebar";
-@import "partials/_footer";
-@import "partials/_wysiwyg";
+@import "partials/header";
+@import "partials/nav";
+@import "partials/sidebar";
+@import "partials/footer";
+@import "partials/wysiwyg";
 
 //----------------------------------*\
 // VENDOR
 //----------------------------------
 
-@import "vendor/_vendor";
-@import "vendor/_gravity-forms";
+@import "vendor/vendor";
+@import "vendor/gravity-forms";
 
 //----------------------------------*\
 // APP
 //----------------------------------
 
-@import "app/_app";
+@import "app/app";
 
 //----------------------------------*\
 // INTERNET EXPLORER
