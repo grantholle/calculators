@@ -20,7 +20,7 @@
   }
 }
 
-// hide tap on touch
+// Hide tap on touch devices.
 * {
 	-webkit-tap-highlight-color: rgba(0, 0, 0, 0);
 }
@@ -30,18 +30,6 @@ html {
     -webkit-font-smoothing: antialiased !important;
 }
 
-// clear Function
-.cf {
-	zoom: 1;
-	&:before,
-	&:after {
-		content: "";
-		display: table;
-	}
-	&:after {
-		clear: both;
-	}
-}
 
 //----------------------------------*\
 // GENERAL
@@ -127,3 +115,18 @@ li {
 
 ol {list-style-type: decimal;}
 ul {list-style-type: disc;}
+
+
+//----------------------------------*\
+// CLASS HELPERS
+//----------------------------------
+
+// Clear class helpers
+.cf, .clear {
+	@extend %cf;
+}
+
+// Visually hide elements while at the same time make them accessible on screen readers
+.visually-hidden {
+	@extend %visuallyhidden;
+}
