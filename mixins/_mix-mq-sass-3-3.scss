@@ -7,11 +7,11 @@ $mq: (
     'large'      : ( min-width: $mq-min-large ),
     'xlarge'     : ( min-width: $mq-min-xlarge ),
     'xxlarge'    : ( min-width: $mq-min-xxlarge ),
-    'max-mini'   : ( min-width: $mq-max-mini ),
-    'max-small'  : ( min-width: $mq-max-small ),
-    'max-medium' : ( min-width: $mq-max-medium ),
-    'max-large'  : ( min-width: $mq-max-large ),
-    'max-xlarge' : ( min-width: $mq-max-xlarge )
+    'max-mini'   : ( max-width: $mq-max-mini ),
+    'max-small'  : ( max-width: $mq-max-small ),
+    'max-medium' : ( max-width: $mq-max-medium ),
+    'max-large'  : ( max-width: $mq-max-large ),
+    'max-xlarge' : ( max-width: $mq-max-xlarge )
 );
 
 @mixin mq($name) {
