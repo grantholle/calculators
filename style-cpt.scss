@@ -1,9 +1,9 @@
-/** CUSTOM POST TYPE ICONS
+/* CUSTOM POST TYPE ICONS
 ===================================*/
 
 // You can add custom CPT icons by using an icon font. In this example, we are pulling the fontello icon font and attaching our custom icons.
 
-@import "modules/fonts";
+@import "mixins/mix-fonts";
 
 // get rid of spacing
 div.wp-menu-image:before {margin: 0 !important;}
@@ -16,7 +16,7 @@ div.wp-menu-image:before {margin: 0 !important;}
 }
 
 
-/** ADMIN MENU SEPARATOR
+/* ADMIN MENU SEPARATOR
 ===================================*/
 
 #adminmenu li.wp-menu-separator {

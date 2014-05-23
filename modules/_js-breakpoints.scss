@@ -1,4 +1,4 @@
-/** JS BREAKPOINS
+/* JS BREAKPOINS
 ===================================*/
 
 // Used to conditionally load js functions based off of media queries.
@@ -9,14 +9,14 @@
 //----------------------------------
 
 
+@include mq-min-mini {
+	head {font-family:"mq-min-mini";}
+	body:after{ content:"mq-min-mini"; display:none;}
+}
+
 @include mq-min-small {
 	head {font-family:"mq-min-small";}
 	body:after{ content:"mq-min-small"; display:none;}
-}
-
-@include mq-min-netbook {
-	head {font-family:"mq-min-netbook";}
-	body:after{ content:"mq-min-netbook"; display:none;}
 }
 
 @include mq-min-medium {
@@ -34,10 +34,15 @@
 	body:after{ content:"mq-min-xlarge"; display:none;}
 }
 
+@include mq-min-xxlarge {
+	head {font-family:"mq-min-xxlarge";}
+	body:after{ content:"mq-min-xxlarge"; display:none;}
+}
+
 // for 320px under
 @include mq-max-mini {
-	head {font-family:"mq-tiny";}
-	body:after{ content:"mq-tiny"; display:none;}
+	head {font-family:"mq-mini";}
+	body:after{ content:"mq-mini"; display:none;}
 }
 
 // fort tablet portrait

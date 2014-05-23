@@ -1,14 +1,13 @@
-/** INPUTS
+/* INPUTS
 ===================================*/
 
 // You are welcome to keep the default styles out of a container. It does help control your specific styles from third party ones.
 // You will notice -webkit-appearance: none ... used through here. Both webkit and moz devices on tablet/mobile add their own styling.
 // In some cases we need to remove them to apply correct styles across all browsers. You can remove it if it's not necessary for your case.
 
-
 .content-container {
 
-	// basic styles
+	// Basic styles
 	input, textarea, select {
 		-webkit-appearance: none;
 		border-radius: 0;
@@ -19,47 +18,56 @@
 		width: 100%;
 	}
 
-	// example of unique styles that just apply to input/textarea/label
+	// Reset all styling for input and text area, handy for mobile devices
+	input, textarea {
+		-webkit-appearance: none;
+		-moz-appearance: none;
+	}
+
+	// Unique styles that just apply to input/textarea/label
 	input, textarea, label {
 		font-size: em(14);
 		color: #000;
 	}
 
-	// add the correct appearance, but also adjsut the height to fit with our input fields. This only matters for apple devices (height)
+	// Add the correct appearance, but also adjsut the height to fit with our input fields. This only matters for apple devices (height)
 	select {
 		-webkit-appearance: menulist-button;
+		-moz-appearance: menulist-button;
 		height: 40px;
 		font-size: em(15);
 	}
 
-	// make sure we are not adding the select height to multi select
+	// Make sure we are not adding the select height to multi select
 	select[multiple] {
 		height: auto;
 	}
 
-	// add correct appearance
+	// Add correct appearance
 	input[type="checkbox"] {
 		-webkit-appearance: checkbox;
+		-moz-appearance: checkbox;
 	}
 
-	// add correct appearace
+	// Add correct appearace
 	input[type="radio"] {
 		-webkit-appearance: radio;
+		-moz-appearance: checkbox;
 	}
 
-	// label specific styling
+	// Label specific styling
 	label {
 		font-weight: 800;
 	}
 
-	// focus specific styling
+	// Focus specific styling
 	input:focus,
 	textarea:focus {
 		outline: none;
 		border-color: blue;
 	}
 
-	// buttons, if you have button specific styling, you can include the mixin
+	// If you have button specific styling, you can include the mixin
 	input[type="submit"] {
 		// @include button;
 		-webkit-appearance: none;
@@ -67,17 +75,42 @@
 		height: auto;
 	}
 
-	// placeholder specific styling
+	// Remove spinner from type="number"
+	input[type=number]::-webkit-inner-spin-button,
+	input[type=number]::-webkit-outer-spin-button {
+	  -webkit-appearance: none;
+	  margin: 0;
+	}
+
+	input[type=number] {
+	    -moz-appearance:textfield;
+	}
+
+
+	//----------------------------------*\
+	// PLACEHOLDER
+	//----------------------------------
+
 	.placeholder {color: #000;}
 	input::-webkit-input-placeholder {color: #000;}
 	input:-moz-placeholder {color: #000;}
 	input::-moz-placeholder {color: #000;}
 	input:-ms-input-placeholder {color: #000;}
 
-	// focused placeholder styling
 	input:focus::-webkit-input-placeholder {color: #EEE;}
 	input:focus:-moz-placeholder {color: #EEE;}
 	input:focus::-moz-placeholder {color: #EEE;}
 	input:focus:-ms-input-placeholder {color: #EEE;}
+
+
+	//----------------------------------*\
+	// BROWSER SPECIFIC
+	//----------------------------------
+
+	// Remove extra spacing that FF adds to buttons
+	button::-moz-focus-inner {
+	    padding: 0;
+	    border: 0
+	}
 
 }

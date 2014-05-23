@@ -36,6 +36,7 @@ Thumbs.db
 # SASS
 .sass-cache
 .css
+config.rb
 
 # WORDPRESS
 wp-config.local

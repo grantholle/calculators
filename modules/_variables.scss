@@ -1,44 +1,47 @@
-// convert pixels into em units
+// Convert pixels into em units
 @function em($px, $context: 16) {
-  @return $px / $context + 0em;
+	@return $px / $context + 0em;
 }
 
-// colors - start all colors with $color
-$color-name:					#000000;
-$color-href: 					#454545;
-$color-href-hover: 				#454545;
+// Convert pixels to rem units if no ie8 support
+@function rm($px, $context: 16) {
+  @return $px / $context + 0rem;
+}
 
-// structure
+// Structure
 $gutter: 						em(10);
 $gutter-large:					em(20);
 
-// rows
+// Rows
 $max-width: 					em(1300);
 $max-width-large: 			 	em(1250);
 $max-width-medium: 				em(1020);
 $max-width-small: 				em(680);
 
-// headlines
+// Headlines
 $headline-line-height: 			1.1em;
 $headline-bottom-margin: 		0.5em;
 
-// paragraphs
+// Paragraphs
 $paragraph-font-size: 			1em;
 $paragraph-bottom-margin: 		em(20);
 
-// media query - options
+// Media query - options
 $m-query: 						false !default;
 $mq-tablet-landscape: 			em(1280);
 
-// media query - min-width
-$mq-min-small: 					em(480);
-$mq-min-netbook: 				em(600);
+// Media query - min-width
+$mq-min-mini: 					em(480);
+$mq-min-small: 					em(600);
 $mq-min-medium: 				em(768);
 $mq-min-large: 					em(960);
-$mq-min-xlarge: 				em(1440);
-// media query - max-width
+$mq-min-xlarge: 				em(1220);
+$mq-min-xxlarge: 				em(1440);
+
+// Media query - max-width
 $mq-max-mini: 					em(479);
 $mq-max-small: 					em(599);
 $mq-max-netbook: 				em(767);
 $mq-max-medium: 				em(959);
-$mq-max-large: 					em(1439);
+$mq-max-large: 					em(1219);
+$mq-max-xlarge:					em(1439);

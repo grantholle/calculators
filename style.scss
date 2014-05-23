@@ -11,12 +11,15 @@
 //----------------------------------
 
 @import "compass/reset";
+// @import "compass/css3/transform";
+// @import "compass/css3/transition";
 
 //----------------------------------*\
 // Variables
 //----------------------------------
 
 @import "modules/variables";
+@import "modules/colors";
 
 //----------------------------------*\
 // MIXINS
@@ -32,7 +35,6 @@
 //----------------------------------
 
 // Default Modules
-@import "modules/fonts";
 @import "modules/defaults";
 @import "modules/input";
 @import "modules/js-breakpoints";
@@ -41,7 +43,6 @@
 @import "modules/wordpress-default";
 
 // Optional Modules
-// @import "modules/responsive-grid";
 // @import "modules/keyframes";
 
 //----------------------------------*\
