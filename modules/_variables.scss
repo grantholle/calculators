@@ -39,9 +39,9 @@ $mq-min-xlarge: 				em(1220);
 $mq-min-xxlarge: 				em(1440);
 
 // Media query - max-width
-$mq-max-mini: 					em(479);
-$mq-max-small: 					em(599);
-$mq-max-netbook: 				em(767);
-$mq-max-medium: 				em(959);
-$mq-max-large: 					em(1219);
-$mq-max-xlarge:					em(1439);
+$mq-max-tiny:                   $mq-min-mini - em(1);
+$mq-max-mini:                   $mq-min-small - em(1);
+$mq-max-small:                  $mq-min-medium - em(1);
+$mq-max-medium:                 $mq-min-large - em(1);
+$mq-max-large:                  $mq-min-xlarge - em(1);
+$mq-max-xlarge:                 $mq-min-xxlarge - em(1);
