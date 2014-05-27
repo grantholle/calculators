@@ -82,6 +82,7 @@
 	  margin: 0;
 	}
 
+	// Remove spinner from type="number" for Firefox
 	input[type=number] {
 	    -moz-appearance:textfield;
 	}
@@ -91,16 +92,34 @@
 	// PLACEHOLDER
 	//----------------------------------
 
-	.placeholder {color: #000;}
-	input::-webkit-input-placeholder {color: #000;}
-	input:-moz-placeholder {color: #000;}
-	input::-moz-placeholder {color: #000;}
-	input:-ms-input-placeholder {color: #000;}
+	.placeholder {
+		color: #000;
+	}
+	input::-webkit-input-placeholder {
+		color: #000;
+	}
+	input:-moz-placeholder {
+		color: #000;
+	}
+	input::-moz-placeholder {
+		color: #000;
+	}
+	input:-ms-input-placeholder {
+		color: #000;
+	}
 
-	input:focus::-webkit-input-placeholder {color: #EEE;}
-	input:focus:-moz-placeholder {color: #EEE;}
-	input:focus::-moz-placeholder {color: #EEE;}
-	input:focus:-ms-input-placeholder {color: #EEE;}
+	input:focus::-webkit-input-placeholder {
+		color: #EEE;
+	}
+	input:focus:-moz-placeholder {
+		color: #EEE;
+	}
+	input:focus::-moz-placeholder {
+		color: #EEE;
+	}
+	input:focus:-ms-input-placeholder {
+		color: #EEE;
+	}
 
 
 	//----------------------------------*\
