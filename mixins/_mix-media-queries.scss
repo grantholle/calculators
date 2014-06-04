@@ -1,7 +1,7 @@
 // Media query functions to help output content conditonally based on screen width.
 // DO NOT EDIT
 
-//----------------------------------*\
+//----------------------------------
 // MIN-WIDTH
 //----------------------------------
 
@@ -89,7 +89,7 @@
 	}
 }
 
-//----------------------------------*\
+//----------------------------------
 // MAX-WIDTH
 //----------------------------------
 
@@ -116,20 +116,6 @@
 	}
 	@else {
 		@media screen and (max-width: $mq-max-small) {
-			@content;
-		}
-	}
-}
-
-// Tablet Portrait Down
-@mixin mq-max-netbook {
-	@if $m-query {
-		@if $m-query >= $mq-max-netbook {
-			@content;
-		}
-	}
-	@else {
-		@media screen and (max-width: $mq-max-netbook) {
 			@content;
 		}
 	}
@@ -191,7 +177,7 @@
 	}
 }
 
-//----------------------------------*\
+//----------------------------------
 // MISC QUERIES
 //----------------------------------
 
