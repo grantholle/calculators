@@ -1,5 +1,6 @@
-/* UTILITIES
-===================================*/
+//----------------------------------
+// UTILITIES
+//----------------------------------
 
 // These mixins and placeholders will make your development process easier.
 // Place any and all utilities here.
@@ -41,7 +42,10 @@
 @mixin abs-center {
 	margin: auto;
 	position: absolute;
-	top: 0; left: 0; bottom: 0; right: 0;
+	top: 0;
+	right: 0;
+	bottom: 0;
+	left: 0;
 }
 
 // Hide something to where it is still accessible on screen readers.
@@ -56,7 +60,7 @@
 	position: absolute;
 }
 
-//----------------------------------*\
+//----------------------------------
 // CROSS BROWSER
 //----------------------------------
 
@@ -78,6 +82,15 @@
 	-moz-opacity: $alpha;
 	-khtml-opacity: $alpha;
 	opacity: $alpha;
+}
+
+// Border Radius
+@mixin border-radius($size) {
+	-webkit-border-radius: $size;
+	-moz-border-radius: $size;
+	-ms-border-radius: $size;
+	-o-border-radius: $size;
+	border-radius: $size;
 }
 
 // Cross-browser background-cover
@@ -107,7 +120,59 @@
 	font-size: 1em;
 }
 
-//----------------------------------*\
+//----------------------------------
+// CSS TRANSFORMS
+//----------------------------------
+
+@mixin transform-translate($amount1, $amount2) {
+	-webkit-transform: translate($amount1, $amount2);
+	-moz-transform: translate($amount1, $amount2);
+	-ms-transform: translate($amount1, $amount2);
+	-o-transform: translate($amount1, $amount2);
+	transform: translate($amount1, $amount2);
+}
+
+@mixin transform-scale($amount) {
+	-webkit-transform: scale($amount);
+	-moz-transform: scale($amount);
+	-ms-transform: scale($amount);
+	-o-transform: scale($amount);
+	transform: scale($amount);
+}
+
+@mixin transform-rotate($amount) {
+	-webkit-transform: rotate($amount);
+	-moz-transform: rotate($amount);
+	-ms-transform: rotate($amount);
+	-o-transform: rotate($amount);
+	transform: rotate($amount);
+}
+
+//----------------------------------*/
+// CSS TRANSITIONS
+//----------------------------------*/
+
+// Transition Shorthand
+// ex: @include transition(color, 350ms, linear)
+@mixin transition($transition-property, $transition-time, $method) {
+	-webkit-transition: $transition-property $transition-time $method;
+	-moz-transition: $transition-property $transition-time $method;
+	-ms-transition: $transition-property $transition-time $method;
+	-o-transition: $transition-property $transition-time $method;
+	transition: $transition-property $transition-time $method;
+}
+
+// Transition Basic
+// ex: @include transition-simple(350ms)
+@mixin transition-simple($speed) {
+	-webkit-transition: all $speed;
+	-moz-transition: all $speed;
+	-ms-transition: all $speed;
+	-o-transition: all $speed;
+	transition: all $speed;
+}
+
+//----------------------------------
 // CSS ANIMATIONS
 //----------------------------------
 
