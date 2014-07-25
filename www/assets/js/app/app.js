@@ -6,39 +6,46 @@ define(['app/calculate', 'fastclick', 'magnific', 'slider'], function(calculate)
         $increment = $('div.increment-input'),
         $shareBtn = $('a#share-button'),
         $tabs = $('div.tabbed'),
-        $compareLabel = $('.compare'),
+        $body = $('body'),
+        $modal = $('div.modal'),
 
         // Sliders
         $sliders = $('div.perc-slider'),
-        $competitorSlider = $('div#competitor-mower-slider'),
-        $propaneSlider = $('div#propane-mower-slider'),
-        $fuelSlider = $('div#price-per-gallon'),
+        $competitorSliderEle = $('div#competitor-mower-slider'),
+        $propaneSliderEle = $('div#propane-mower-slider'),
+        $fuelSliderEle = $('div#price-per-gallon'),
 
         competitor = $toggle.find('button.active').data('compare'), // should we store this? Idk
+        competitorSlider,
+        propaneSlider,
+        fuelSlider,
 
         bindings = function () {
+
+          $sliders.on('click', 'input', function (e) {
+            e.preventDefault();
+            e.stopPropagation();
+          });
+
 
           // Toggle buttons
           $toggle.on('click', 'button', function (e) {
             $target = $(e.currentTarget);
 
             if (!$target.hasClass('active')) {
-              // swap labels
-              competitor = $target.data('compare');
-              $compareLabel.html(competitor);
-
-              $toggle.find('button.active').removeClass('active');
-              $target.addClass('active');
+              swapCompetitor($target);
             }
           });
 
           // Increment/decrement
           $increment.on('click', 'button', function (e) {
-            var $input = $(e.currentTarget).parent().find('input[type=text]'),
+            var $input = $(e.currentTarget).parent().find('input[type=number]'),
                 value = parseInt($input.val(), 10),
+                min = parseInt($input.data('min'), 10),
+                max = parseInt($input.data('max'), 10),
                 change = parseInt($(e.currentTarget).data('value'), 10),
                 newVal = value + change,
-                populate = (newVal > 0) ? newVal : $input.data('default');
+                populate = (newVal >= min && newVal <= max) ? newVal : $input.data('default');
 
             $input.val(populate);
           });
@@ -67,24 +74,40 @@ define(['app/calculate', 'fastclick', 'magnific', 'slider'], function(calculate)
           });
 
           // Share popup
-          $shareBtn.magnificPopup();
+          $shareBtn.magnificPopup({
+            showCloseBtn: false
+          });
+
+          $modal.on('click', 'div.close', function (e) {
+            $.magnificPopup.close();
+          });
 
         },
 
-        swapCompetitor = function () {
+        swapCompetitor = function ($target) {
+          var mower_range = $target.data('mower-range'),
+              fuel_range = $target.data('fuel-range');
 
-        };
+          competitor = $target.data('compare');
+
+          // Swap labels
+          $body.find('.compare').html(competitor);
+
+          // Update slider settings based on new competitor
+
+
+          // Update toggle buttons
+          $toggle.find('button.active').removeClass('active');
+          $target.addClass('active');
+        },
 
         sliders = function () {
           // Tool tip action
           var customToolTipTop = $.Link({
             target: '-tooltip-<div class="tooltip-top"></div>',
             method: function ( value ) {
-
-              // The tooltip HTML is 'this', so additional
-              // markup can be inserted here.
               $(this).html(
-                '<span class="value">$' + value + '</span>' +
+                '<span class="value">' + value + '</span>' +
                 '<span class="label">Per Mower</span>'
               );
             }
@@ -93,11 +116,8 @@ define(['app/calculate', 'fastclick', 'magnific', 'slider'], function(calculate)
           var customToolTipTopFuel = $.Link({
             target: '-tooltip-<div class="tooltip-top"></div>',
             method: function ( value ) {
-
-              // The tooltip HTML is 'this', so additional
-              // markup can be inserted here.
               $(this).html(
-                '<span class="value">$' + value + '</span>' +
+                '<span class="value">' + value + '</span>' +
                 '<span class="label">Propane</span>'
               );
             }
@@ -106,53 +126,75 @@ define(['app/calculate', 'fastclick', 'magnific', 'slider'], function(calculate)
           var customToolTipBottomFuel = $.Link({
             target: '-tooltip-<div class="tooltip-bottom"></div>',
             method: function ( value ) {
-
-              // The tooltip HTML is 'this', so additional
-              // markup can be inserted here.
               $(this).html(
-                '<span class="label">Diesel</span>' +
-                '<span class="value">$' + value + '</span>'
+                '<span class="label compare">Diesel</span>' +
+                '<input type="text" class="value" value="' + value + '">'
+                // '<span class="value">' + value + '</span>'
               );
             }
           });
 
           // Sliders
           // Competitor mower purchase
-          $competitorSlider.noUiSlider({
-            start: 40,
+          var competitor_range = $toggle.find('button.active').data('mower-range').split(',');
+          competitorSlider = $competitorSliderEle.noUiSlider({
+            start: parseInt($toggle.find('button.active').data('mower-default'), 10),
             range: {
-              'min': 0,
-              'max': 100
+              min: parseInt(competitor_range[0], 10),
+              max: parseInt(competitor_range[1], 10)
             },
+            step: 50,
             serialization: {
+              format: {
+                thousand: ',',
+                prefix: '$',
+                decimals: 0
+              },
               lower: [ customToolTipTop ]
             }
           });
 
           // Propane mower purchase
-          $propaneSlider.noUiSlider({
-            start: 40,
+          propaneSlider = $propaneSliderEle.noUiSlider({
+            start: 10500,
             range: {
-              'min': 0,
-              'max': 100
+              min: [7500],
+              max: 16500
             },
+            step: 50,
             serialization: {
+              format: {
+                thousand: ',',
+                prefix: '$',
+                decimals: 0
+              },
               lower: [ customToolTipTop ]
             }
           });
 
           // Price per gallon
-          $fuelSlider.noUiSlider({
-            start: [1.50, 3.94],
+          // Upper (index 0) is propane
+          // Lower (index 1) is competitor
+          var fuel_range = $toggle.find('button.active').data('fuel-range').split(',');
+          fuelSlider = $fuelSliderEle.noUiSlider({
+            start: [2, parseInt($toggle.find('button.active').data('fuel-default'), 10)],
             range: {
-              'min': 0,
-              'max': 5
+              min: 1.25,
+              max: 5
             },
+            step: 0.05,
             serialization: {
+              format: {
+                prefix: '$'
+              },
               lower: [ customToolTipTopFuel ],
               upper: [ customToolTipBottomFuel ]
             }
           });
+        },
+
+        capitalize = function (string) {
+          return string.charAt(0).toUpperCase() + string.slice(1);
         };
 
     bindings();

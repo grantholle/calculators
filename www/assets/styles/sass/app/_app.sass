@@ -63,7 +63,7 @@
     height: 42px
     +border-radius(0)
     position: relative
-    top: 2px
+    top: 4px
 
     &:first-child
       +border-radius-left(6px)
@@ -76,6 +76,13 @@
     &:active
       +transform-translate(0, 3px)
       box-shadow: 0 3px 0 $color-darkgreen
+
+    i
+      position: absolute
+      left: 0
+      right: 0
+      top: 9px
+      font-size: 24px
 
   input
     height: 53px
@@ -133,6 +140,9 @@
     line-height: 50px
     border: 3px solid $color-green
     background: #fff
+
+  input.value
+    text-align: center
 
 .tooltip-top
   top: -86px
@@ -192,15 +202,16 @@
     left: -48px
 
 // Result boxes
-.container
+.results-container
   padding: 0 10px
+  margin-bottom: 25px
 
 .result-wrapper
   background: $color-bluegray
   +border-radius-top(4px)
   +border-radius-bottom(7px)
   padding-bottom: 5px
-  margin-bottom: 30px
+  margin-bottom: 12px
 
   &.tabbed
 
@@ -296,6 +307,20 @@
   font-weight: bold
   background: $color-green
   line-height: 76px
+  text-transform: uppercase
+  margin-bottom: 12px
+
+  &:hover
+    color: #fff
+
+.share-button
+  margin-bottom: 30px
+  font-weight: bold
+  font-size: 14px
+  padding: 10px 0
+
+  &:hover
+    color: #fff
 
 // Modal
 .modal
@@ -322,3 +347,14 @@
     border: 1px solid $color-green
     +border-radius(2px)
     margin-bottom: 25px
+
+  .close
+    position: absolute
+    right: -8px
+    top: -10px
+    color: #fff
+
+    i:before
+      background: $color-gray
+      font-size: 22px
+      +border-radius(50%)
