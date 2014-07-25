@@ -81,6 +81,59 @@
   -o-border-radius: $size
   border-radius: $size
 
+// Custom border-radius things
+=border-radius-top($val)
+  -webkit-border-top-left-radius: $val
+  -webkit-border-top-right-radius: $val
+  -moz-border-radius-topleft: $val
+  -moz-border-radius-topright: $val
+  border-top-left-radius: $val
+  border-top-right-radius: $val
+
+=border-radius-bottom($val)
+  -webkit-border-bottom-left-radius: $val
+  -webkit-border-bottom-right-radius: $val
+  -moz-border-radius-bottomleft: $val
+  -moz-border-radius-bottomright: $val
+  border-bottom-left-radius: $val
+  border-bottom-right-radius: $val
+
+=border-radius-left($val)
+  -webkit-border-bottom-left-radius: $val
+  -webkit-border-top-left-radius: $val
+  -moz-border-radius-topleft: $val
+  -moz-border-radius-bottomleft: $val
+  border-top-left-radius: $val
+  border-bottom-left-radius: $val
+
+=border-radius-right($val)
+  -webkit-border-bottom-right-radius: $val
+  -webkit-border-top-right-radius: $val
+  -moz-border-radius-topright: $val
+  -moz-border-radius-bottomright: $val
+  border-top-right-radius: $val
+  border-bottom-right-radius: $val
+
+=border-radius-top-right($val)
+  -webkit-border-top-right-radius: $val
+  -moz-border-radius-topright: $val
+  border-top-right-radius: $val
+
+=border-radius-bottom-right($val)
+  -webkit-border-bottom-right-radius: $val
+  -moz-border-radius-bottomright: $val
+  border-bottom-right-radius: $val
+
+=border-radius-top-left($val)
+  -webkit-border-top-left-radius: $val
+  -moz-border-radius-topleft: $val
+  border-top-left-radius: $val
+
+=border-radius-bottom-left($val)
+  -webkit-border-bottom-left-radius: $val
+  -moz-border-radius-bottomleft: $val
+  border-bottom-left-radius: $val
+
 // Cross-browser background-cover
 // ex: @extend %bg-cover
 %bg-cover

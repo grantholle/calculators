@@ -1,43 +1,160 @@
 <!DOCTYPE html>
-<!--
-    Licensed to the Apache Software Foundation (ASF) under one
-    or more contributor license agreements.  See the NOTICE file
-    distributed with this work for additional information
-    regarding copyright ownership.  The ASF licenses this file
-    to you under the Apache License, Version 2.0 (the
-    "License"); you may not use this file except in compliance
-    with the License.  You may obtain a copy of the License at
-
-    http://www.apache.org/licenses/LICENSE-2.0
-
-    Unless required by applicable law or agreed to in writing,
-    software distributed under the License is distributed on an
-    "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
-     KIND, either express or implied.  See the License for the
-    specific language governing permissions and limitations
-    under the License.
--->
 <html>
-    <head>
-        <meta charset="utf-8" />
-        <meta name="format-detection" content="telephone=no" />
-        <!-- WARNING: for iOS 7, remove the width=device-width and height=device-height attributes. See https://issues.apache.org/jira/browse/CB-4323 -->
-        <meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width, height=device-height, target-densitydpi=device-dpi" />
-        <link rel="stylesheet" type="text/css" href="css/index.css" />
-        <title>Hello World</title>
-    </head>
-    <body>
-        <div class="app">
-            <h1>Apache Cordova</h1>
-            <div id="deviceready" class="blink">
-                <p class="event listening">Connecting to Device</p>
-                <p class="event received">Device is Ready</p>
-            </div>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="format-detection" content="telephone=no" />
+    <meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, height=device-height, width=device-width" />
+    <link rel="stylesheet" type="text/css" href="assets/styles/style.css" />
+    <!--
+    <script type="text/javascript" src="cordova.js"></script>
+    <script type="text/javascript" src="cordova_plugins.js"></script>
+    -->
+    <title>PERC</title>
+  </head>
+  <body>
+    <header>
+    </header>
+
+    <main>
+      <section class="row">
+        <h2>Compare Propane vs.</h2>
+        <div class="button-group toggle-group">
+          <button data-compare="Diesel" class="active">Diesel</button>
+          <button data-compare="Gasoline" class="">Gasoline</button>
         </div>
-        <script type="text/javascript" src="cordova.js"></script>
-        <script type="text/javascript" src="js/index.js"></script>
-        <script type="text/javascript">
-            app.initialize();
-        </script>
-    </body>
+      </section>
+      <section class="row">
+        <h2>Number of Mowers</h2>
+        <div class="increment-input">
+          <button class="decrement" data-value="-1"></button>
+          <input data-default="1" value="1" type="text" />
+          <button class="increment" data-value="1"></button>
+        </div>
+      </section>
+      <section class="row">
+        <h2>Total Hours per Year</h2>
+        <div class="increment-input">
+          <button class="decrement" data-value="-10"></button>
+          <input data-default="0" value="0" type="text" />
+          <button class="increment" data-value="10"></button>
+        </div>
+      </section>
+      <section class="row has-slider">
+        <h2><span class="compare">Diesel</span> Mower Purchase Amount</h2>
+        <div class="slider-wrapper">
+          <div class="input-slider perc-slider" id="competitor-mower-slider"></div>
+        </div>
+      </section>
+      <section class="row has-slider">
+        <h2>Propane Mower Purchase Amount</h2>
+        <div class="slider-wrapper">
+          <div class="input-slider perc-slider" id="propane-mower-slider"></div>
+        </div>
+      </section>
+      <section class="row has-slider">
+        <h2>Price per Gallon</h2>
+        <div class="range-wrapper">
+          <div class="range-slider perc-slider" id="price-per-gallon"></div>
+        </div>
+      </section>
+
+      <a href="#" class="see-results">See results</a>
+
+      <section class="container row">
+        <div class="result-wrapper">
+          <div class="result-inner">
+            <h2>Fuel costs per hour of mowing</h2>
+            <div class="result-data">
+              <div class="propane">
+                <span>Propane</span>
+                <span class="cost">$2.04</span>
+              </div>
+              <div class="competitor">
+                <span><span class="compare">Diesel</span> <strong>$3.55</strong></span>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="result-wrapper tabbed">
+          <div class="result-inner">
+            <h2>Fuel costs per</h2>
+            <ul class="tab-labels">
+              <li data-tab="one-year">1 year</li>
+              <li data-tab="three-year" class="active">3 years</li>
+              <li data-tab="five-year">5 years</li>
+            </ul>
+            <div class="result-data one-year">
+              <div class="propane">
+                <span>Propane</span>
+                <span class="cost">$6,121</span>
+              </div>
+              <div class="competitor">
+                <span><span class="compare">Diesel</span> <strong>$10,638</strong></span>
+              </div>
+            </div>
+            <div class="result-data three-year active">
+              <div class="propane">
+                <span>Propane</span>
+                <span class="cost">$6,122</span>
+              </div>
+              <div class="competitor">
+                <span><span class="compare">Diesel</span> <strong>$10,638</strong></span>
+              </div>
+            </div>
+            <div class="result-data five-year">
+              <div class="propane">
+                <span>Propane</span>
+                <span class="cost">$6,123</span>
+              </div>
+              <div class="competitor">
+                <span><span class="compare">Diesel</span> <strong>$10,638</strong></span>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="result-wrapper tabbed">
+          <div class="result-inner">
+            <h2>Total savings using propane</h2>
+            <ul class="tab-labels">
+              <li data-tab="one-year">1 year</li>
+              <li data-tab="three-year" class="active">3 years</li>
+              <li data-tab="five-year">5 years</li>
+            </ul>
+            <div class="result-data no-radius one-year">
+              <div class="propane">
+                <span>Propane</span>
+                <span class="cost">$6,121</span>
+              </div>
+            </div>
+            <div class="result-data no-radius three-year active">
+              <div class="propane">
+                <span>Propane</span>
+                <span class="cost">$6,122</span>
+              </div>
+            </div>
+            <div class="result-data no-radius five-year">
+              <div class="propane">
+                <span>Propane</span>
+                <span class="cost">$6,123</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <a href="#share-results" class="button" id="share-button">Share</a>
+    </main>
+
+    <footer>
+    </footer>
+
+    <div class="modal mfp-hide" id="share-results">
+      <h2>Share your results</h2>
+      <p>Duis aliquet egestas purus in blandit. Curabitur vulputate, ligula lacinia scelerisque tempor, lacus lacus ornare ante, ac egestas est urna sit amet arcu. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Sed molestie augue sit.</p>
+      <input type="email" placeholder="Enter your e-mail address">
+      <input class="button" type="submit" value="Send results" />
+    </div>
+
+    <script type="text/javascript" data-main="assets/js/main.js" src="assets/js/vendor/require.js"></script>
+  </body>
 </html>

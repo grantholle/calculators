@@ -1,6 +1,8 @@
 //----------------------------------
 // DEFAULTS GLOBAL
 //----------------------------------
+section
+  margin-bottom: 40px
 
 //----------------------------------
 // HELPERS
@@ -31,9 +33,11 @@ html
 //----------------------------------
 
 body
-  background: #fff
+  background: $color-extralightgray
   font-size: 16px
-  color: #000
+  color: $color-black
+  text-align: center
+  +font(generic)
   +mq-print
     width: 8in
 
@@ -60,8 +64,13 @@ h1, h2, h3, h4, h5, h6
   position: relative
   line-height: $headline-line-height
   margin-bottom: $headline-bottom-margin
+  +font(med)
   a
     color: $color-href
+
+h2
+  font-size: 20px
+  margin-bottom: 0.6em
 
 //----------------------------------
 // TEXT COMPONENTS

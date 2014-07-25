@@ -1,5 +1,324 @@
-//----------------------------------
-// APP NAME
-//----------------------------------
+// Button styles
+.button, button
+  display: inline-block
+  width: 124px
+  padding: 8px 0
+  background: $color-green
+  color: #fff
+  border: none
+  box-shadow: 0 5px 0 $color-darkgreen
+  +border-radius(6px)
+  text-transform: uppercase
+  margin: 0 0 16px 0
 
-// Each page/section should have their own styling. Name your stylesheets so that they correspond with pages or template files.
+  &:focus
+    outline: none
+
+.button
+
+  &:active
+    +transform-translate(0, 3px)
+    box-shadow: 0 3px 0 $color-darkgreen
+
+.button-group
+  position: relative
+  +cf
+  width: 242px
+  height: 34px
+  margin: 0 auto
+  
+  button
+    font-size: 14px
+    background: $color-gray
+    width: 50%
+    position: absolute
+    z-index: 0
+    box-shadow: none
+    +border-radius(0)
+
+    &.active
+      background: $color-green
+      box-shadow: 0 5px 0 $color-darkgreen
+      +border-radius(6px)
+      top: -5px
+      width: 126px
+      z-index: 1
+
+    &:first-child
+      +border-radius-left(6px)
+      left: 0
+
+    &:last-child
+      +border-radius-right(6px)
+      right: 0
+
+// Increment/decrement
+.increment-input
+  position: relative
+  margin: 0 auto
+
+  button
+    box-shadow: 0 6px 0 $color-darkgreen
+    width: 30px
+    height: 42px
+    +border-radius(0)
+    position: relative
+    top: 2px
+
+    &:first-child
+      +border-radius-left(6px)
+      margin-right: -4px
+
+    &:last-child
+      +border-radius-right(6px)
+      margin-left: -4px
+
+    &:active
+      +transform-translate(0, 3px)
+      box-shadow: 0 3px 0 $color-darkgreen
+
+  input
+    height: 53px
+    width: 100px
+    border: 3px solid $color-green
+    +border-radius(3px)
+    background: #fff
+    color: $color-black
+    text-align: center
+    font-size: 21px
+
+// Single slider
+.has-slider
+  
+  h2
+    margin-bottom: 5em
+
+.slider-wrapper
+  padding: 0 60px
+
+.tooltip-top, .tooltip-bottom
+  width: 110px
+  background: transparent
+  text-align: center
+  position: absolute
+  color: $color-black
+
+  &:before, &:after
+    position: absolute
+    display: inline-block
+    content: ''
+
+  &:before
+    border-left: 8px solid transparent
+    border-right: 8px solid transparent
+    left: 47px
+
+  &:after
+    border-left: 7px solid transparent
+    border-right: 7px solid transparent
+    left: 48px
+
+  span
+    display: block
+
+  .label
+    line-height: 19px
+    font-size: 12px
+    border: 1px solid $color-bluegray
+    background: $color-lightgray
+    text-transform: uppercase
+
+  .value
+    font-size: 21px
+    line-height: 50px
+    border: 3px solid $color-green
+    background: #fff
+
+.tooltip-top
+  top: -86px
+  left: -43px
+
+  &:before
+    border-top: 8px solid $color-lightgray
+    border-top-color: $color-bluegray
+    left: 47px
+    top: 73px
+
+  &:after
+    border-left: 7px solid transparent
+    border-right: 7px solid transparent
+    border-top: 7px solid $color-lightgray
+    left: 48px
+    top: 73px
+
+  .value
+    +border-radius-top(4px)
+    border-bottom: none
+
+  .label
+    +border-radius-bottom(4px)
+
+.tooltip-bottom
+  top: 32px
+  left: -43px
+
+  &:before
+    border-bottom: 8px solid $color-lightgray
+    border-bottom-color: $color-bluegray
+    top: -7px
+
+  &:after
+    border-bottom: 7px solid $color-lightgray
+    top: -6px
+
+  .value
+    +border-radius-bottom(4px)
+    border-top: none
+
+  .label
+    +border-radius-top(4px)
+
+// Range slider
+.range-wrapper
+  padding: 0 60px
+
+.range-slider
+  margin-bottom: 130px
+
+  .tooltip-top
+    top: -92px
+
+  .tooltip-top, .tooltip-bottom
+    left: -48px
+
+// Result boxes
+.container
+  padding: 0 10px
+
+.result-wrapper
+  background: $color-bluegray
+  +border-radius-top(4px)
+  +border-radius-bottom(7px)
+  padding-bottom: 5px
+  margin-bottom: 30px
+
+  &.tabbed
+
+    .result-inner
+      padding: 12px
+
+    h2
+      margin-bottom: 10px
+
+    .result-data
+      display: none
+
+      &.active
+        display: block
+
+.result-inner
+  +border-radius(3px)
+  background: $color-lightgray
+  padding: 8px
+
+  h2
+    color: $color-darkgray
+    text-transform: uppercase
+    text-align: center
+    font-size: 16px
+    font-weight: bold
+    +font(bold)
+
+.result-data
+  border: 1px solid $color-darkgreen
+  +border-radius-bottom(3px)
+  color: #fff
+  position: relative
+  z-index: 0
+
+  &.no-radius
+    +border-radius(0)
+
+  .propane
+    background: $color-green
+    font-size: 18px
+    padding: 8px 0
+
+  .competitor
+    background: $color-darkgreen
+    font-size: 16px
+    line-height: 26px
+
+  span
+    text-transform: uppercase
+
+  .cost
+    font-weight: bold
+    font-size: 50px
+
+.tab-labels
+  +cf
+  color: #fff
+  padding: 0
+  margin: 0
+  text-transform: uppercase
+  font-weight: bold
+  font-size: 10px
+
+  li
+    float: left
+    display: inline-block
+    background: $color-darkgray
+    width: 33.33333%
+    line-height: 21px
+
+    &:first-child
+      +border-radius-left(2px)
+
+    &:last-child
+      +border-radius-right(2px)
+
+    &.active
+      background: $color-green
+      border: 1px solid $color-darkgreen
+      border-bottom: none
+      +border-radius-top(2px)
+      position: relative
+      line-height: 25px
+      top: 1px
+      margin-top: -5px
+      z-index: 1
+
+.see-results
+  display: block
+  width: 100%
+  color: #fff
+  font-weight: bold
+  background: $color-green
+  line-height: 76px
+
+// Modal
+.modal
+  background: $color-lightgray
+  border: 1px solid $color-gray
+  +border-radius(6px)
+  padding: 20px
+  text-align: center
+  max-width: 687px
+  margin: 0 auto
+
+  h2
+    color: $color-darkgray
+    font-size: 27px
+    font-weight: bold
+    text-transform: uppercase
+
+  p
+    text-align: left
+
+  input[type=email]
+    height: 28px
+    background: #fff
+    border: 1px solid $color-green
+    +border-radius(2px)
+    margin-bottom: 25px
