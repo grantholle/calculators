@@ -20,6 +20,9 @@
     +transform-translate(0, 3px)
     box-shadow: 0 3px 0 $color-darkgreen
 
+.toggle-group button
+  font-weight: bold
+
 .button-group
   position: relative
   +cf
@@ -27,7 +30,7 @@
   height: 34px
   margin: 0 auto
   
-  button
+  button, .button
     font-size: 14px
     background: $color-gray
     width: 50%
@@ -63,7 +66,7 @@
     height: 42px
     +border-radius(0)
     position: relative
-    top: 4px
+    top: -1px
 
     &:first-child
       +border-radius-left(6px)
@@ -78,7 +81,6 @@
       box-shadow: 0 3px 0 $color-darkgreen
 
     i
-      position: absolute
       left: 0
       right: 0
       top: 9px
@@ -93,6 +95,7 @@
     color: $color-black
     text-align: center
     font-size: 21px
+    font-weight: bold
 
 // Single slider
 .has-slider
@@ -101,7 +104,8 @@
     margin-bottom: 5em
 
 .slider-wrapper
-  padding: 0 60px
+  padding: 0 20px
+  position: relative
 
 .tooltip-top, .tooltip-bottom
   width: 110px
@@ -143,6 +147,13 @@
 
   input.value
     text-align: center
+    height: 48px
+    line-height: 1em
+    font-weight: bold
+
+  // This gets really specific for each tooltip
+  &.competitor-mower-price
+    left: 20px
 
 .tooltip-top
   top: -86px
@@ -152,14 +163,14 @@
     border-top: 8px solid $color-lightgray
     border-top-color: $color-bluegray
     left: 47px
-    top: 73px
+    top: 68px
 
   &:after
     border-left: 7px solid transparent
     border-right: 7px solid transparent
     border-top: 7px solid $color-lightgray
     left: 48px
-    top: 73px
+    top: 68px
 
   .value
     +border-radius-top(4px)
@@ -190,7 +201,7 @@
 
 // Range slider
 .range-wrapper
-  padding: 0 60px
+  padding: 0 20px
 
 .range-slider
   margin-bottom: 130px

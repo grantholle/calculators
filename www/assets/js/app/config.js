@@ -7,10 +7,13 @@ define({
       slider: ['vendor/jquery.nouislider.min'],
       magnific: ['vendor/jquery.magnific-popup.min'],
       fastclick: ['vendor/fastclick']
+    },
+    shim: {
+      
     }
   },
   selectors: {
-    'body': ['app/app']
+    'body': ['app/offroad']
   }
 
 });

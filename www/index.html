@@ -22,34 +22,51 @@
         <button data-mower-range="8000,16000" data-mower-default="12000" data-fuel-range="2.75,5" data-fuel-default="3.65" data-compare="Gasoline" class="">Gasoline</button>
       </div>
     </section>
+    
     <section class="row">
       <h2>Number of Mowers</h2>
       <div class="increment-input">
         <button class="decrement" data-value="-1"><i class="icon-LeftArrow"></i></button>
-        <input data-min="1" data-max="100" value="10" type="number" />
+        <input data-min="1" data-max="100" data-step="1" value="10" type="number" id="mower-input" />
         <button class="increment" data-value="1"><i class="icon-RightArrow"></i></button>
       </div>
     </section>
+    
     <section class="row">
       <h2>Total Hours per Year</h2>
       <div class="increment-input">
         <button class="decrement" data-value="-100"><i class="icon-LeftArrow"></i></button>
-        <input data-min="600" data-max="1400" value="1000" type="number" />
+        <input data-min="600" data-max="1400" data-step="100" value="1000" type="number" id="annual-hours" />
         <button class="increment" data-value="100"><i class="icon-RightArrow"></i></button>
       </div>
     </section>
+    
     <section class="row has-slider">
       <h2><span class="compare">Diesel</span> Mower Purchase Amount</h2>
       <div class="slider-wrapper">
+        <!-- tooltip -->
+        <div class="tooltip tooltip-top competitor-mower-price">
+          <input type="text" class="value" value="" id="competitor-mower-price">
+          <span class="label">Per Mower</span>
+        </div>
+        <!-- end tooltip -->
         <div class="input-slider perc-slider" id="competitor-mower-slider"></div>
       </div>
     </section>
+
     <section class="row has-slider">
       <h2>Propane Mower Purchase Amount</h2>
       <div class="slider-wrapper">
+        <!-- tooltip -->
+        <div class="tooltip tooltip-top propane-mower-price">
+          <input type="text" class="value" value="" id="propane-mower-price">
+          <span class="label">Per Mower</span>
+        </div>
+        <!-- end tooltip -->
         <div class="input-slider perc-slider" id="propane-mower-slider"></div>
       </div>
     </section>
+    
     <section class="row has-slider">
       <h2>Price per Gallon</h2>
       <div class="range-wrapper">
@@ -61,80 +78,80 @@
 
     <section class="row results-container" id="results">
       <div class="result-wrapper">
-        <div class="result-inner">
+        <div class="result-inner fuel_per_hour">
           <h2>Fuel costs per hour of mowing</h2>
-          <div class="result-data">
+          <div class="result-data fuel_cost">
             <div class="propane">
               <span>Propane</span>
-              <span class="cost">$2.04</span>
+              <span class="cost prop">$2.04</span>
             </div>
             <div class="competitor">
-              <span><span class="compare">Diesel</span> <strong>$3.55</strong></span>
+              <span><span class="compare">Diesel</span> <strong class="other">$3.55</strong></span>
             </div>
           </div>
         </div>
       </div>
       <div class="result-wrapper tabbed">
-        <div class="result-inner">
+        <div class="result-inner fuel_per_year">
           <h2>Fuel costs per</h2>
           <ul class="tab-labels">
-            <li data-tab="one-year">1 year</li>
-            <li data-tab="three-year" class="active">3 years</li>
-            <li data-tab="five-year">5 years</li>
+            <li data-tab="one_year">1 year</li>
+            <li data-tab="three_year" class="active">3 years</li>
+            <li data-tab="five_year">5 years</li>
           </ul>
-          <div class="result-data one-year">
+          <div class="result-data one_year">
             <div class="propane">
               <span>Propane</span>
-              <span class="cost">$6,121</span>
+              <span class="cost prop">$6,121</span>
             </div>
             <div class="competitor">
-              <span><span class="compare">Diesel</span> <strong>$10,638</strong></span>
+              <span><span class="compare">Diesel</span> <strong class="other">$10,638</strong></span>
             </div>
           </div>
-          <div class="result-data three-year active">
+          <div class="result-data three_year active">
             <div class="propane">
               <span>Propane</span>
-              <span class="cost">$6,122</span>
+              <span class="cost prop">$6,122</span>
             </div>
             <div class="competitor">
-              <span><span class="compare">Diesel</span> <strong>$10,638</strong></span>
+              <span><span class="compare">Diesel</span> <strong class="other">$10,638</strong></span>
             </div>
           </div>
-          <div class="result-data five-year">
+          <div class="result-data five_year">
             <div class="propane">
               <span>Propane</span>
-              <span class="cost">$6,123</span>
+              <span class="cost prop">$6,123</span>
             </div>
             <div class="competitor">
-              <span><span class="compare">Diesel</span> <strong>$10,638</strong></span>
+              <span><span class="compare">Diesel</span> <strong class="other">$10,638</strong></span>
             </div>
           </div>
         </div>
       </div>
       <div class="result-wrapper tabbed">
-        <div class="result-inner">
+        <div class="result-inner propane_savings">
           <h2>Total savings using propane</h2>
           <ul class="tab-labels">
-            <li data-tab="one-year">1 year</li>
-            <li data-tab="three-year" class="active">3 years</li>
-            <li data-tab="five-year">5 years</li>
+            <li data-tab="one_year">1 year</li>
+            <li data-tab="three_year" class="active">3 years</li>
+            <li data-tab="five_year">5 years</li>
           </ul>
-          <div class="result-data no-radius one-year">
+          <div class="result-data no-radius one_year">
             <div class="propane">
               <span>Propane</span>
-              <span class="cost">$6,121</span>
+              <span class="cost prop">$6,121</span>
             </div>
           </div>
-          <div class="result-data no-radius three-year active">
+          <div class="result-data no-radius three_year active">
             <div class="propane">
               <span>Propane</span>
-              <span class="cost">$6,122</span>
+              <span class="cost prop">$6,122</span>
             </div>
           </div>
-          <div class="result-data no-radius five-year">
+          <div class="result-data no-radius five_year">
             <div class="propane">
               <span>Propane</span>
-              <span class="cost">$6,123</span>
+              <span class="cost prop">$6,123</span>
             </div>
           </div>
         </div>
