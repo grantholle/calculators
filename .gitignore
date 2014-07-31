@@ -50,6 +50,8 @@ Thumbs.db
 Icon?
 ehthumbs.db
 Thumbs.db
+platforms/
+plugins/
 
 # SASS
 .sass-cache
