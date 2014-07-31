@@ -20,15 +20,23 @@
     +transform-translate(0, 3px)
     box-shadow: 0 3px 0 $color-darkgreen
 
-.toggle-group button
-  font-weight: bold
+.toggle-group
+
+  +mq-min-medium
+    h2
+      margin-top: 6px
+
+  button
+    font-weight: bold
 
 .button-group
   position: relative
   +cf
-  width: 242px
+  width: 242px !important
   height: 34px
   margin: 0 auto
+  +mq-min-medium
+    height: 52px
   
   button, .button
     font-size: 14px
@@ -87,7 +95,7 @@
       font-size: 24px
 
   input
-    height: 53px
+    height: 54px
     width: 100px
     border: 3px solid $color-green
     +border-radius(3px)
@@ -97,17 +105,35 @@
     font-size: 21px
     font-weight: bold
 
+.has-increment
+  +mq-min-medium
+    margin-bottom: 20px
+
+    h2
+      margin-top: 0.6em
+
+.has-increment ~ .has-increment
+  +mq-min-medium
+    margin-bottom: 0
+
 // Single slider
 .has-slider
+  +mq-min-medium
+    padding-top: 76px
   
   h2
-    margin-bottom: 5em
+    margin-bottom: 4.5em
+    +mq-min-medium
+      margin-bottom: 0
 
 .slider-wrapper
-  padding: 0 20px
+  padding: 0 55px
   position: relative
+  +mq-min-medium
+    padding: 23px 60px 0 60px
 
 .tooltip-top, .tooltip-bottom
+  display: none
   width: 110px
   background: transparent
   text-align: center
@@ -156,18 +182,17 @@
     left: 20px
 
 .tooltip-top
-  top: -86px
+  top: -81px
   left: -43px
+  +mq-min-medium
+    top: -58px
 
   &:before
-    border-top: 8px solid $color-lightgray
-    border-top-color: $color-bluegray
+    border-top: 8px solid $color-bluegray
     left: 47px
     top: 68px
 
   &:after
-    border-left: 7px solid transparent
-    border-right: 7px solid transparent
     border-top: 7px solid $color-lightgray
     left: 48px
     top: 68px
@@ -200,17 +225,29 @@
     +border-radius-top(4px)
 
 // Range slider
-.range-wrapper
-  padding: 0 20px
+.has-range
+  +mq-min-medium
+    padding-top: 96px
 
-.range-slider
-  margin-bottom: 130px
+    h2
+      margin-top: 4px
+
+.range-wrapper
+  padding: 0 55px
+  position: relative
+  +mq-min-medium
+    padding: 0 60px
 
   .tooltip-top
-    top: -92px
+    top: -79px
 
-  .tooltip-top, .tooltip-bottom
-    left: -48px
+  .tooltip-bottom
+    top: 40px
+
+.range-slider
+  margin-bottom: 50px
+  +mq-min-medium
+    margin-bottom: 90px
 
 // Result boxes
 .results-container
@@ -250,6 +287,8 @@
     font-size: 16px
     font-weight: bold
     +font(bold)
+    +mq-min-medium
+      font-size: 18px
 
 .result-data
   border: 1px solid $color-darkgreen
@@ -263,8 +302,11 @@
 
   .propane
     background: $color-green
-    font-size: 18px
+    font-size: 16px
     padding: 8px 0
+    +mq-min-medium
+      font-size: 20px
+      padding: 16px 0
 
   .competitor
     background: $color-darkgreen
@@ -277,6 +319,8 @@
   .cost
     font-weight: bold
     font-size: 50px
+    +mq-min-medium
+      font-size: 54px
 
 .tab-labels
   +cf
@@ -286,13 +330,18 @@
   text-transform: uppercase
   font-weight: bold
   font-size: 10px
+  width: 100%
+  +mq-min-medium
+    font-size: 14px
 
   li
     float: left
     display: inline-block
     background: $color-darkgray
-    width: 33.33333%
+    width: percentage(1/3)
     line-height: 21px
+    +mq-min-medium
+      line-height: 24px
 
     &:first-child
       +border-radius-left(2px)
@@ -310,6 +359,84 @@
       top: 1px
       margin-top: -5px
       z-index: 1
+      +mq-min-medium
+        line-height: 28px
+
+// Tablet tool tips
+.icon-TooltipMark
+  display: none
+  +mq-min-medium
+    display: inline-block
+    position: relative
+    top: 2px
+    left: -2px
+    color: #c0c0c0
+
+  .tab-tooltip
+    display: none
+    background: $color-lightgray
+    border: 1px solid $color-bluegray
+    +border-radius(9px)
+    position: absolute
+    padding: 10px 14px
+    color: $color-black
+    width: 360px
+    z-index: 5
+    +font(generic)
+    font-size: 16px
+    text-align: left
+    font-style: normal
+    text-transform: none
+
+    &.active
+      display: block
+
+    &:before, &:after
+      position: absolute
+      display: inline-block
+      content: ''
+
+    &:before
+      border-left: 8px solid transparent
+      border-right: 8px solid transparent
+      border-top: 8px solid $color-bluegray
+      bottom: -8px
+
+    &:after
+      border-left: 7px solid transparent
+      border-right: 7px solid transparent
+      border-top: 7px solid $color-lightgray
+      bottom: -7px
+
+    p
+      margin-bottom: 0
+
+  .go-left
+    bottom: 31px
+    right: -8px
+
+    &:before
+      right: 8px
+
+    &:after
+      right: 9px
+
+  .go-right
+    bottom: 36px
+    left: -10px
+
+    &:before
+      left: 12px
+
+    &:after
+      left: 13px
+
+.right-column
+  
+  .results-container
+    margin-bottom: 12px
+    +mq-min-medium
+      margin-bottom: 15px
 
 .see-results
   display: block
@@ -320,6 +447,8 @@
   line-height: 76px
   text-transform: uppercase
   margin-bottom: 12px
+  +mq-min-medium
+    display: none
 
   &:hover
     color: #fff
@@ -342,6 +471,10 @@
   text-align: center
   max-width: 687px
   margin: 0 auto
+  position: relative
+  +mq-min-medium
+    padding: 40px
+    border-width: 2px
 
   h2
     color: $color-darkgray
@@ -352,20 +485,53 @@
   p
     text-align: left
 
+    &.or
+      text-align: center
+      font-weight: bold
+      font-size: 1.2em
+
   input[type=email]
     height: 28px
     background: #fff
     border: 1px solid $color-green
     +border-radius(2px)
     margin-bottom: 25px
+    +mq-min-medium
+      max-width: 400px
+      height: 55px
+      font-size: 18px
+      border-width: 2px
+      display: block
+      margin: 0 auto 38px auto
+      padding-left: 16px
+
+  .button
+    position: relative
+    +font(generic, bold)
+    +mq-min-medium
+      font-size: 18px
+      padding: 8px 36px 11px 36px
+      width: auto
+
+  .icon-Envelope, .icon-Doc
+    +mq-min-medium
+      font-size: 24px
+      position: relative
+      top: 4px
+      left: -3px
 
   .close
     position: absolute
     right: -8px
     top: -10px
     color: #fff
+    +mq-min-medium
+      top: -22px
+      right: -22px
 
     i:before
       background: $color-gray
       font-size: 22px
       +border-radius(50%)
+      +mq-min-medium
+        font-size: 44px

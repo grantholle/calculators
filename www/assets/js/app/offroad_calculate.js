@@ -12,6 +12,7 @@ define([], function() {
         $fuelPrice = $('div#price-per-gallon'),
 
         exports = {},
+        currentCompetitor,
 
         // Constants
         fuel_consumption = {
@@ -55,9 +56,12 @@ define([], function() {
           }
         },
 
-        refresh = function () {
+        refresh = function (competitor) {
+          currentCompetitor = competitor;
+          
           fuelCostsPerHour();
           fuelCostsPerYear();
+          propaneSavings();
           updateLabels();
         },
 
@@ -70,25 +74,63 @@ define([], function() {
               var $child = $parent.find('.' + child);
 
               $.each(values, function (key, value) {
-                $child.find('.' + key).html(value);
+                $child.find('.' + key).html('$' + formatNumber(value));
               });
             });
           });
         },
 
         fuelCostsPerHour = function () {
-          offRoadResults.fuel_per_hour = {
-            prop: 1.36 * getFloatFromPrice($fuelPrice[0]),
-            other: 
+          var propane = fuel_consumption.propane * parseFloat(cleanNumber($fuelPrice.val()[0])),
+              comp = fuel_consumption[currentCompetitor] * parseFloat(cleanNumber($fuelPrice.val()[1]));
+
+          offRoadResults.fuel_per_hour.fuel_cost = {
+            prop: propane.toFixed(2),
+            other: comp.toFixed(2)
           };
         },
 
         fuelCostsPerYear = function () {
+          var hours = parseInt($hours.val(), 10),
+              propane = hours * offRoadResults.fuel_per_hour.fuel_cost.prop,
+              comp = hours * offRoadResults.fuel_per_hour.fuel_cost.other;
+
+          offRoadResults.fuel_per_year = {
+            one_year: {
+              prop: Math.round(propane),
+              other: Math.round(comp)
+            },
+            three_year: {
+              prop: Math.round(propane * 3),
+              other: Math.round(comp * 3)
+            },
+            five_year: {
+              prop: Math.round(propane * 5),
+              other: Math.round(comp * 5)
+            }
+          };
         },
 
-        getFloatFromPrice = function (value) {
-          value = value.replace('$', '');
-          return parseFloat(value);
+        propaneSavings = function () {
+          var mowers = parseInt($mowers.val(), 10),
+              prop_mower = parseInt(cleanNumber($propMower.val()), 10),
+              other_mower = parseInt(cleanNumber($otherMower.val()), 10);
+
+          offRoadResults.propane_savings = {
+            one_year: {
+              prop: (other_mower * mowers) - (prop_mower * mowers) + (offRoadResults.fuel_per_year.one_year.other - offRoadResults.fuel_per_year.one_year.prop)
+            },
+            three_year: {
+              prop: (other_mower * mowers) - (prop_mower * mowers) + (offRoadResults.fuel_per_year.three_year.other - offRoadResults.fuel_per_year.three_year.prop)
+            },
+            five_year: {
+              prop: (other_mower * mowers) - (prop_mower * mowers) + (offRoadResults.fuel_per_year.five_year.other - offRoadResults.fuel_per_year.five_year.prop)
+            }
+          };
+        },
+
+        cleanNumber = function (value) {
+          return value.replace('$', '').replace(',', '');
         },
 
         formatNumber = function (x) {

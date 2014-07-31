@@ -2,7 +2,10 @@
 // DEFAULTS GLOBAL
 //----------------------------------
 section
-  margin-bottom: 40px
+  
+  &.row
+    +mq-max-small
+      margin-bottom: 40px
 
 //----------------------------------
 // HELPERS
@@ -28,6 +31,7 @@ html
   text-rendering: optimizeLegibility !important
   -webkit-font-smoothing: antialiased !important
   -moz-osx-font-smoothing: grayscale !important
+  height: 100%
 
 //----------------------------------
 // GENERAL
@@ -39,6 +43,7 @@ body
   color: $color-black
   text-align: center
   +font(generic)
+  height: 100%
   +mq-print
     width: 8in
 
@@ -70,8 +75,9 @@ h1, h2, h3, h4, h5, h6
     color: $color-href
 
 h2
-  font-size: 20px
+  font-size: 21px
   margin-bottom: 0.6em
+  width: 100%
 
 //----------------------------------
 // TEXT COMPONENTS

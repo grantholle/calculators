@@ -8,6 +8,7 @@ define(['app/offroad_calculate', 'fastclick', 'magnific', 'slider'], function (c
         $tabs = $('div.tabbed'),
         $body = $('body'),
         $modal = $('div.modal'),
+        $qMarks = $('i.icon-TooltipMark'),
 
         // Sliders
         $sliders = $('div.perc-slider'),
@@ -16,26 +17,42 @@ define(['app/offroad_calculate', 'fastclick', 'magnific', 'slider'], function (c
         $propaneSliderEle = $('div#propane-mower-slider'),
         $fuelSliderEle = $('div#price-per-gallon'),
 
-        // Tooltips
+        // Tooltip inputs
         $competitorMowerPrice = $('input#competitor-mower-price'),
         $propaneMowerPrice = $('input#propane-mower-price'),
+        $competitorFuelPrice = $('input#comp-fuel-price'),
+        $propaneFuelPrice = $('input#propane-fuel-price'),
 
         competitor = $toggle.find('button.active').data('compare'), // should we store this? Idk
         competitorSlider,
         propaneSlider,
         fuelSlider,
+
+        // Variables that are based on viewport
         appWidth = $(window).width(),
-        processInput = true, // Flag used to change input blur behavior to prevent endless loop
+        toolTipConstantKey = (appWidth > 480) ? 'tablet' : 'mobile';
+        toolTipConstants = {
+          maxLeft: 20,
+          maxRight: (appWidth - 130),
+          maxLeftOffset: 55,
+          maxRightOffset: (appWidth - 95)
+        },
 
         init = function () {
           FastClick.attach(document.body);
           bindings();
+
+          sliders();
+
+          // Initial calculation
+          calculate.refresh(competitor);
         },
 
         bindings = function () {
 
           $(window).resize(function () {
             appWidth = $(window).width();
+            toolTipConstantKey = (appWidth > 480) ? 'tablet' : 'mobile';
           });
 
           // Toggle buttons
@@ -67,54 +84,67 @@ define(['app/offroad_calculate', 'fastclick', 'magnific', 'slider'], function (c
             $input.val(populate);
 
             // refresh calculation
-            calculate.refresh();
+            calculate.refresh(competitor);
 
           }).on('blur', 'input', function (e) {
-            if (processInput) {
-              roundInput($(e.currentTarget));
-            } else {
-              processInput = true;
-            }
-
+            roundInput($(e.currentTarget));
+            
             // refresh calculation
-            calculate.refresh();
+            calculate.refresh(competitor);
 
           }).on('keypress', 'input', function (e) {
             if (e.keyCode === 13) {
-              var $input = $(e.currentTarget);
-              processInput = false;
-              roundInput($input);
-              $input.blur();
+              $(e.currentTarget).blur();
             }
           });
 
-          // Sliders
-          sliders();
-
           // Trigger calculation after done dragging or moving
           $sliders.on('change', function (e) {
-            // console.log($fuelSliderEle.val());
-            calculate.refresh();
+            calculate.refresh(competitor);
+          }).on('showToolTips', function (e) { // This is triggered from the plugin to show the tooltips
+            $(e.currentTarget).parents('.has-slider').find('.tooltip').show();
           });
 
-          // Events for slider input fields and their behavior on blur and enter
-          $sliderWrap.on('focus', 'input[type=text]', function (e) {
+          $qMarks.click(function (e) {
+            var $this = $(e.currentTarget);
+
+            $this.find('div.tab-tooltip').toggleClass('active');
+          });
+
+          // Events for input fields and their behavior on blur and enter
+          $body.on('focus', 'input[type=text], input[type=number]', function (e) {
             var $input = $(e.currentTarget);
             
             $input.data('original-string', $input.val());
             $input.val('');
-          }).on('keypress', 'input[type=text]', function (e) {
+          }).on('keypress', 'input[type=text], input[type=number]', function (e) {
             if (e.keyCode === 13) {
               $(e.currentTarget).blur();
             }
-          }).on('blur', 'input[type=text]', function (e) {
+          }).on('blur', 'input[type=text], input[type=number]', function (e) {
             var $input = $(e.currentTarget);
 
+            // If the input is empty, reset the input to what it was
             if ($input.val() === '') {
               $input.val($input.data('original-string'));
-            } else {
-              $input.parents('.slider-wrapper').find('.perc-slider').val($input.val());
+            } else { // Else change the value of the slider
+              var $daSlider = $input.parents('div.slider-wrapper, div.range-wrapper').find('div.perc-slider');
+
+              console.log($input);
+
+              // If it's not a range slider
+              if (!$daSlider.hasClass('range-slider')) {
+                $daSlider.val($input.val());
+              } else { // If it is, we need to know which input changed
+                if ($input.parent().hasClass('propane-fuel-price'))
+                  $daSlider.val([$input.val(), null]);
+                else
+                  $daSlider.val([null, $input.val()]);
+
+              }
             }
+
+            calculate.refresh(competitor);
           });
 
           // Tabs
@@ -149,13 +179,14 @@ define(['app/offroad_calculate', 'fastclick', 'magnific', 'slider'], function (c
               fuel_range = $target.data('fuel-range').split(',');
 
           competitor = $target.data('compare');
+          formattedCompetitor = capitalize(competitor);
 
           // Update toggle buttons
           $toggle.find('button.active').removeClass('active');
           $target.addClass('active');
 
           // Swap labels
-          $body.find('.compare').html(competitor);
+          $body.find('.compare').html(formattedCompetitor);
 
           // Update slider settings based on new competitor
           // Mower price
@@ -170,7 +201,7 @@ define(['app/offroad_calculate', 'fastclick', 'magnific', 'slider'], function (c
           // Fuel Price
           // Not sure if/when this will actually change the min/max
           fuelSlider.noUiSlider({
-            start: [2, parseInt($toggle.find('button.active').data('fuel-default'), 10)],
+            start: [2, parseFloat($toggle.find('button.active').data('fuel-default'))],
             range: {
               min: 1.25,
               max: 5
@@ -178,7 +209,7 @@ define(['app/offroad_calculate', 'fastclick', 'magnific', 'slider'], function (c
           }, true);
 
           // Refresh the calculation
-          calculate.refresh();
+          calculate.refresh(competitor);
 
         },
 
@@ -187,62 +218,25 @@ define(['app/offroad_calculate', 'fastclick', 'magnific', 'slider'], function (c
           // Tool tip action
           var customToolTipCompetitor = $.Link({
             target: function (value, a, b) {
-              $competitorMowerPrice.val(value);
-
-              // console.log(a, a[0].parentNode.offsetLeft);
-
-              if (a[0].parentNode.offsetLeft < 55)
-                $competitorMowerPrice.parent().css('left', 20);
-              else if (a[0].parentNode.offsetLeft > (appWidth - 95))
-                $competitorMowerPrice.parent().css('left', (appWidth - 130));
-              else
-                $competitorMowerPrice.parent().css('left', a[0].parentNode.offsetLeft - 34);
+              moveTooltip($competitorMowerPrice, value, a[0].parentNode.offsetLeft);
             }
-          });
+          }),
           
-          var customToolTipPropane = $.Link({
+          customToolTipPropane = $.Link({
             target: function (value, a, b) {
-              $propaneMowerPrice.val(value);
-
-              if (a[0].parentNode.offsetLeft < 55)
-                $propaneMowerPrice.parent().css('left', 20);
-              else if (a[0].parentNode.offsetLeft > (appWidth - 95))
-                $propaneMowerPrice.parent().css('left', (appWidth - 130));
-              else
-                $propaneMowerPrice.parent().css('left', a[0].parentNode.offsetLeft - 34);
+              moveTooltip($propaneMowerPrice, value, a[0].parentNode.offsetLeft);
             }
-            // old
-            // target: '-tooltip-<div class="tooltip tooltip-top"></div>',
-            // method: function ( value, a, b ) {
-            //   // console.log(value, a, b);
-            //   // console.log(a[0].parentNode.offsetLeft);
-
-            //   $(this).html(
-            //     '<span class="value">' + value + '</span>' +
-            //     // '<input type="text" class="value" value="' + value + '">' +
-            //     '<span class="label">Per Mower</span>'
-            //   );
-            // }
-          });
+          }),
           
-          var customToolTipTopFuel = $.Link({
-            target: '-tooltip-<div class="tooltip tooltip-top"></div>',
-            method: function ( value ) {
-              $(this).html(
-                '<span class="value">' + value + '</span>' +
-                '<span class="label">Propane</span>'
-              );
+          customToolTipTopFuel = $.Link({
+            target: function (value, a, b) {
+              moveTooltip($propaneFuelPrice, value, a[0].parentNode.offsetLeft);
             }
-          });
+          }),
           
-          var customToolTipBottomFuel = $.Link({
-            target: '-tooltip-<div class="tooltip tooltip-bottom"></div>',
-            method: function ( value ) {
-              $(this).html(
-                '<span class="label compare">Diesel</span>' +
-                '<input type="text" class="value" value="' + value + '">'
-                // '<span class="value">' + value + '</span>'
-              );
+          customToolTipBottomFuel = $.Link({
+            target: function (value, a, b) {
+              moveTooltip($competitorFuelPrice, value, a[0].parentNode.offsetLeft);
             }
           });
 
@@ -252,6 +246,7 @@ define(['app/offroad_calculate', 'fastclick', 'magnific', 'slider'], function (c
           competitorSlider = $competitorSliderEle.noUiSlider({
             start: parseInt($toggle.find('button.active').data('mower-default'), 10),
             connect: 'lower',
+            behaviour: 'snap',
             range: {
               min: parseInt(competitor_range[0], 10),
               max: parseInt(competitor_range[1], 10)
@@ -271,6 +266,7 @@ define(['app/offroad_calculate', 'fastclick', 'magnific', 'slider'], function (c
           propaneSlider = $propaneSliderEle.noUiSlider({
             start: 10500,
             connect: 'lower',
+            behaviour: 'snap',
             range: {
               min: 7500,
               max: 16500
@@ -291,8 +287,8 @@ define(['app/offroad_calculate', 'fastclick', 'magnific', 'slider'], function (c
           // Lower (index 1) is competitor
           var fuel_range = $toggle.find('button.active').data('fuel-range').split(',');
           fuelSlider = $fuelSliderEle.noUiSlider({
-            start: [2, parseInt($toggle.find('button.active').data('fuel-default'), 10)],
-            // connect: true,
+            start: [2, parseFloat($toggle.find('button.active').data('fuel-default'))],
+            behaviour: 'snap',
             range: {
               min: 1.25,
               max: 5
@@ -306,6 +302,15 @@ define(['app/offroad_calculate', 'fastclick', 'magnific', 'slider'], function (c
               upper: [ customToolTipBottomFuel ]
             }
           });
+        },
+
+        moveTooltip = function ($tooltip, value, handlePos) {
+          $tooltip.val(value);
+
+          if (appWidth < 480)
+            $tooltip.parent().css('left', handlePos);
+          else
+            $tooltip.parent().css('left', handlePos + 6);
         },
 
         // This rounds the input for numbers entered manually - just incrementers for now
