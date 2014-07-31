@@ -9,6 +9,7 @@ define(['app/offroad_calculate', 'fastclick', 'magnific', 'slider'], function (c
         $body = $('body'),
         $modal = $('div.modal'),
         $qMarks = $('i.icon-TooltipMark'),
+        $currencyField = $('input[type=currency]'),
 
         // Sliders
         $sliders = $('div.perc-slider'),
@@ -23,20 +24,13 @@ define(['app/offroad_calculate', 'fastclick', 'magnific', 'slider'], function (c
         $competitorFuelPrice = $('input#comp-fuel-price'),
         $propaneFuelPrice = $('input#propane-fuel-price'),
 
-        competitor = $toggle.find('button.active').data('compare'), // should we store this? Idk
+        competitor = $toggle.find('button.active').data('compare'), // diesel or gasoline
         competitorSlider,
         propaneSlider,
         fuelSlider,
 
         // Variables that are based on viewport
         appWidth = $(window).width(),
-        toolTipConstantKey = (appWidth > 480) ? 'tablet' : 'mobile';
-        toolTipConstants = {
-          maxLeft: 20,
-          maxRight: (appWidth - 130),
-          maxLeftOffset: 55,
-          maxRightOffset: (appWidth - 95)
-        },
 
         init = function () {
           FastClick.attach(document.body);
@@ -53,6 +47,11 @@ define(['app/offroad_calculate', 'fastclick', 'magnific', 'slider'], function (c
           $(window).resize(function () {
             appWidth = $(window).width();
             toolTipConstantKey = (appWidth > 480) ? 'tablet' : 'mobile';
+          });
+
+          // This tricks mobile devices to show html5 number and still allow a dollar sign to populate
+          $currencyField.on('touchstart', function (e) {
+            $(e.currentTarget).attr('type', 'number');
           });
 
           // Toggle buttons
@@ -86,13 +85,13 @@ define(['app/offroad_calculate', 'fastclick', 'magnific', 'slider'], function (c
             // refresh calculation
             calculate.refresh(competitor);
 
-          }).on('blur', 'input', function (e) {
+          }).on('blur', 'input[type=number]', function (e) {
             roundInput($(e.currentTarget));
             
             // refresh calculation
             calculate.refresh(competitor);
 
-          }).on('keypress', 'input', function (e) {
+          }).on('keypress', 'input[type=number]', function (e) {
             if (e.keyCode === 13) {
               $(e.currentTarget).blur();
             }
@@ -112,34 +111,37 @@ define(['app/offroad_calculate', 'fastclick', 'magnific', 'slider'], function (c
           });
 
           // Events for input fields and their behavior on blur and enter
-          $body.on('focus', 'input[type=text], input[type=number]', function (e) {
+          $body.on('focus', 'input[type=text], input[type=number], input[type=currency]', function (e) {
             var $input = $(e.currentTarget);
-            
+
             $input.data('original-string', $input.val());
             $input.val('');
-          }).on('keypress', 'input[type=text], input[type=number]', function (e) {
+          }).on('keypress', 'input[type=text], input[type=number], input[type=currency]', function (e) {
             if (e.keyCode === 13) {
               $(e.currentTarget).blur();
             }
-          }).on('blur', 'input[type=text], input[type=number]', function (e) {
-            var $input = $(e.currentTarget);
+          }).on('blur', 'input[type=text], input[type=number], input[type=currency]', function (e) {
+            var $input = $(e.currentTarget),
+                value = $input.val().replace('$', '');
 
             // If the input is empty, reset the input to what it was
-            if ($input.val() === '') {
+            if (value === '') {
               $input.val($input.data('original-string'));
             } else { // Else change the value of the slider
               var $daSlider = $input.parents('div.slider-wrapper, div.range-wrapper').find('div.perc-slider');
 
-              console.log($input);
+              // Switch changed number fields back to currency before we change the value
+              if ($input.attr('type') === 'number')
+                $input.attr('type', 'currency');
 
               // If it's not a range slider
               if (!$daSlider.hasClass('range-slider')) {
-                $daSlider.val($input.val());
+                $daSlider.val(value);
               } else { // If it is, we need to know which input changed
                 if ($input.parent().hasClass('propane-fuel-price'))
-                  $daSlider.val([$input.val(), null]);
+                  $daSlider.val([value, null]);
                 else
-                  $daSlider.val([null, $input.val()]);
+                  $daSlider.val([null, value]);
 
               }
             }

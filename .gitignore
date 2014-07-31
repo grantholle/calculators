@@ -55,7 +55,7 @@ plugins/
 
 # SASS
 .sass-cache
-*.css
+# *.css
 config.rb
 
 # WORDPRESS
