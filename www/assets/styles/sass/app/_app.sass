@@ -498,7 +498,9 @@
     &.or
       text-align: center
       font-weight: bold
-      font-size: 1.2em
+      margin-bottom: 1em
+      +mq-min-medium
+        font-size: 1.2em
 
   input[type=email]
     height: 28px
@@ -506,6 +508,7 @@
     border: 1px solid $color-green
     +border-radius(2px)
     margin-bottom: 25px
+    max-width: 200px
     +mq-min-medium
       max-width: 400px
       height: 55px
@@ -518,17 +521,18 @@
   .button
     position: relative
     +font(generic, bold)
+    font-size: 18px
+    padding: 7px 28px 
+    width: auto
     +mq-min-medium
-      font-size: 18px
       padding: 8px 36px 11px 36px
-      width: auto
 
   .icon-Envelope, .icon-Doc
-    +mq-min-medium
-      font-size: 24px
-      position: relative
-      top: 4px
-      left: -3px
+    font-size: 24px
+    position: relative
+    top: 4px
+    left: -3px
+    // +mq-min-medium
 
   .close
     position: absolute
