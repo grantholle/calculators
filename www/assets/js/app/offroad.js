@@ -10,10 +10,11 @@ define(['app/offroad_calculate', 'fastclick', 'magnific', 'slider'], function (c
         $modal = $('div.modal'),
         $qMarks = $('i.icon-TooltipMark'),
         $currencyField = $('input[type=currency]'),
+        $fuelDifference = $('span#fuel-difference'),
 
         // Sliders
         $sliders = $('div.perc-slider'),
-        $sliderWrap = $('.has-slider'),
+        $sliderWrap = $('div.has-slider'),
         $competitorSliderEle = $('div#competitor-mower-slider'),
         $propaneSliderEle = $('div#propane-mower-slider'),
         $fuelSliderEle = $('div#price-per-gallon'),
@@ -232,13 +233,13 @@ define(['app/offroad_calculate', 'fastclick', 'magnific', 'slider'], function (c
           
           customToolTipTopFuel = $.Link({
             target: function (value, a, b) {
-              moveTooltip($propaneFuelPrice, value, a[0].parentNode.offsetLeft);
+              moveTooltip($propaneFuelPrice, value, a[0].parentNode.offsetLeft, true);
             }
           }),
           
           customToolTipBottomFuel = $.Link({
             target: function (value, a, b) {
-              moveTooltip($competitorFuelPrice, value, a[0].parentNode.offsetLeft);
+              moveTooltip($competitorFuelPrice, value, a[0].parentNode.offsetLeft, true);
             }
           });
 
@@ -306,13 +307,26 @@ define(['app/offroad_calculate', 'fastclick', 'magnific', 'slider'], function (c
           });
         },
 
-        moveTooltip = function ($tooltip, value, handlePos) {
+        moveTooltip = function ($tooltip, value, handlePos, isFuel) {
           $tooltip.val(value);
 
           if (appWidth < 480)
             $tooltip.parent().css('left', handlePos);
           else
             $tooltip.parent().css('left', handlePos + 6);
+
+          if (isFuel) {
+            var values = $fuelSliderEle.val(),
+                comp, prop, diff;
+            
+            if (typeof values[1] !== 'undefined') {
+              comp = parseFloat(values[1].replace('$', ''));
+              prop = parseFloat(values[0].replace('$', ''));
+              diff = Math.abs(comp - prop);
+
+              $fuelDifference.html('$' + diff.toFixed(2));
+            }
+          }
         },
 
         // This rounds the input for numbers entered manually - just incrementers for now
