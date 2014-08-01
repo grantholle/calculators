@@ -1,4 +1,4 @@
-define(['app/offroad_calculate', 'fastclick', 'magnific', 'slider'], function (calculate) {
+define(['app/calculate', 'fastclick', 'magnific', 'slider'], function (calculate) {
 
   var mow_app = (function () {
 

@@ -13,7 +13,7 @@ define({
     }
   },
   selectors: {
-    'body': ['app/offroad']
+    'body': ['app/app']
   }
 
 });
