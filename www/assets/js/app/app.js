@@ -47,7 +47,7 @@ define(['app/calculate', 'fastclick', 'magnific', 'slider'], function (calculate
 
           $(window).resize(function () {
             appWidth = $(window).width();
-            toolTipConstantKey = (appWidth > 480) ? 'tablet' : 'mobile';
+            moveTooltipsAfterResize();
           });
 
           // This tricks mobile devices to show html5 number and still allow a dollar sign to populate
@@ -221,25 +221,25 @@ define(['app/calculate', 'fastclick', 'magnific', 'slider'], function (calculate
           // Tool tip action
           var customToolTipCompetitor = $.Link({
             target: function (value, a, b) {
-              moveTooltip($competitorMowerPrice, value, a[0].parentNode.offsetLeft);
+              moveTooltip($competitorMowerPrice.parent(), value, a[0].parentNode.offsetLeft);
             }
           }),
           
           customToolTipPropane = $.Link({
             target: function (value, a, b) {
-              moveTooltip($propaneMowerPrice, value, a[0].parentNode.offsetLeft);
+              moveTooltip($propaneMowerPrice.parent(), value, a[0].parentNode.offsetLeft);
             }
           }),
           
           customToolTipTopFuel = $.Link({
             target: function (value, a, b) {
-              moveTooltip($propaneFuelPrice, value, a[0].parentNode.offsetLeft, true);
+              moveTooltip($propaneFuelPrice.parent(), value, a[0].parentNode.offsetLeft, true);
             }
           }),
           
           customToolTipBottomFuel = $.Link({
             target: function (value, a, b) {
-              moveTooltip($competitorFuelPrice, value, a[0].parentNode.offsetLeft, true);
+              moveTooltip($competitorFuelPrice.parent(), value, a[0].parentNode.offsetLeft, true);
             }
           });
 
@@ -308,14 +308,21 @@ define(['app/calculate', 'fastclick', 'magnific', 'slider'], function (calculate
         },
 
         moveTooltip = function ($tooltip, value, handlePos, isFuel) {
-          $tooltip.val(value);
+          
+          // If we're changing the value (not a window resize)
+          if (value)
+            $tooltip.find('input').val(value);
 
-          if (appWidth < 480)
-            $tooltip.parent().css('left', handlePos);
-          else
-            $tooltip.parent().css('left', handlePos + 6);
+          if (appWidth <= 400) {
+            $tooltip.css('left', handlePos);
+          } else if (appWidth < 768) {
+            $tooltip.css('left', handlePos + 1);
+          } else {
+            $tooltip.css('left', handlePos + 6);
+          }
 
-          if (isFuel) {
+          // If it's fuel and we're changing the value (not a window resize)
+          if (isFuel && value) {
             var values = $fuelSliderEle.val(),
                 comp, prop, diff;
             
@@ -329,7 +336,23 @@ define(['app/calculate', 'fastclick', 'magnific', 'slider'], function (calculate
           }
         },
 
-        // This rounds the input for numbers entered manually - just incrementers for now
+        moveTooltipsAfterResize = function () {
+          $sliders.each(function (index, element) {
+            var $slider = $(element),
+                $sliderOrigin = $slider.find('div.noUi-origin'),
+                $tooltips = $slider.parent().find('div.tooltip');
+
+            // If this is true, this is the fuel slider
+            if (typeof $slider.find('div.noUi-origin')[1] !== 'undefined') {
+              moveTooltip($tooltips.first(), false, $sliderOrigin[0].offsetLeft, false);
+              moveTooltip($tooltips.last(), false, $sliderOrigin[1].offsetLeft, false);
+            } else {
+              moveTooltip($tooltips, false, $sliderOrigin[0].offsetLeft, false);
+            }
+          });
+        },
+
+        // This rounds the input for numbers entered manually - just incrementers/spinner
         roundInput = function ($input) {
           var value = parseInt($input.val(), 10),
               min = parseInt($input.data('min'), 10),
