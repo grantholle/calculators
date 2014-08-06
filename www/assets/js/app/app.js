@@ -57,7 +57,10 @@ define(['app/calculate', 'fastclick', 'magnific', 'slider'], function (calculate
 
           // This tricks mobile devices to show html5 number and still allow a dollar sign to populate
           $currencyField.on('touchstart', function (e) {
-            $(e.currentTarget).attr('type', 'number');
+            var $input = $(e.currentTarget);
+
+            $input.data('original-string', $input.val());
+            $input.attr('type', 'number');
           });
 
           // Toggle buttons
@@ -91,16 +94,6 @@ define(['app/calculate', 'fastclick', 'magnific', 'slider'], function (calculate
             // refresh calculation
             calculate.refresh(competitor);
 
-          }).on('blur', 'input[type=number]', function (e) {
-            roundInput($(e.currentTarget));
-            
-            // refresh calculation
-            calculate.refresh(competitor);
-
-          }).on('keypress', 'input[type=number]', function (e) {
-            if (e.keyCode === 13) {
-              $(e.currentTarget).blur();
-            }
           });
 
           // Trigger calculation after done dragging or moving
@@ -120,7 +113,9 @@ define(['app/calculate', 'fastclick', 'magnific', 'slider'], function (calculate
           $body.on('focus', 'input[type=text], input[type=number], input[type=currency]', function (e) {
             var $input = $(e.currentTarget);
 
-            $input.data('original-string', $input.val());
+            if ($input.val() !== '')
+              $input.data('original-string', $input.val());
+            
             $input.val('');
           }).on('keypress', 'input[type=text], input[type=number], input[type=currency]', function (e) {
             if (e.keyCode === 13) {
@@ -132,6 +127,11 @@ define(['app/calculate', 'fastclick', 'magnific', 'slider'], function (calculate
 
             // If the input is empty, reset the input to what it was
             if (value === '') {
+              if ($input.parent().hasClass('tooltip')) { // if this is for a slider we need to change the type back
+                if ($input.attr('type') === 'number')
+                  $input.attr('type', 'currency');
+              }
+
               $input.val($input.data('original-string'));
             } else if ($input.parent().hasClass('increment-input')) { // This is an increment
               roundInput($input);
