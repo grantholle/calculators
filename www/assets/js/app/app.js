@@ -133,6 +133,8 @@ define(['app/calculate', 'fastclick', 'magnific', 'slider'], function (calculate
             // If the input is empty, reset the input to what it was
             if (value === '') {
               $input.val($input.data('original-string'));
+            } else if ($input.parent().hasClass('increment-input')) { // This is an increment
+              $input.val(value);
             } else { // Else change the value of the slider
               var $daSlider = $input.parents('div.slider-wrapper, div.range-wrapper').find('div.perc-slider');
 
