@@ -11,6 +11,7 @@ define(['app/calculate', 'fastclick', 'magnific', 'slider'], function (calculate
         $qMarks = $('i.icon-TooltipMark'),
         $currencyField = $('input[type=currency]'),
         $fuelDifference = $('span#fuel-difference'),
+        $headerImg = $('header img#header-img'),
 
         // Sliders
         $sliders = $('div.perc-slider'),
@@ -35,9 +36,12 @@ define(['app/calculate', 'fastclick', 'magnific', 'slider'], function (calculate
 
         init = function () {
           FastClick.attach(document.body);
+          responsiveImage();
+          
           bindings();
 
           sliders();
+
 
           // Initial calculation
           calculate.refresh(competitor);
@@ -48,6 +52,7 @@ define(['app/calculate', 'fastclick', 'magnific', 'slider'], function (calculate
           $(window).resize(function () {
             appWidth = $(window).width();
             moveTooltipsAfterResize();
+            responsiveImage();
           });
 
           // This tricks mobile devices to show html5 number and still allow a dollar sign to populate
@@ -376,6 +381,18 @@ define(['app/calculate', 'fastclick', 'magnific', 'slider'], function (calculate
           }
 
           $input.val(populate);
+        },
+
+        responsiveImage = function () {
+          var src = $headerImg.attr('src'),
+              small = $headerImg.data('small'),
+              large = $headerImg.data('large');
+
+          if (appWidth < 768 && src !== small) {
+            $headerImg.attr('src', small);
+          } else if (appWidth >= 768 && src !== large) {
+            $headerImg.attr('src', large);
+          }
         },
 
         capitalize = function (string) {
