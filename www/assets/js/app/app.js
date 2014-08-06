@@ -134,7 +134,7 @@ define(['app/calculate', 'fastclick', 'magnific', 'slider'], function (calculate
             if (value === '') {
               $input.val($input.data('original-string'));
             } else if ($input.parent().hasClass('increment-input')) { // This is an increment
-              $input.val(value);
+              roundInput($input);
             } else { // Else change the value of the slider
               var $daSlider = $input.parents('div.slider-wrapper, div.range-wrapper').find('div.perc-slider');
 
