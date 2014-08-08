@@ -12,6 +12,7 @@ define(['app/calculate', 'fastclick', 'magnific', 'slider'], function (calculate
         $currencyField = $('input[type=currency]'),
         $fuelDifference = $('span#fuel-difference'),
         $headerImg = $('header img#header-img'),
+        $sendResults = $('a#send-link'),
 
         // Sliders
         $sliders = $('div.perc-slider'),
@@ -175,6 +176,11 @@ define(['app/calculate', 'fastclick', 'magnific', 'slider'], function (calculate
           // Share popup
           $shareBtn.magnificPopup({
             showCloseBtn: false
+          });
+
+          // Send dat link, yo!
+          $sendResults.click(function (e) {
+            console.log(calculate.results);
           });
 
           // Close the share modal
