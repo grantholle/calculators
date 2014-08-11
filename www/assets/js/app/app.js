@@ -112,13 +112,14 @@ define(['app/calculate', 'fastclick', 'magnific', 'slider'], function (calculate
           });
 
           // Events for input fields and their behavior on blur and enter
-          $body.on('focus', 'input[type=text], input[type=number], input[type=currency]', function (e) {
+          $body.on('touchend', 'input[type=text], input[type=number], input[type=currency]', function (e) {
             var $input = $(e.currentTarget);
 
             if ($input.val() !== '')
               $input.data('original-string', $input.val());
             
             $input.val('');
+            $input.focus();
           }).on('keypress', 'input[type=text], input[type=number], input[type=currency]', function (e) {
             if (e.keyCode === 13) {
               $(e.currentTarget).blur();
@@ -157,8 +158,6 @@ define(['app/calculate', 'fastclick', 'magnific', 'slider'], function (calculate
             }
 
             calculate.refresh(competitor);
-          }).on('touchstart', 'input[type=text], input[type=number], input[type=currency]', function (e) {
-            $(e.currentTarget).focus();
           });
 
           // Tabs
