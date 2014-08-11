@@ -157,6 +157,8 @@ define(['app/calculate', 'fastclick', 'magnific', 'slider'], function (calculate
             }
 
             calculate.refresh(competitor);
+          }).on('touchstart', 'input[type=text], input[type=number], input[type=currency]', function (e) {
+            $(e.currentTarget).focus();
           });
 
           // Tabs
