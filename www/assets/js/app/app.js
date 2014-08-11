@@ -95,6 +95,7 @@ define(['app/calculate', 'fastclick', 'magnific', 'slider'], function (calculate
             // refresh calculation
             calculate.refresh(competitor);
 
+            $body.focus();
           });
 
           // Trigger calculation after done dragging or moving
