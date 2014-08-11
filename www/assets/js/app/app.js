@@ -180,7 +180,10 @@ define(['app/calculate', 'fastclick', 'magnific', 'slider'], function (calculate
 
           // Send dat link, yo!
           $sendResults.click(function (e) {
-            console.log(calculate.results);
+            var encode = window.btoa(JSON.stringify(calculate.results()));
+
+            // $(e.currentTarget).attr('href', '//perc-pdf.local?data=' + encode);
+            e.preventDefault();
           });
 
           // Close the share modal
