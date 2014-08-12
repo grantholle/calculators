@@ -61,7 +61,8 @@ define(['app/calculate', 'fastclick', 'magnific', 'slider'], function (calculate
             var $input = $(e.currentTarget);
 
             $input.data('original-string', $input.val());
-            $input.attr('type', 'number');
+            $input.attr('type', 'number').trigger('focus');
+
           });
 
           // Toggle buttons
