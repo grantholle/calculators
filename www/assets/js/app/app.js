@@ -94,9 +94,17 @@ define(['app/calculate', 'fastclick', 'magnific', 'slider'], function (calculate
 
             // refresh calculation
             calculate.refresh(competitor);
-
-            $body.focus();
           });
+
+          if (navigator.userAgent.toLowerCase().indexOf("android") > -1) {
+            $increment.on("touchstart", 'button', function (e) {
+              $(e.currentTarget).addClass("active");
+            }).on("touchend", 'button', function (e) {
+              $(e.currentTarget).removeClass("active");
+            }).on('touchcancel', 'button', function (e) {
+              $(e.currentTarget).removeClass("active");
+            });
+          }
 
           // Trigger calculation after done dragging or moving
           $sliders.on('change', function (e) {
@@ -112,14 +120,13 @@ define(['app/calculate', 'fastclick', 'magnific', 'slider'], function (calculate
           });
 
           // Events for input fields and their behavior on blur and enter
-          $body.on('touchend', 'input[type=text], input[type=number], input[type=currency]', function (e) {
+          $body.on('focus', 'input[type=text], input[type=number], input[type=currency]', function (e) {
             var $input = $(e.currentTarget);
 
             if ($input.val() !== '')
               $input.data('original-string', $input.val());
             
             $input.val('');
-            $input.focus();
           }).on('keypress', 'input[type=text], input[type=number], input[type=currency]', function (e) {
             if (e.keyCode === 13) {
               $(e.currentTarget).blur();
