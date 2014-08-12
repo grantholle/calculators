@@ -124,7 +124,7 @@ define(['app/calculate', 'fastclick', 'magnific', 'slider'], function (calculate
           });
 
           // Events for input fields and their behavior on blur and enter
-          $body.on('focus', 'input[type=text], input[type=number], input[type=currency]', function (e) {
+          $body.on('touchend', 'input[type=text], input[type=number], input[type=currency]', function (e) {
             var $input = $(e.currentTarget);
 
             if ($input.val() !== '')
