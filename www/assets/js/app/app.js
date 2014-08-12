@@ -74,7 +74,9 @@ define(['app/calculate', 'fastclick', 'magnific', 'slider'], function (calculate
           });
 
           // Increment/decrement
-          $increment.on('click', 'button', function (e) {
+          $increment.on('touchstart', 'button', function (e) {
+            $(e.currentTarget).addClass('active');
+          }).on('touchend', 'button', function (e) {
             var $input = $(e.currentTarget).parent().find('input[type=number]'),
                 value = parseInt($input.val(), 10),
                 min = parseInt($input.data('min'), 10),
@@ -94,6 +96,8 @@ define(['app/calculate', 'fastclick', 'magnific', 'slider'], function (calculate
 
             // refresh calculation
             calculate.refresh(competitor);
+
+            $(e.currentTarget).removeClass('active');
           });
 
           // if (navigator.userAgent.toLowerCase().indexOf("android") > -1) {
