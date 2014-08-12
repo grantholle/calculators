@@ -76,7 +76,7 @@ define(['app/calculate', 'fastclick', 'magnific', 'slider'], function (calculate
           // Increment/decrement
           $increment.on('touchstart', 'button', function (e) {
             $(e.currentTarget).addClass('active');
-          }).on('touchend', 'button', function (e) {
+          }).on('touchend, click', 'button', function (e) {
             var $input = $(e.currentTarget).parent().find('input[type=number]'),
                 value = parseInt($input.val(), 10),
                 min = parseInt($input.data('min'), 10),
