@@ -96,15 +96,15 @@ define(['app/calculate', 'fastclick', 'magnific', 'slider'], function (calculate
             calculate.refresh(competitor);
           });
 
-          if (navigator.userAgent.toLowerCase().indexOf("android") > -1) {
-            $increment.on("touchstart", 'button', function (e) {
-              $(e.currentTarget).addClass("active");
-            }).on("touchend", 'button', function (e) {
-              $(e.currentTarget).removeClass("active");
-            }).on('touchcancel', 'button', function (e) {
-              $(e.currentTarget).removeClass("active");
-            });
-          }
+          // if (navigator.userAgent.toLowerCase().indexOf("android") > -1) {
+          //   $increment.on("touchstart", 'button', function (e) {
+          //     $(e.currentTarget).addClass("active");
+          //   }).on("touchend", 'button', function (e) {
+          //     $(e.currentTarget).removeClass("active");
+          //   }).on('touchcancel', 'button', function (e) {
+          //     $(e.currentTarget).removeClass("active");
+          //   });
+          // }
 
           // Trigger calculation after done dragging or moving
           $sliders.on('change', function (e) {
