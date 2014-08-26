@@ -272,7 +272,7 @@ define(['app/calculate', 'fastclick', 'magnific', 'slider'], function (calculate
               min: parseInt(competitor_range[0], 10),
               max: parseInt(competitor_range[1], 10)
             },
-            step: 50,
+            step: 100,
             serialization: {
               format: {
                 thousand: ',',
@@ -292,7 +292,7 @@ define(['app/calculate', 'fastclick', 'magnific', 'slider'], function (calculate
               min: 7500,
               max: 16500
             },
-            step: 50,
+            step: 100,
             serialization: {
               format: {
                 thousand: ',',
