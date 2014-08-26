@@ -8,7 +8,7 @@ define(['app/calculate', 'fastclick', 'magnific', 'slider'], function (calculate
         $tabs = $('div.tabbed'),
         $body = $('body'),
         $modal = $('div.modal'),
-        $qMarks = $('i.icon-TooltipMark'),
+        $qMarks = $('i.icon-tooltip'),
         $currencyField = $('input[type=currency]'),
         $fuelDifference = $('span#fuel-difference'),
         $headerImg = $('header img#header-img'),
@@ -31,20 +31,18 @@ define(['app/calculate', 'fastclick', 'magnific', 'slider'], function (calculate
         competitorSlider,
         propaneSlider,
         fuelSlider,
+        pdfUrl = '//perc-pdf.local',
 
         // Variables that are based on viewport
         appWidth = $(window).width(),
 
         init = function () {
           FastClick.attach(document.body);
-          responsiveImage();
           
           bindings();
 
           sliders();
 
-
-          // Initial calculation
           calculate.refresh(competitor);
         },
 
@@ -53,7 +51,7 @@ define(['app/calculate', 'fastclick', 'magnific', 'slider'], function (calculate
           $(window).resize(function () {
             appWidth = $(window).width();
             moveTooltipsAfterResize();
-            responsiveImage();
+            // responsiveImage();
           });
 
           // This tricks mobile devices to show html5 number and still allow a dollar sign to populate
@@ -61,7 +59,7 @@ define(['app/calculate', 'fastclick', 'magnific', 'slider'], function (calculate
             var $input = $(e.currentTarget);
 
             $input.data('original-string', $input.val());
-            $input.attr('type', 'number').trigger('focus');
+            $input.attr('type', 'number').focus();
 
           });
 
@@ -77,7 +75,7 @@ define(['app/calculate', 'fastclick', 'magnific', 'slider'], function (calculate
           // Increment/decrement
           $increment.on('touchstart', 'button', function (e) {
             $(e.currentTarget).addClass('active');
-          }).on('touchend, click', 'button', function (e) {
+          }).on('touchend, touchcancel, click', 'button', function (e) {
             var $input = $(e.currentTarget).parent().find('input[type=number]'),
                 value = parseInt($input.val(), 10),
                 min = parseInt($input.data('min'), 10),
@@ -101,16 +99,6 @@ define(['app/calculate', 'fastclick', 'magnific', 'slider'], function (calculate
             $(e.currentTarget).removeClass('active');
           });
 
-          // if (navigator.userAgent.toLowerCase().indexOf("android") > -1) {
-          //   $increment.on("touchstart", 'button', function (e) {
-          //     $(e.currentTarget).addClass("active");
-          //   }).on("touchend", 'button', function (e) {
-          //     $(e.currentTarget).removeClass("active");
-          //   }).on('touchcancel', 'button', function (e) {
-          //     $(e.currentTarget).removeClass("active");
-          //   });
-          // }
-
           // Trigger calculation after done dragging or moving
           $sliders.on('change', function (e) {
             calculate.refresh(competitor);
@@ -125,7 +113,7 @@ define(['app/calculate', 'fastclick', 'magnific', 'slider'], function (calculate
           });
 
           // Events for input fields and their behavior on blur and enter
-          $body.on('touchend, click', 'input[type=text], input[type=number], input[type=currency]', function (e) {
+          $body.on('focus', 'input[type=text], input[type=number], input[type=currency]', function (e) {
             var $input = $(e.currentTarget);
 
             if ($input.val() !== '')
@@ -196,8 +184,8 @@ define(['app/calculate', 'fastclick', 'magnific', 'slider'], function (calculate
           $sendResults.click(function (e) {
             var encode = window.btoa(JSON.stringify(calculate.results()));
 
-            // $(e.currentTarget).attr('href', '//perc-pdf.local?data=' + encode);
-            e.preventDefault();
+            $(e.currentTarget).attr('href', pdfUrl + '?data=' + encode);
+            // e.preventDefault();
           });
 
           // Close the share modal
@@ -406,18 +394,6 @@ define(['app/calculate', 'fastclick', 'magnific', 'slider'], function (calculate
           }
 
           $input.val(populate);
-        },
-
-        responsiveImage = function () {
-          var src = $headerImg.attr('src'),
-              small = $headerImg.data('small'),
-              large = $headerImg.data('large');
-
-          if (appWidth < 768 && src !== small) {
-            $headerImg.attr('src', small);
-          } else if (appWidth >= 768 && src !== large) {
-            $headerImg.attr('src', large);
-          }
         },
 
         capitalize = function (string) {

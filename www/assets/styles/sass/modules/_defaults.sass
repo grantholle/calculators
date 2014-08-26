@@ -7,6 +7,16 @@ section
     +mq-max-small
       margin-bottom: 40px
 
+img.mobile
+  display: block
+  +mq-min-medium
+    display: none
+
+img.tablet
+  display: none
+  +mq-min-medium
+    display: block
+
 //----------------------------------
 // HELPERS
 //----------------------------------
@@ -44,6 +54,8 @@ body
   text-align: center
   +font(generic)
   height: 100%
+  +mq-portrait
+    margin-bottom: 41px
   +mq-print
     width: 8in
 
@@ -78,6 +90,10 @@ h2
   font-size: 21px
   margin-bottom: 0.6em
   width: 100%
+  +mq-min-medium
+    font-size: 18px
+  +mq-min-large
+    font-size: 21px
 
 //----------------------------------
 // TEXT COMPONENTS

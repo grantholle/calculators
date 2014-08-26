@@ -3,6 +3,7 @@
 //----------------------------------
 .row
   width: 100%
+  max-width: 1024px
   margin: 0 auto
   +cf
   
@@ -11,7 +12,7 @@
     +mq-min-medium
       width: 60%
       float: left
-      padding-top: 18px
+      padding-top: 12px
 
       h2
         width: 40%
@@ -25,8 +26,13 @@
         .break
           display: block
 
+    +mq-min-large
+      padding-top: 11px
+
   .right-column
     width: 100%
     +mq-min-medium
       width: 40%
       float: left
+    +mq-min-large
+      padding-right: 28px

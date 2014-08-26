@@ -23,7 +23,8 @@
   </head>
   <body>
     <header>
-      <img id="header-img" src="" data-small="assets/img/header.jpg" data-large="assets/img/header-tablet.jpg" width="100%" />
+      <img class="mobile" src="assets/img/header.jpg" width="100%" />
+      <img class="tablet" src="assets/img/header-tablet.jpg" width="100%" />
     </header>
 
     <div class="row">
@@ -44,16 +45,16 @@
           <h2>Number of Mowers</h2>
           <div>
             <div class="increment-input">
-              <button class="decrement" data-value="-1"><i class="icon-LeftArrow"></i></button>
+              <button class="decrement" data-value="-1"><i class="icon-backarrow"></i></button>
               <input data-min="1" data-max="100" data-step="1" value="10" type="number" id="mower-input" />
-              <button class="increment" data-value="1"><i class="icon-RightArrow"></i></button>
+              <button class="increment" data-value="1"><i class="icon-forwardarrow"></i></button>
             </div>
           </div>
         </section>
         
         <section class="row has-increment">
           <h2>
-            <i class="icon-TooltipMark">
+            <i class="icon-tooltip">
               <div class="tab-tooltip go-right">
                 <p>Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Proin vel ante a orci tempus eleifend ut et magna. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus luctus urna sed urna ultricies ac tempor.</p>
               </div>
@@ -62,9 +63,9 @@
           </h2>
           <div>
             <div class="increment-input">
-              <button class="decrement" data-value="-100"><i class="icon-LeftArrow"></i></button>
+              <button class="decrement" data-value="-100"><i class="icon-backarrow"></i></button>
               <input data-min="600" data-max="1400" data-step="100" value="1000" type="number" id="annual-hours" />
-              <button class="increment" data-value="100"><i class="icon-RightArrow"></i></button>
+              <button class="increment" data-value="100"><i class="icon-forwardarrow"></i></button>
             </div>
           </div>
         </section>
@@ -176,7 +177,7 @@
           <div class="result-wrapper tabbed">
             <div class="result-inner propane_savings">
               <h2>
-                <i class="icon-TooltipMark">
+                <i class="icon-tooltip">
                   <div class="tab-tooltip go-left">
                     <p>Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Proin vel ante a orci tempus eleifend ut et magna. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus luctus urna sed urna ultricies ac tempor.</p>
                   </div>
@@ -218,16 +219,17 @@
 
     <footer>
       <div class="logo-wrapper">
-        <img src="assets/img/logo.png">
+        <!-- <img src="assets/img/logo.png"> -->
+        <i class="icon-logo-with-tag"></i>
       </div>
     </footer>
 
     <div class="modal mfp-hide" id="share-results">
-      <div class="close"><i class="icon-XCloseOutline"></i></div>
+      <div class="close"><i class="icon-close02"></i></div>
       <h2>Share your results</h2>
       <p>Duis aliquet egestas purus in blandit. Curabitur vulputate, ligula lacinia scelerisque tempor, lacus lacus ornare ante, ac egestas est urna sit amet arcu. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Sed molestie augue sit.</p>
       <input type="email" placeholder="Enter your e-mail address">
-      <a class="button" id="send-link" href="#"><i class="icon-Envelope"></i> Send Results</a>
+      <a target="_blank" class="button" id="send-link" href="#"><i class="icon-envelope"></i> Send Results</a>
     </div>
 
     <script type="text/javascript" data-main="assets/js/main.js" src="assets/js/vendor/require.js"></script>

@@ -195,21 +195,15 @@ define([], function() {
             },
             {
               label: 'Total Savings Using Propane Over One Year',
-              value: [
-                { label: '', value: '$' + offRoadResults.propane_savings.one_year.prop }
-              ]
+              value: '$' + offRoadResults.propane_savings.one_year.prop
             },
             {
               label: 'Total Savings Using Propane Over Three Years',
-              value: [
-                { label: '', value: '$' + offRoadResults.propane_savings.three_year.prop }
-              ]
+              value: '$' + offRoadResults.propane_savings.three_year.prop
             },
             {
               label: 'Total Savings Using Propane Over Five Years',
-              value: [
-                { label: '', value: '$' + offRoadResults.propane_savings.five_year.prop }
-              ]
+              value: '$' + offRoadResults.propane_savings.five_year.prop
             }
           ];
         },
