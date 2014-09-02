@@ -1,0 +1,136 @@
+.perc-onroad
+
+  // Button styles
+  .button
+    background: $color-purple
+    box-shadow: 0 5px 0 $color-darkpurple
+
+  .has-textinput
+    padding-top: 1em
+
+  .text-input
+    padding: 0 55px
+
+  .has-slider
+    +mq-min-medium
+      padding-top: 76px
+
+  .slider-wrapper
+    padding: 0 55px
+    +mq-min-medium
+      padding: 23px 60px 0 60px
+
+  .has-range
+    +mq-min-medium
+      padding-top: 96px
+
+  .range-wrapper
+    padding: 0 55px
+    +mq-min-medium
+      padding: 0 60px
+
+  .button
+
+    &:active
+      box-shadow: 0 3px 0 $color-darkpurple
+
+  .button-group
+    
+    button, .button
+      
+      &.active
+        background: $color-purple
+        box-shadow: 0 5px 0 $color-darkpurple
+
+  .tooltip-top, .tooltip-bottom
+
+    .value
+      border-color: $color-purple
+
+  .price-per-gallon
+
+  .result-data
+    border-color: $color-darkpurple
+
+    .propane
+      background: $color-purple
+
+    .competitor
+      background: $color-darkpurple
+
+  .tab-labels
+
+    li
+
+      &.active
+        background: $color-purple
+        border: 1px solid $color-darkpurple
+
+  .see-results
+    background: $color-purple
+
+  .lifetime-costs
+
+    .tab-labels
+
+      li
+        width: 50%
+        line-height: 25px
+
+        &.active
+          line-height: 28px
+
+  .operating-costs
+
+    .tab-labels
+      height: 31px
+      +mq-min-medium
+        height: 38px
+
+        li
+
+          &:first-child
+            padding-top: 12px !important
+
+          &:nth-child(2)
+            padding-top: 6px !important
+
+          &:last-child
+            padding-top: 6px
+
+          &.active
+            height: 43px !important
+
+      li
+        line-height: 1.1em
+        padding: 2px 0
+        height: 100%
+
+        &:first-child
+          padding-top: 8px
+
+        &.active
+          height: 36px
+
+  // Modal
+  .modal
+    
+    input[type=text]
+      border-color: $color-purple
+
+  // Sliders
+  .noUi-connect
+    background: $color-purple
+
+  .range-wrapper
+
+    .noUi-background
+      background: $color-purple
+
+  // Inputs
+  input, textarea, select
+    border-color: $color-purple
+  
+  input:focus,
+  textarea:focus
+    border-color: $color-darkpurple
