@@ -14,6 +14,7 @@ define([], function() {
         exports = {},
         currentCompetitor,
         formattedCompetitor,
+        mowers,
 
         // Constants
         fuel_consumption = {
@@ -56,11 +57,12 @@ define([], function() {
             }
           }
         },
-        results = {}, // This is what we're going to encode to send
+        results = { app: 'offroad' }, // This is what we're going to encode to send
 
         refresh = function (competitor) {
           currentCompetitor = competitor;
           formattedCompetitor = competitor.charAt(0).toUpperCase() + competitor.slice(1);
+          mowers = parseInt($mowers.val(), 10);
           
           fuelCostsPerHour();
           fuelCostsPerYear();
@@ -87,6 +89,9 @@ define([], function() {
           var propane = fuel_consumption.propane * parseFloat(cleanNumber($fuelPrice.val()[0])),
               comp = fuel_consumption[currentCompetitor] * parseFloat(cleanNumber($fuelPrice.val()[1]));
 
+          propane = propane * mowers;
+          comp = comp * mowers;
+
           offRoadResults.fuel_per_hour.fuel_cost = {
             prop: propane.toFixed(2),
             other: comp.toFixed(2)
@@ -100,23 +105,22 @@ define([], function() {
 
           offRoadResults.fuel_per_year = {
             one_year: {
-              prop: Math.round(propane),
-              other: Math.round(comp)
+              prop: Math.round(propane * mowers),
+              other: Math.round(comp * mowers)
             },
             three_year: {
-              prop: Math.round(propane * 3),
-              other: Math.round(comp * 3)
+              prop: Math.round(propane * 3 * mowers),
+              other: Math.round(comp * 3 * mowers)
             },
             five_year: {
-              prop: Math.round(propane * 5),
-              other: Math.round(comp * 5)
+              prop: Math.round(propane * 5 * mowers),
+              other: Math.round(comp * 5 * mowers)
             }
           };
         },
 
         propaneSavings = function () {
-          var mowers = parseInt($mowers.val(), 10),
-              prop_mower = parseInt(cleanNumber($propMower.val()), 10),
+          var prop_mower = parseInt(cleanNumber($propMower.val()), 10),
               other_mower = parseInt(cleanNumber($otherMower.val()), 10);
 
           offRoadResults.propane_savings = {
@@ -135,7 +139,7 @@ define([], function() {
         resultsInput = function () {
           results.input = [
             {
-              label: 'Compare Propane vs.',
+              label: 'Compare Propane with',
               value: formattedCompetitor
             },
             {
@@ -143,22 +147,24 @@ define([], function() {
               value: $mowers.val()
             },
             {
-              label: 'Total Hours per Year',
+              label: 'Total Hours Mowed per Year (per mower)',
               value: $hours.val()
             },
             {
-              label: 'Mower Purchase Amount',
-              value: [
-                { label: 'Propane', value: $propMower.val() },
-                { label: formattedCompetitor, value: $otherMower.val() }
-              ]
+              label: 'Propane Mower Purchase Amount',
+              value: $propMower.val()
             },
             {
-              label: 'Price per Gallon',
-              value: [
-                { label: 'Propane', value: $fuelPrice.val()[0] },
-                { label: formattedCompetitor, value: $fuelPrice.val()[1] }
-              ]
+              label: formattedCompetitor + ' Mower Purchase Amount',
+              value: $otherMower.val()
+            },
+            {
+              label: 'Price per Gallon of Propane',
+              value: $fuelPrice.val()[0]
+            },
+            {
+              label: 'Price per Gallon of ' + formattedCompetitor,
+              value: $fuelPrice.val()[1]
             }
           ];
         },
@@ -167,43 +173,25 @@ define([], function() {
           results.output = [
             {
               label: 'Fuel Costs per Hour of Mowing',
-              value: [
-                { label: 'Propane', value: '$' + offRoadResults.fuel_per_hour.fuel_cost.prop },
-                { label: formattedCompetitor, value: '$' + offRoadResults.fuel_per_hour.fuel_cost.other }
+              body: [
+                [ 'PROPANE', formattedCompetitor.toUpperCase() ],
+                [ '$' + offRoadResults.fuel_per_hour.fuel_cost.prop, '$' + offRoadResults.fuel_per_hour.fuel_cost.other ]
               ]
             },
             {
-              label: 'Fuel Costs per Year',
-              value: [
-                { label: 'Propane', value: '$' + offRoadResults.fuel_per_year.one_year.prop },
-                { label: formattedCompetitor, value: '$' + offRoadResults.fuel_per_year.one_year.other }
+              label: 'Fuel Costs per',
+              body: [
+                [ '', '1 YEAR', '3 YEARS', '5 YEARS' ],
+                [ 'PROPANE', '$' + formatNumber(offRoadResults.fuel_per_year.one_year.prop), '$' + formatNumber(offRoadResults.fuel_per_year.three_year.prop), '$' + formatNumber(offRoadResults.fuel_per_year.five_year.prop) ],
+                [ formattedCompetitor.toUpperCase(), '$' + formatNumber(offRoadResults.fuel_per_year.one_year.other), '$' + formatNumber(offRoadResults.fuel_per_year.three_year.other), '$' + formatNumber(offRoadResults.fuel_per_year.five_year.other) ]
               ]
             },
             {
-              label: 'Fuel Costs per Three Years',
-              value: [
-                { label: 'Propane', value: '$' + offRoadResults.fuel_per_year.three_year.prop },
-                { label: formattedCompetitor, value: '$' + offRoadResults.fuel_per_year.three_year.other }
+              label: 'Total Savings Using Propane',
+              body: [
+                [ '1 YEAR', '3 YEARS', '5 YEARS' ],
+                [ '$' + formatNumber(offRoadResults.propane_savings.one_year.prop), '$' + formatNumber(offRoadResults.propane_savings.three_year.prop), '$' + formatNumber(offRoadResults.propane_savings.five_year.prop) ]
               ]
-            },
-            {
-              label: 'Fuel Costs per Three Years',
-              value: [
-                { label: 'Propane', value: '$' + offRoadResults.fuel_per_year.five_year.prop },
-                { label: formattedCompetitor, value: '$' + offRoadResults.fuel_per_year.five_year.other }
-              ]
-            },
-            {
-              label: 'Total Savings Using Propane Over One Year',
-              value: '$' + offRoadResults.propane_savings.one_year.prop
-            },
-            {
-              label: 'Total Savings Using Propane Over Three Years',
-              value: '$' + offRoadResults.propane_savings.three_year.prop
-            },
-            {
-              label: 'Total Savings Using Propane Over Five Years',
-              value: '$' + offRoadResults.propane_savings.five_year.prop
             }
           ];
         },

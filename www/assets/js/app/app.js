@@ -31,7 +31,8 @@ define(['app/calculate', 'fastclick', 'magnific', 'slider'], function (calculate
         competitorSlider,
         propaneSlider,
         fuelSlider,
-        pdfUrl = '//perc-pdf.local',
+        pdfUrl = 'http://perc-pdf.local',
+        appUrl = 'http://google.com',
 
         // Variables that are based on viewport
         appWidth = $(window).width(),
@@ -51,7 +52,6 @@ define(['app/calculate', 'fastclick', 'magnific', 'slider'], function (calculate
           $(window).resize(function () {
             appWidth = $(window).width();
             moveTooltipsAfterResize();
-            // responsiveImage();
           });
 
           // This tricks mobile devices to show html5 number and still allow a dollar sign to populate
@@ -176,16 +176,32 @@ define(['app/calculate', 'fastclick', 'magnific', 'slider'], function (calculate
           });
 
           // Share popup
+          // on close reset probably
           $shareBtn.magnificPopup({
-            showCloseBtn: false
+            showCloseBtn: false,
+            callbacks: {
+              close: function () {
+                $modal.find('input[type=text]').val('');
+                $modal.find('div.default').show();
+                $modal.find('div.thank-you').hide();
+              }
+            }
           });
 
           // Send dat link, yo!
           $sendResults.click(function (e) {
-            var encode = window.btoa(JSON.stringify(calculate.results()));
+            var link = pdfUrl + '?data=' + window.btoa(JSON.stringify(calculate.results())),
+                emails = $modal.find('input[type=text]').val().replace(',', ';').replace(' ', ''),
+                mailto = 'mailto:' + emails,
+                subject = 'See%20results%20from%20the%20Mower%20Propane%20Calculator',
+                body = 'A%20FRIEND%20SHARED%20THEIR%20MOWER%20PROPANE%20CALCULATOR%20RESULTS.%0ASomeone%20wants%20you%20to%20know%20about%20the%20cost%20savings%20of%20clean%2C%20American-made%20propane.%20Below%2C%20you%E2%80%99ll%20find%20results%20from%20the%20Mower%20Propane%20Calculator.%0A%0A' + link + '%0A%0ACALCULATE%20YOUR%20OWN%20COST%20SAVINGS.%0AFind%20out%20how%20much%20propane%20could%20be%20saving%20you%20with%20the%20Mower%20Propane%20Calculator.%20Follow%20the%20link%20to%20complete%20your%20own%20cost%20comparison%2C%20and%20then%20share%20it%20with%20friends.%0A%0A' + appUrl;
 
-            $(e.currentTarget).attr('href', pdfUrl + '?data=' + encode);
-            // e.preventDefault();
+            // $(e.currentTarget).attr('href', mailto + '?subject=' + subject + '&body=' + body);
+            e.preventDefault();
+
+            // trigger thank you
+            $modal.find('div.default').hide();
+            $modal.find('div.thank-you').show();
           });
 
           // Close the share modal
@@ -196,9 +212,6 @@ define(['app/calculate', 'fastclick', 'magnific', 'slider'], function (calculate
         },
 
         swapCompetitor = function ($target) {
-          var mower_range = $target.data('mower-range').split(','),
-              fuel_range = $target.data('fuel-range').split(',');
-
           competitor = $target.data('compare');
           formattedCompetitor = capitalize(competitor);
 
@@ -209,24 +222,9 @@ define(['app/calculate', 'fastclick', 'magnific', 'slider'], function (calculate
           // Swap labels
           $body.find('.compare').html(formattedCompetitor);
 
-          // Update slider settings based on new competitor
-          // Mower price
-          competitorSlider.noUiSlider({
-            start: parseInt($toggle.find('button.active').data('mower-default'), 10),
-            range: {
-              min: parseInt(mower_range[0], 10),
-              max: parseInt(mower_range[1], 10)
-            }
-          }, true);
-
           // Fuel Price
-          // Not sure if/when this will actually change the min/max
           fuelSlider.noUiSlider({
-            start: [2, parseFloat($toggle.find('button.active').data('fuel-default'))],
-            range: {
-              min: 1.25,
-              max: 5
-            }
+            start: [2, parseFloat($toggle.find('button.active').data('fuel-default'))]
           }, true);
 
           // Refresh the calculation
@@ -263,14 +261,14 @@ define(['app/calculate', 'fastclick', 'magnific', 'slider'], function (calculate
 
           // Sliders
           // Competitor mower purchase
-          var competitor_range = $toggle.find('button.active').data('mower-range').split(',');
+          // var competitor_range = $toggle.find('button.active').data('mower-range').split(',');
           competitorSlider = $competitorSliderEle.noUiSlider({
-            start: parseInt($toggle.find('button.active').data('mower-default'), 10),
+            start: 10500,
             connect: 'lower',
             behaviour: 'snap',
             range: {
-              min: parseInt(competitor_range[0], 10),
-              max: parseInt(competitor_range[1], 10)
+              min: 7500,
+              max: 16500
             },
             step: 100,
             serialization: {
@@ -306,7 +304,6 @@ define(['app/calculate', 'fastclick', 'magnific', 'slider'], function (calculate
           // Price per gallon
           // Upper (index 0) is propane
           // Lower (index 1) is competitor
-          var fuel_range = $toggle.find('button.active').data('fuel-range').split(',');
           fuelSlider = $fuelSliderEle.noUiSlider({
             start: [2, parseFloat($toggle.find('button.active').data('fuel-default'))],
             behaviour: 'snap',
@@ -314,7 +311,7 @@ define(['app/calculate', 'fastclick', 'magnific', 'slider'], function (calculate
               min: 1.25,
               max: 5
             },
-            step: 0.05,
+            step: 0.01,
             serialization: {
               format: {
                 prefix: '$'

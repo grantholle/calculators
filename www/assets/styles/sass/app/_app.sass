@@ -81,14 +81,17 @@
     top: 3px
     display: block
     float: left
+    +mq-min-xlarge
+
+      &:active
+        +transform-translate(0, 3px)
+        box-shadow: 0 3px 0 $color-darkgreen
 
     &:first-child
       +border-radius-left(6px)
-      // margin-right: -4px
 
     &:last-child
       +border-radius-right(6px)
-      // margin-left: -4px
 
     &.active
       +transform-translate(0, 3px)
@@ -97,7 +100,6 @@
     i
       left: 0
       right: 0
-      // top: 9px
       font-size: 24px
 
   input
@@ -356,7 +358,7 @@
   font-size: 10px
   width: 100%
   +mq-min-medium
-    font-size: 14px
+    font-size: 12px
 
   li
     float: left
@@ -385,6 +387,7 @@
       z-index: 1
       +mq-min-medium
         line-height: 28px
+        font-size: 14px
 
 // Tablet tool tips
 .icon-tooltip
@@ -500,6 +503,9 @@
     padding: 40px
     border-width: 2px
 
+  .thank-you
+    display: none
+
   h2
     color: $color-darkgray
     font-size: 27px
@@ -522,21 +528,21 @@
         line-height: 1.2em
         margin: 0 2.5em
 
-  input[type=email]
+  input[type=text]
     height: 28px
     background: #fff
     border: 1px solid $color-green
     +border-radius(2px)
-    margin-bottom: 25px
     max-width: 200px
+    display: block
+    margin: 0 auto 25px auto
     +mq-min-medium
       max-width: 400px
       height: 55px
       font-size: 18px
       border-width: 2px
-      display: block
-      margin: 0 auto 38px auto
       padding-left: 16px
+      margin-bottom: 38px
 
   .button
     position: relative
@@ -547,12 +553,11 @@
     +mq-min-medium
       padding: 8px 36px 11px 36px
 
-  .icon-Envelope, .icon-Doc
+  .icon-envelope, .icon-Doc
     font-size: 24px
     position: relative
     top: 4px
     left: -3px
-    // +mq-min-medium
 
   .close
     position: absolute

@@ -21,7 +21,7 @@
     
     <title>PERC</title>
   </head>
-  <body>
+  <body class="perc-offroad">
     <header>
       <img class="mobile" src="assets/img/header.jpg" width="100%" />
       <img class="tablet" src="assets/img/header-tablet.jpg" width="100%" />
@@ -32,11 +32,11 @@
       <div class="left-column">
 
         <section class="row toggle-group">
-          <h2>Compare Propane vs.</h2>
+          <h2>Compare Propane with</h2>
           <div>
             <div class="button-group toggle-group">
-              <button data-mower-range="10000,18000" data-mower-default="14000" data-fuel-range="3,5" data-fuel-default="3.90" data-compare="diesel" class="active">Diesel</button>
-              <button data-mower-range="8000,16000" data-mower-default="12000" data-fuel-range="2.75,5" data-fuel-default="3.65" data-compare="gasoline" class="">Gasoline</button>
+              <button data-fuel-default="3.90" data-compare="diesel" class="active">Diesel</button>
+              <button data-fuel-default="3.65" data-compare="gasoline" class="">Gasoline</button>
             </div>
           </div>
         </section>
@@ -53,14 +53,7 @@
         </section>
         
         <section class="row has-increment">
-          <h2>
-            <i class="icon-tooltip">
-              <div class="tab-tooltip go-right">
-                <p>Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Proin vel ante a orci tempus eleifend ut et magna. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus luctus urna sed urna ultricies ac tempor.</p>
-              </div>
-            </i>
-            Total Hours per Year
-          </h2>
+          <h2>Total Hours Mowed <span class="break">per Year (per mower)</span></h2>
           <div>
             <div class="increment-input">
               <button class="decrement" data-value="-100"><i class="icon-backarrow"></i></button>
@@ -148,7 +141,7 @@
               <div class="result-data one_year">
                 <div class="propane">
                   <span>Propane</span>
-                  <span class="cost prop">$6,121</span>
+                  <span class="cost prop"></span>
                 </div>
                 <div class="competitor">
                   <span><span class="compare">Diesel</span> <strong class="other"></strong></span>
@@ -157,7 +150,7 @@
               <div class="result-data three_year active">
                 <div class="propane">
                   <span>Propane</span>
-                  <span class="cost prop">$6,122</span>
+                  <span class="cost prop"></span>
                 </div>
                 <div class="competitor">
                   <span><span class="compare">Diesel</span> <strong class="other"></strong></span>
@@ -166,7 +159,7 @@
               <div class="result-data five_year">
                 <div class="propane">
                   <span>Propane</span>
-                  <span class="cost prop">$6,123</span>
+                  <span class="cost prop"></span>
                 </div>
                 <div class="competitor">
                   <span><span class="compare">Diesel</span> <strong class="other"></strong></span>
@@ -179,7 +172,7 @@
               <h2>
                 <i class="icon-tooltip">
                   <div class="tab-tooltip go-left">
-                    <p>Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Proin vel ante a orci tempus eleifend ut et magna. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus luctus urna sed urna ultricies ac tempor.</p>
+                    <p>Based on annual fuel savings and cost per mower for each mower purchased. Any available incentives are not factored into total savings.</p>
                   </div>
                 </i>
                 Total savings using propane
@@ -226,10 +219,17 @@
 
     <div class="modal mfp-hide" id="share-results">
       <div class="close"><i class="icon-close02"></i></div>
-      <h2>Share your results</h2>
-      <p>Duis aliquet egestas purus in blandit. Curabitur vulputate, ligula lacinia scelerisque tempor, lacus lacus ornare ante, ac egestas est urna sit amet arcu. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Sed molestie augue sit.</p>
-      <input type="email" placeholder="Enter your e-mail address">
-      <a target="_blank" class="button" id="send-link" href="#"><i class="icon-envelope"></i> Send Results</a>
+      <div class="default">
+        <h2>Share your results</h2>
+        <p>Want your friends and colleagues see the cost savings of propane? Enter their email address(es) below to share your results and provide a link to the Mower Propane Calculator.</p>
+        <p>You can enter multiple email addresses by separating them with commas.</p>
+        <input type="text" placeholder="Enter your e-mail address">
+        <a class="button" id="send-link" href="#"><i class="icon-envelope"></i> Send Results</a>
+      </div>
+      <div class="thank-you">
+        <h2>THANK YOU FOR SHARING.</h2>
+        <p>You’re helping spread the cost-savings message of clean, American-made propane. Thanks!</p>
+      </div>
     </div>
 
     <script type="text/javascript" data-main="assets/js/main.js" src="assets/js/vendor/require.js"></script>
