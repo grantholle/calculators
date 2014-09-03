@@ -106,10 +106,18 @@ define(['app/calculate', 'fastclick', 'magnific', 'slider'], function (calculate
             $(e.currentTarget).parents('.has-slider').find('.tooltip').show();
           });
 
+          // Tooltips
           $qMarks.click(function (e) {
-            var $this = $(e.currentTarget);
+            var $this = $(e.currentTarget),
+                $tool = $this.find('div.tab-tooltip');
 
-            $this.find('div.tab-tooltip').toggleClass('active');
+            $tool.toggleClass('active');
+
+            if ($tool.offset().top < $(window).scrollTop()) {
+              $('body').animate({
+                scrollTop: 0
+              }, 500);
+            }
           });
 
           // Events for input fields and their behavior on blur and enter
