@@ -31,7 +31,7 @@ define(['app/calculate', 'fastclick', 'magnific', 'slider'], function (calculate
         competitorSlider,
         propaneSlider,
         fuelSlider,
-        pdfUrl = 'http://perc-pdf.local',
+        pdfUrl = 'http://perc-pdf-generator.dev01.40digits.net/',
         appUrl = 'http://google.com',
 
         // Variables that are based on viewport
@@ -196,8 +196,7 @@ define(['app/calculate', 'fastclick', 'magnific', 'slider'], function (calculate
                 subject = 'See%20results%20from%20the%20Mower%20Propane%20Calculator',
                 body = 'A%20FRIEND%20SHARED%20THEIR%20MOWER%20PROPANE%20CALCULATOR%20RESULTS.%0ASomeone%20wants%20you%20to%20know%20about%20the%20cost%20savings%20of%20clean%2C%20American-made%20propane.%20Below%2C%20you%E2%80%99ll%20find%20results%20from%20the%20Mower%20Propane%20Calculator.%0A%0A' + link + '%0A%0ACALCULATE%20YOUR%20OWN%20COST%20SAVINGS.%0AFind%20out%20how%20much%20propane%20could%20be%20saving%20you%20with%20the%20Mower%20Propane%20Calculator.%20Follow%20the%20link%20to%20complete%20your%20own%20cost%20comparison%2C%20and%20then%20share%20it%20with%20friends.%0A%0A' + appUrl;
 
-            // $(e.currentTarget).attr('href', mailto + '?subject=' + subject + '&body=' + body);
-            e.preventDefault();
+            $(e.currentTarget).attr('href', mailto + '?subject=' + subject + '&body=' + body);
 
             // trigger thank you
             $modal.find('div.default').hide();
