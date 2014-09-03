@@ -41,7 +41,7 @@ html
   text-rendering: optimizeLegibility !important
   -webkit-font-smoothing: antialiased !important
   -moz-osx-font-smoothing: grayscale !important
-  height: 100%
+  // height: 100%
 
 //----------------------------------
 // GENERAL
@@ -53,11 +53,16 @@ body
   color: $color-black
   text-align: center
   +font(generic)
-  height: 100%
   +mq-portrait
     margin-bottom: 41px
   +mq-print
     width: 8in
+
+  &.extend
+    height: 100%
+
+    footer
+      position: fixed
 
 a
   color: $color-href

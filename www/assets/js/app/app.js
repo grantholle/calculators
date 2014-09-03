@@ -7,6 +7,7 @@ define(['app/calculate', 'fastclick', 'magnific', 'slider'], function (calculate
         $shareBtn = $('a#share-button'),
         $tabs = $('div.tabbed'),
         $body = $('body'),
+        $window = $(window),
         $modal = $('div.modal'),
         $qMarks = $('i.icon-tooltip'),
         $currencyField = $('input[type=currency]'),
@@ -35,7 +36,7 @@ define(['app/calculate', 'fastclick', 'magnific', 'slider'], function (calculate
         appUrl = 'http://google.com',
 
         // Variables that are based on viewport
-        appWidth = $(window).width(),
+        appWidth = $window.width(),
 
         init = function () {
           FastClick.attach(document.body);
@@ -44,14 +45,17 @@ define(['app/calculate', 'fastclick', 'magnific', 'slider'], function (calculate
 
           sliders();
 
+          stickyFooter();
+
           calculate.refresh(competitor);
         },
 
         bindings = function () {
 
-          $(window).resize(function () {
-            appWidth = $(window).width();
+          $window.resize(function () {
+            appWidth = $window.width();
             moveTooltipsAfterResize();
+            stickyFooter();
           });
 
           // This tricks mobile devices to show html5 number and still allow a dollar sign to populate
@@ -113,10 +117,10 @@ define(['app/calculate', 'fastclick', 'magnific', 'slider'], function (calculate
 
             $tool.toggleClass('active');
 
-            if ($tool.offset().top < $(window).scrollTop()) {
-              $('body').animate({
-                scrollTop: 0
-              }, 500);
+            if ($tool.offset().top < $window.scrollTop()) {
+              $body.animate({
+                scrollTop: $tool.offset().top - 10
+              }, 400);
             }
           });
 
@@ -372,6 +376,14 @@ define(['app/calculate', 'fastclick', 'magnific', 'slider'], function (calculate
               moveTooltip($tooltips, false, $sliderOrigin[0].offsetLeft, false);
             }
           });
+        },
+
+        stickyFooter = function () {
+          if ($body.outerHeight() < $window.outerHeight()) {
+            $body.addClass('extend');
+          } else {
+            $body.removeClass('extend');
+          }
         },
 
         // This rounds the input for numbers entered manually - just incrementers/spinner
