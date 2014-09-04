@@ -244,10 +244,10 @@ define(['app/calculate', 'app/sliders', 'fastclick', 'magnific'], function (calc
 
             // If this is true, this is the fuel slider
             if (typeof $slider.find('div.noUi-origin')[1] !== 'undefined') {
-              moveTooltip($tooltips.first(), false, $sliderOrigin[0].offsetLeft, false);
-              moveTooltip($tooltips.last(), false, $sliderOrigin[1].offsetLeft, false);
+              $body.trigger('moveTooltip', [$tooltips.first(), false, $sliderOrigin[0].offsetLeft, false]);
+              $body.trigger('moveTooltip', [$tooltips.last(), false, $sliderOrigin[1].offsetLeft, false]);
             } else {
-              moveTooltip($tooltips, false, $sliderOrigin[0].offsetLeft, false);
+              $body.trigger('moveTooltip', [$tooltips, false, $sliderOrigin[0].offsetLeft, false]);
             }
           });
         },
