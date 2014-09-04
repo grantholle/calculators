@@ -1,9 +1,8 @@
-define(['app/calculate', 'fastclick', 'magnific', 'slider'], function (calculate) {
+define(['app/calculate', 'app/sliders', 'fastclick', 'magnific'], function (calculate, sliders) {
 
   var mow_app = (function () {
 
     var $toggle = $('div.toggle-group'),
-        $increment = $('div.increment-input'),
         $shareBtn = $('a#share-button'),
         $tabs = $('div.tabbed'),
         $body = $('body'),
@@ -17,20 +16,11 @@ define(['app/calculate', 'fastclick', 'magnific', 'slider'], function (calculate
 
         // Sliders
         $sliders = $('div.perc-slider'),
-        $sliderWrap = $('div.has-slider'),
-        $competitorSliderEle = $('div#competitor-mower-slider'),
-        $propaneSliderEle = $('div#propane-mower-slider'),
-        $fuelSliderEle = $('div#price-per-gallon'),
-
-        // Tooltip inputs
-        $competitorMowerPrice = $('input#competitor-mower-price'),
-        $propaneMowerPrice = $('input#propane-mower-price'),
-        $competitorFuelPrice = $('input#comp-fuel-price'),
-        $propaneFuelPrice = $('input#propane-fuel-price'),
 
         competitor = $toggle.find('button.active').data('compare'), // diesel or gasoline
-        competitorSlider,
-        propaneSlider,
+        purchaseSlider,
+        conversionSlider,
+        mpgSlider,
         fuelSlider,
         pdfUrl = 'http://perc-pdf-generator.dev01.40digits.net/',
         appUrl = 'http://google.com',
@@ -42,11 +32,14 @@ define(['app/calculate', 'fastclick', 'magnific', 'slider'], function (calculate
           FastClick.attach(document.body);
           
           bindings();
-
-          sliders();
-
+          
+          // Initialize the sliders
+          sliders.init();
+          
+          
           stickyFooter();
 
+          // Initial calculation
           calculate.refresh(competitor);
         },
 
@@ -58,13 +51,15 @@ define(['app/calculate', 'fastclick', 'magnific', 'slider'], function (calculate
             stickyFooter();
           });
 
+          // Tooltip set up
+          $body.on('moveTooltip', moveTooltip);
+
           // This tricks mobile devices to show html5 number and still allow a dollar sign to populate
           $currencyField.on('touchstart', function (e) {
             var $input = $(e.currentTarget);
 
             $input.data('original-string', $input.val());
             $input.attr('type', 'number').focus();
-
           });
 
           // Toggle buttons
@@ -74,33 +69,6 @@ define(['app/calculate', 'fastclick', 'magnific', 'slider'], function (calculate
             if (!$target.hasClass('active')) {
               swapCompetitor($target);
             }
-          });
-
-          // Increment/decrement
-          $increment.on('touchstart', 'button', function (e) {
-            $(e.currentTarget).addClass('active');
-          }).on('touchend, touchcancel, click', 'button', function (e) {
-            var $input = $(e.currentTarget).parent().find('input[type=number]'),
-                value = parseInt($input.val(), 10),
-                min = parseInt($input.data('min'), 10),
-                max = parseInt($input.data('max'), 10),
-                change = parseInt($(e.currentTarget).data('value'), 10),
-                newVal = value + change,
-                populate;
-
-            if (newVal < min)
-              populate = min;
-            else if (newVal > max)
-              populate = max;
-            else
-              populate = newVal;
-
-            $input.val(populate);
-
-            // refresh calculation
-            calculate.refresh(competitor);
-
-            $(e.currentTarget).removeClass('active');
           });
 
           // Trigger calculation after done dragging or moving
@@ -146,10 +114,8 @@ define(['app/calculate', 'fastclick', 'magnific', 'slider'], function (calculate
                 if ($input.attr('type') === 'number')
                   $input.attr('type', 'currency');
               }
-
+              
               $input.val($input.data('original-string'));
-            } else if ($input.parent().hasClass('increment-input')) { // This is an increment
-              roundInput($input);
             } else { // Else change the value of the slider
               var $daSlider = $input.parents('div.slider-wrapper, div.range-wrapper').find('div.perc-slider');
 
@@ -161,7 +127,7 @@ define(['app/calculate', 'fastclick', 'magnific', 'slider'], function (calculate
               if (!$daSlider.hasClass('range-slider')) {
                 $daSlider.val(value);
               } else { // If it is, we need to know which input changed
-                if ($input.parent().hasClass('propane-fuel-price'))
+                if ($input.parent().hasClass('tooltip-top'))
                   $daSlider.val([value, null]);
                 else
                   $daSlider.val([null, value]);
@@ -188,7 +154,6 @@ define(['app/calculate', 'fastclick', 'magnific', 'slider'], function (calculate
           });
 
           // Share popup
-          // on close reset probably
           $shareBtn.magnificPopup({
             showCloseBtn: false,
             callbacks: {
@@ -205,10 +170,11 @@ define(['app/calculate', 'fastclick', 'magnific', 'slider'], function (calculate
             var link = pdfUrl + '?data=' + window.btoa(JSON.stringify(calculate.results())),
                 emails = $modal.find('input[type=text]').val().replace(',', ';').replace(' ', ''),
                 mailto = 'mailto:' + emails,
-                subject = 'See%20results%20from%20the%20Mower%20Propane%20Calculator',
-                body = 'A%20FRIEND%20SHARED%20THEIR%20MOWER%20PROPANE%20CALCULATOR%20RESULTS.%0ASomeone%20wants%20you%20to%20know%20about%20the%20cost%20savings%20of%20clean%2C%20American-made%20propane.%20Below%2C%20you%E2%80%99ll%20find%20results%20from%20the%20Mower%20Propane%20Calculator.%0A%0A' + link + '%0A%0ACALCULATE%20YOUR%20OWN%20COST%20SAVINGS.%0AFind%20out%20how%20much%20propane%20could%20be%20saving%20you%20with%20the%20Mower%20Propane%20Calculator.%20Follow%20the%20link%20to%20complete%20your%20own%20cost%20comparison%2C%20and%20then%20share%20it%20with%20friends.%0A%0A' + appUrl;
+                subject = 'See%20results%20from%20the%20Autogas%20Propane%20Calculator',
+                body = 'A%20FRIEND%20SHARED%20THEIR%20AUTOGAS%20PROPANE%20CALCULATOR%20RESULTS.%0ASomeone%20wants%20you%20to%20know%20about%20the%20cost%20savings%20of%20clean%2C%20American-made%20propane.%20Below%2C%20you%E2%80%99ll%20find%20results%20from%20the%20Autogas%20Propane%20Calculator.%0A%0A' + link + '%0A%0ACALCULATE%20YOUR%20OWN%20COST%20SAVINGS.%0AFind%20out%20how%20much%20propane%20could%20be%20saving%20you%20with%20the%20Autogas%20Propane%20Calculator.%20Follow%20the%20link%20to%20complete%20your%20own%20cost%20comparison%2C%20and%20then%20share%20it%20with%20friends.%0A%0A' + appUrl;
 
             $(e.currentTarget).attr('href', mailto + '?subject=' + subject + '&body=' + body);
+            // e.preventDefault();
 
             // trigger thank you
             $modal.find('div.default').hide();
@@ -233,107 +199,15 @@ define(['app/calculate', 'fastclick', 'magnific', 'slider'], function (calculate
           // Swap labels
           $body.find('.compare').html(formattedCompetitor);
 
-          // Fuel Price
-          fuelSlider.noUiSlider({
-            start: [2, parseFloat($toggle.find('button.active').data('fuel-default'))]
-          }, true);
+          // Update slider settings based on new competitor
+          sliders.swapCompetitor();
 
           // Refresh the calculation
           calculate.refresh(competitor);
 
         },
 
-        sliders = function () {
-
-          // Tool tip action
-          var customToolTipCompetitor = $.Link({
-            target: function (value, a, b) {
-              moveTooltip($competitorMowerPrice.parent(), value, a[0].parentNode.offsetLeft);
-            }
-          }),
-          
-          customToolTipPropane = $.Link({
-            target: function (value, a, b) {
-              moveTooltip($propaneMowerPrice.parent(), value, a[0].parentNode.offsetLeft);
-            }
-          }),
-          
-          customToolTipTopFuel = $.Link({
-            target: function (value, a, b) {
-              moveTooltip($propaneFuelPrice.parent(), value, a[0].parentNode.offsetLeft, true);
-            }
-          }),
-          
-          customToolTipBottomFuel = $.Link({
-            target: function (value, a, b) {
-              moveTooltip($competitorFuelPrice.parent(), value, a[0].parentNode.offsetLeft, true);
-            }
-          });
-
-          // Sliders
-          // Competitor mower purchase
-          // var competitor_range = $toggle.find('button.active').data('mower-range').split(',');
-          competitorSlider = $competitorSliderEle.noUiSlider({
-            start: 10500,
-            connect: 'lower',
-            behaviour: 'snap',
-            range: {
-              min: 7500,
-              max: 16500
-            },
-            step: 100,
-            serialization: {
-              format: {
-                thousand: ',',
-                prefix: '$',
-                decimals: 0
-              },
-              lower: [ customToolTipCompetitor ]
-            }
-          });
-
-          // Propane mower purchase
-          propaneSlider = $propaneSliderEle.noUiSlider({
-            start: 10500,
-            connect: 'lower',
-            behaviour: 'snap',
-            range: {
-              min: 7500,
-              max: 16500
-            },
-            step: 100,
-            serialization: {
-              format: {
-                thousand: ',',
-                prefix: '$',
-                decimals: 0
-              },
-              lower: [ customToolTipPropane ]
-            }
-          });
-
-          // Price per gallon
-          // Upper (index 0) is propane
-          // Lower (index 1) is competitor
-          fuelSlider = $fuelSliderEle.noUiSlider({
-            start: [2, parseFloat($toggle.find('button.active').data('fuel-default'))],
-            behaviour: 'snap',
-            range: {
-              min: 1.25,
-              max: 5
-            },
-            step: 0.01,
-            serialization: {
-              format: {
-                prefix: '$'
-              },
-              lower: [ customToolTipTopFuel ],
-              upper: [ customToolTipBottomFuel ]
-            }
-          });
-        },
-
-        moveTooltip = function ($tooltip, value, handlePos, isFuel) {
+        moveTooltip = function (e, $tooltip, value, handlePos, $fuelSliderEle) {
           
           // If we're changing the value (not a window resize)
           if (value)
@@ -348,7 +222,7 @@ define(['app/calculate', 'fastclick', 'magnific', 'slider'], function (calculate
           }
 
           // If it's fuel and we're changing the value (not a window resize)
-          if (isFuel && value) {
+          if ($fuelSliderEle && value) {
             var values = $fuelSliderEle.val(),
                 comp, prop, diff;
             
@@ -384,32 +258,6 @@ define(['app/calculate', 'fastclick', 'magnific', 'slider'], function (calculate
           } else {
             $body.removeClass('extend');
           }
-        },
-
-        // This rounds the input for numbers entered manually - just incrementers/spinner
-        roundInput = function ($input) {
-          var value = parseInt($input.val(), 10),
-              min = parseInt($input.data('min'), 10),
-              max = parseInt($input.data('max'), 10),
-              step = parseInt($input.data('step'), 10),
-              mod = value % step,
-              populate;
-
-          // Round the value if it needs it
-          if (value < min) {
-            populate = min;
-          } else if (value > max) {
-            populate = max;
-          } else if (mod !== 0) {
-            if (mod >= (step / 2))
-              populate = value + (step - mod);
-            else
-              populate = value - mod;
-          } else {
-            populate = value;
-          }
-
-          $input.val(populate);
         },
 
         capitalize = function (string) {
