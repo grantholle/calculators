@@ -15,6 +15,8 @@ define([], function() {
         currentCompetitor,
         formattedCompetitor,
         mowers,
+        perHourPropaneFloat,
+        perHourOtherFloat,
 
         // Constants
         fuel_consumption = {
@@ -89,8 +91,8 @@ define([], function() {
           var propane = fuel_consumption.propane * parseFloat(cleanNumber($fuelPrice.val()[0])),
               comp = fuel_consumption[currentCompetitor] * parseFloat(cleanNumber($fuelPrice.val()[1]));
 
-          propane = propane * mowers;
-          comp = comp * mowers;
+          perHourPropaneFloat = propane = propane * mowers;
+          perHourOtherFloat = comp = comp * mowers;
 
           offRoadResults.fuel_per_hour.fuel_cost = {
             prop: propane.toFixed(2),
@@ -100,8 +102,8 @@ define([], function() {
 
         fuelCostsPerYear = function () {
           var hours = parseInt($hours.val(), 10),
-              propane = hours * offRoadResults.fuel_per_hour.fuel_cost.prop,
-              comp = hours * offRoadResults.fuel_per_hour.fuel_cost.other;
+              propane = hours * perHourPropaneFloat,
+              comp = hours * perHourOtherFloat;
 
           offRoadResults.fuel_per_year = {
             one_year: {
