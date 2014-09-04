@@ -1,9 +1,10 @@
 define(['app/calculate', 'app/sliders', 'fastclick', 'magnific'], function (calculate, sliders) {
 
-  var mow_app = (function () {
+  var app = (function () {
 
     var $toggle = $('div.toggle-group'),
         $shareBtn = $('a#share-button'),
+        $increment = $('div.increment-input'),
         $tabs = $('div.tabbed'),
         $body = $('body'),
         $window = $(window),
@@ -69,6 +70,33 @@ define(['app/calculate', 'app/sliders', 'fastclick', 'magnific'], function (calc
             if (!$target.hasClass('active')) {
               swapCompetitor($target);
             }
+          });
+
+          // Increment/decrement
+          $increment.on('touchstart', 'button', function (e) {
+            $(e.currentTarget).addClass('active');
+          }).on('touchend, touchcancel, click', 'button', function (e) {
+            var $input = $(e.currentTarget).parent().find('input[type=number]'),
+                value = parseInt($input.val(), 10),
+                min = parseInt($input.data('min'), 10),
+                max = parseInt($input.data('max'), 10),
+                change = parseInt($(e.currentTarget).data('value'), 10),
+                newVal = value + change,
+                populate;
+
+            if (newVal < min)
+              populate = min;
+            else if (newVal > max)
+              populate = max;
+            else
+              populate = newVal;
+
+            $input.val(populate);
+
+            // refresh calculation
+            calculate.refresh(competitor);
+
+            $(e.currentTarget).removeClass('active');
           });
 
           // Trigger calculation after done dragging or moving
