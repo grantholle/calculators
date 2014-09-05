@@ -51,29 +51,14 @@ define(['fastclick', 'magnific', 'iscroll', 'waypoints'], function () {
 
             $seeResults.toggleClass('unstick').removeClass('ready');
 
-            // if ($seeResults.hasClass('unstick'))
-            //   $resultsSection.parent().css({ paddingTop: 12 });
-            // else
-            //   $resultsSection.parent().css({ paddingTop: $seeResults.outerHeight() + 12 });
+            if ($seeResults.hasClass('unstick'))
+              $resultsSection.css({ paddingTop: 12 });
+            else
+              $resultsSection.css({ paddingTop: $seeResults.outerHeight() + 12 });
           },
           {
-            offset: $window.height() - $seeResults.outerHeight() + 12
+            offset: $.waypoints('viewportHeight') - $seeResults.outerHeight()
           });
-
-          // .on('scroll', function (e) {
-          //   var scroll = $(document).scrollTop() + $window.height() - $seeResults.outerHeight(),
-          //       target = $resultsSection.offset().top - $seeResults.outerHeight();
-
-          //   console.log(scroll, target);
-
-          //   if (scroll >= target) {
-          //     $seeResults.css({ position: 'relative' });
-          //     $resultsSection.css({ paddingTop: 12 });
-          //   } else {
-          //     $seeResults.css({ position: 'fixed' });
-          //     $resultsSection.css({ paddingTop: $seeResults.outerHeight() + 12 });
-          //   }
-          // });
 
           // This tricks mobile devices to show html5 number and still allow a dollar sign to populate
           $currencyField.on('touchstart', function (e) {

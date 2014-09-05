@@ -281,11 +281,13 @@
   right: 0
 
 // Result boxes
-.results-container
-  padding: 0 10px
-  margin-bottom: 25px
-  position: relative
-  z-index: 5
+.right-column
+  
+  .results-container
+    padding: 68px 10px 25px 10px
+    // margin-bottom: 25px
+    position: relative
+    z-index: 5
 
 .result-wrapper
   background: $color-bluegray
@@ -486,16 +488,6 @@
 
     &:after
       left: 13px
-
-.right-column
-  padding-top: 12px
-  +mq-min-medium
-    padding-top: 0
-  
-  .results-container
-    margin-bottom: 12px
-    +mq-min-medium
-      margin-bottom: 15px
 
 .see-results
   display: block
