@@ -327,7 +327,7 @@
 
 .result-data
   border: 1px solid $color-darkgreen
-  border-top: none
+  // border-top: none
   +border-radius-bottom(3px)
   color: #fff
   position: relative
@@ -388,28 +388,33 @@
     &:first-child
       +border-radius-left(2px)
 
-      &.active + li
-        border-right: 1px solid $color-black
-
     &:last-child
       +border-radius-right(2px)
-
-      &.active ~ li
-        border-left: 1px solid $color-black
 
     &.active
       background: $color-green
       border: 1px solid $color-darkgreen
       border-bottom: none
       +border-radius-top(2px)
+      +border-radius-bottom(0)
       position: relative
       line-height: 25px
-      top: 1px
+      top: 2px
       margin-top: -5px
-      z-index: 1
+      z-index: 5
       +mq-min-medium
         line-height: 28px
         font-size: 14px
+
+.three-tabs
+
+  li
+
+    &:first-child
+      border-right: 1px solid $color-black
+
+    &:last-child
+      border-left: 1px solid $color-black
 
 // Tablet tool tips
 .icon-tooltip

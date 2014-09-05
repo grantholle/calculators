@@ -169,11 +169,11 @@ define(['fastclick', 'magnific', 'iscroll', 'waypoints'], function () {
                   $daSlider.val([value, null]);
                 else
                   $daSlider.val([null, value]);
-
               }
             }
 
             $body.trigger('changesMade');
+            
           }).on('slidersInitialized', function (e) { // Once the sliders are done, we can get to work
             stickyFooter();
             $body.trigger('changesMade');
