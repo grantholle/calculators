@@ -173,7 +173,7 @@ define(['fastclick', 'magnific', 'iscroll', 'waypoints'], function () {
             }
 
             $body.trigger('changesMade');
-            
+
           }).on('slidersInitialized', function (e) { // Once the sliders are done, we can get to work
             stickyFooter();
             $body.trigger('changesMade');
@@ -234,11 +234,13 @@ define(['fastclick', 'magnific', 'iscroll', 'waypoints'], function () {
 
           // See results
           $seeResults.click(function (e) {
+            var scrollTo = ($(document).scrollTop() + $.waypoints('viewportHeight') > $resultsSection.offset().top ? $resultsSection.offset().top : $resultsSection.offset().top + $seeResults.outerHeight());
+
             e.preventDefault();
             $seeResults.removeClass('ready');
 
             $body.animate({
-              scrollTop: $resultsSection.offset().top + $seeResults.outerHeight()
+              scrollTop: scrollTo
             }, 400);
           });
 
