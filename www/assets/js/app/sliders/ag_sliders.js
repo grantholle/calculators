@@ -1,42 +1,40 @@
-define(['slider'], function () {
+define(['jquery', 'slider'], function ($) {
 
   var sliders = (function () {
 
     var $sliders = $('div.perc-slider'),
         $sliderWrap = $('div.has-slider'),
-        $competitorSliderEle = $('div#competitor-mower-slider'),
-        $propaneSliderEle = $('div#propane-mower-slider'),
+        $dieselSliderEle = $('div#competitor-engine-slider'),
+        $propaneSliderEle = $('div#propane-engine-slider'),
         $fuelSliderEle = $('div#price-per-gallon'),
 
         // Tooltip inputs
-        $competitorMowerPrice = $('input#competitor-mower-price'),
-        $propaneMowerPrice = $('input#propane-mower-price'),
-        $competitorFuelPrice = $('input#comp-fuel-price'),
+        $dieselEnginePrice = $('input#competitor-engine-price'),
+        $propaneEnginePrice = $('input#propane-engine-price'),
+        $dieselFuelPrice = $('input#comp-fuel-price'),
         $propaneFuelPrice = $('input#propane-fuel-price'),
 
-        $toggle = $('div.toggle-group'),
         $body = $('body'),
         exports = {},
 
-        // Variables that are based on viewport
-        swapCompetitor = function ($target) {
-          fuelSlider.noUiSlider({
-            start: [2, parseFloat($toggle.find('button.active').data('fuel-default'))]
-          }, true);
+        events = function () {
+
+          $body.on('swapCompetitor', swapCompetitor);
+
         },
 
         init = function () {
 
           // Tool tip action
-          var customToolTipCompetitor = $.Link({
+          var customToolTipDiesel = $.Link({
             target: function (value, a, b) {
-              $body.trigger('moveTooltip', [$competitorMowerPrice.parent(), value, a[0].parentNode.offsetLeft]);
+              $body.trigger('moveTooltip', [$dieselEnginePrice.parent(), value, a[0].parentNode.offsetLeft]);
             }
           }),
           
           customToolTipPropane = $.Link({
             target: function (value, a, b) {
-              $body.trigger('moveTooltip', [$propaneMowerPrice.parent(), value, a[0].parentNode.offsetLeft]);
+              $body.trigger('moveTooltip', [$propaneEnginePrice.parent(), value, a[0].parentNode.offsetLeft]);
             }
           }),
           
@@ -48,20 +46,19 @@ define(['slider'], function () {
           
           customToolTipBottomFuel = $.Link({
             target: function (value, a, b) {
-              $body.trigger('moveTooltip', [$competitorFuelPrice.parent(), value, a[0].parentNode.offsetLeft, $fuelSliderEle]);
+              $body.trigger('moveTooltip', [$dieselFuelPrice.parent(), value, a[0].parentNode.offsetLeft, $fuelSliderEle]);
             }
           });
 
           // Sliders
-          // Competitor mower purchase
-          // var competitor_range = $toggle.find('button.active').data('mower-range').split(',');
-          competitorSlider = $competitorSliderEle.noUiSlider({
-            start: 10500,
+          // Competitor engine purchase
+          dieselSlider = $dieselSliderEle.noUiSlider({
+            start: 10000,
             connect: 'lower',
             behaviour: 'snap',
             range: {
-              min: 7500,
-              max: 16500
+              min: 5000,
+              max: 125000
             },
             step: 100,
             serialization: {
@@ -70,18 +67,18 @@ define(['slider'], function () {
                 prefix: '$',
                 decimals: 0
               },
-              lower: [ customToolTipCompetitor ]
+              lower: [ customToolTipDiesel ]
             }
           });
 
-          // Propane mower purchase
+          // Propane engine purchase
           propaneSlider = $propaneSliderEle.noUiSlider({
-            start: 10500,
+            start: 10000,
             connect: 'lower',
             behaviour: 'snap',
             range: {
-              min: 7500,
-              max: 16500
+              min: 5000,
+              max: 125000
             },
             step: 100,
             serialization: {
@@ -98,7 +95,7 @@ define(['slider'], function () {
           // Upper (index 0) is propane
           // Lower (index 1) is competitor
           fuelSlider = $fuelSliderEle.noUiSlider({
-            start: [2, parseFloat($toggle.find('button.active').data('fuel-default'))],
+            start: [2, 3.90],
             behaviour: 'snap',
             range: {
               min: 1.25,
@@ -113,15 +110,22 @@ define(['slider'], function () {
               upper: [ customToolTipBottomFuel ]
             }
           });
+
+          $body.trigger('refreshCalculation', ['diesel']);
+        },
+
+        swapCompetitor = function () {
+
         };
 
     exports.init = init;
     exports.swapCompetitor = swapCompetitor;
+
+    events();
 
     return exports;
 
   })();
 
   return sliders;
-
 });

@@ -1,6 +1,6 @@
-define([], function() {
+define(['jquery'], function($) {
 
-  var offroad_cacluator = (function () {
+  var calculator = (function () {
 
     var $body = $('body'),
 
@@ -61,7 +61,16 @@ define([], function() {
         },
         results = { app: 'offroad' }, // This is what we're going to encode to send
 
-        refresh = function (competitor) {
+        events = function () {
+
+          $body.on('refreshCalculation', refresh);
+
+        },
+
+        refresh = function (e, competitor) {
+          if (typeof competitor === 'undefined')
+            competitor = 'diesel';
+
           currentCompetitor = competitor;
           formattedCompetitor = competitor.charAt(0).toUpperCase() + competitor.slice(1);
           mowers = parseInt($mowers.val(), 10);
@@ -214,10 +223,12 @@ define([], function() {
       return results;
     };
 
+    events();
+
     return exports;
 
   })();
 
-  return offroad_cacluator;
+  return calculator;
 
 });

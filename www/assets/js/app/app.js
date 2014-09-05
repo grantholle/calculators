@@ -1,4 +1,4 @@
-define(['app/calculate', 'app/sliders', 'fastclick', 'magnific'], function (calculate, sliders) {
+define(['fastclick', 'magnific', 'iscroll', 'waypoints'], function () {
 
   var app = (function () {
 
@@ -14,6 +14,8 @@ define(['app/calculate', 'app/sliders', 'fastclick', 'magnific'], function (calc
         $fuelDifference = $('span#fuel-difference'),
         $headerImg = $('header img#header-img'),
         $sendResults = $('a#send-link'),
+        $seeResults = $('a.see-results'),
+        $resultsSection = $('section#results'),
 
         // Sliders
         $sliders = $('div.perc-slider'),
@@ -31,29 +33,47 @@ define(['app/calculate', 'app/sliders', 'fastclick', 'magnific'], function (calc
 
         init = function () {
           FastClick.attach(document.body);
+
+          // scrolling = new IScroll('body');
           
           bindings();
-          
-          // Initialize the sliders
-          sliders.init();
-          
-          
-          stickyFooter();
-
-          // Initial calculation
-          calculate.refresh(competitor);
         },
 
         bindings = function () {
 
-          $window.resize(function () {
+          $window.on('resize', function () {
             appWidth = $window.width();
             moveTooltipsAfterResize();
             stickyFooter();
           });
 
-          // Tooltip set up
-          $body.on('moveTooltip', moveTooltip);
+          $resultsSection.waypoint(function (direction) {
+
+            $seeResults.toggleClass('unstick').removeClass('ready');
+
+            // if ($seeResults.hasClass('unstick'))
+            //   $resultsSection.parent().css({ paddingTop: 12 });
+            // else
+            //   $resultsSection.parent().css({ paddingTop: $seeResults.outerHeight() + 12 });
+          },
+          {
+            offset: $window.height() - $seeResults.outerHeight() + 12
+          });
+
+          // .on('scroll', function (e) {
+          //   var scroll = $(document).scrollTop() + $window.height() - $seeResults.outerHeight(),
+          //       target = $resultsSection.offset().top - $seeResults.outerHeight();
+
+          //   console.log(scroll, target);
+
+          //   if (scroll >= target) {
+          //     $seeResults.css({ position: 'relative' });
+          //     $resultsSection.css({ paddingTop: 12 });
+          //   } else {
+          //     $seeResults.css({ position: 'fixed' });
+          //     $resultsSection.css({ paddingTop: $seeResults.outerHeight() + 12 });
+          //   }
+          // });
 
           // This tricks mobile devices to show html5 number and still allow a dollar sign to populate
           $currencyField.on('touchstart', function (e) {
@@ -94,14 +114,14 @@ define(['app/calculate', 'app/sliders', 'fastclick', 'magnific'], function (calc
             $input.val(populate);
 
             // refresh calculation
-            calculate.refresh(competitor);
+            $body.trigger('changesMade');
 
             $(e.currentTarget).removeClass('active');
           });
 
           // Trigger calculation after done dragging or moving
           $sliders.on('change', function (e) {
-            calculate.refresh(competitor);
+            $body.trigger('changesMade');
           }).on('showToolTips', function (e) { // This is triggered from the plugin to show the tooltips
             $(e.currentTarget).parents('.has-slider').find('.tooltip').show();
           });
@@ -163,8 +183,14 @@ define(['app/calculate', 'app/sliders', 'fastclick', 'magnific'], function (calc
               }
             }
 
-            calculate.refresh(competitor);
-          });
+            $body.trigger('changesMade');
+          }).on('slidersInitialized', function (e) { // Once the sliders are done, we can get to work
+            stickyFooter();
+            $body.trigger('changesMade');
+          }).on('changesMade', function (e) {
+            $seeResults.addClass('ready');
+            $body.trigger('refreshCalculation', [competitor]);
+          }).on('moveTooltip', moveTooltip);
 
           // Tabs
           $tabs.on('click', 'li', function (e) {
@@ -214,6 +240,16 @@ define(['app/calculate', 'app/sliders', 'fastclick', 'magnific'], function (calc
             $.magnificPopup.close();
           });
 
+          // See results
+          $seeResults.click(function (e) {
+            e.preventDefault();
+            $seeResults.removeClass('ready');
+
+            $body.animate({
+              scrollTop: $resultsSection.offset().top + $seeResults.outerHeight()
+            }, 400);
+          });
+
         },
 
         swapCompetitor = function ($target) {
@@ -228,10 +264,10 @@ define(['app/calculate', 'app/sliders', 'fastclick', 'magnific'], function (calc
           $body.find('.compare').html(formattedCompetitor);
 
           // Update slider settings based on new competitor
-          sliders.swapCompetitor();
+          $body.trigger('swapCompetitor');
 
           // Refresh the calculation
-          calculate.refresh(competitor);
+          $body.trigger('changesMade');
 
         },
 
