@@ -388,8 +388,14 @@
     &:first-child
       +border-radius-left(2px)
 
+      &.active + li
+        border-right: 1px solid $color-black
+
     &:last-child
       +border-radius-right(2px)
+
+      &.active ~ li
+        border-left: 1px solid $color-black
 
     &.active
       background: $color-green

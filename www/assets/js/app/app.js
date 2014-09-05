@@ -57,7 +57,12 @@ define(['fastclick', 'magnific', 'iscroll', 'waypoints'], function () {
               $resultsSection.css({ paddingTop: $seeResults.outerHeight() + 12 });
           },
           {
-            offset: $.waypoints('viewportHeight') - $seeResults.outerHeight()
+            offset: function () {
+              if ($(document).scrollTop() + $.waypoints('viewportHeight') > $resultsSection.offset().top)
+                return $.waypoints('viewportHeight');
+              else
+                return $.waypoints('viewportHeight') - $seeResults.outerHeight();
+            }
           });
 
           // This tricks mobile devices to show html5 number and still allow a dollar sign to populate
@@ -175,6 +180,8 @@ define(['fastclick', 'magnific', 'iscroll', 'waypoints'], function () {
           }).on('changesMade', function (e) {
             $seeResults.addClass('ready');
             $body.trigger('refreshCalculation', [competitor]);
+          }).on('refreshWaypoint', function () {
+            $.waypoints('refresh');
           }).on('moveTooltip', moveTooltip);
 
           // Tabs
@@ -283,6 +290,8 @@ define(['fastclick', 'magnific', 'iscroll', 'waypoints'], function () {
               $fuelDifference.html('$' + diff.toFixed(2));
             }
           }
+
+          $body.trigger('refreshWaypoint');
         },
 
         moveTooltipsAfterResize = function () {

@@ -70,6 +70,8 @@ define(['jquery'], function ($) {
           vehicleCosts();
           operatingCosts();
           lifetimeCosts();
+
+          $body.trigger('refreshWaypoint');
         },
 
         // Updates labels based on offRoadResults object

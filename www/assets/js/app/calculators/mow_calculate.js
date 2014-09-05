@@ -79,6 +79,8 @@ define(['jquery'], function($) {
           fuelCostsPerYear();
           propaneSavings();
           updateLabels();
+
+          $body.trigger('refreshWaypoint');
         },
 
         // Updates labels based on offRoadResults object

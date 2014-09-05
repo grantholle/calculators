@@ -44,6 +44,8 @@ define(['jquery'], function($) {
           propaneFuelCost();
           propaneFuelSavings();
           totalSavings();
+
+          $body.trigger('refreshWaypoint');
         },
 
         engineCost = function () {
