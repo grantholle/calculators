@@ -151,6 +151,8 @@ define(['app/calculators/' + window.app + '_calculate', 'fastclick', 'magnific',
               }
               
               $input.val($input.data('original-string'));
+            } else if ($input.parent().hasClass('increment-input')) { // This is an increment
+              roundInput($input);
             } else { // Else change the value of the slider
               var $daSlider = $input.parents('div.slider-wrapper, div.range-wrapper').find('div.perc-slider');
 
@@ -384,6 +386,31 @@ define(['app/calculators/' + window.app + '_calculate', 'fastclick', 'magnific',
           var regex = new RegExp("[\\?&]" + name + "=([^&#]*)"),
             results = regex.exec(location.search);
           return results === null ? "" : decodeURIComponent(results[1].replace(/\+/g, " "));
+        },
+
+        roundInput = function ($input) {
+          var value = parseInt($input.val(), 10),
+              min = parseInt($input.data('min'), 10),
+              max = parseInt($input.data('max'), 10),
+              step = parseInt($input.data('step'), 10),
+              mod = value % step,
+              populate;
+
+          // Round the value if it needs it
+          if (value < min) {
+            populate = min;
+          } else if (value > max) {
+            populate = max;
+          } else if (mod !== 0) {
+            if (mod >= (step / 2))
+              populate = value + (step - mod);
+            else
+              populate = value - mod;
+          } else {
+            populate = value;
+          }
+
+          $input.val(populate);
         },
 
         capitalize = function (string) {
