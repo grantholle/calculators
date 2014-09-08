@@ -278,7 +278,10 @@ define(['app/calculators/' + window.app + '_calculate', 'fastclick', 'magnific',
                 value = $element.val();
 
             if (typeof value !== 'object') {
-              ex.values[$element.attr('id')] = value.replace(/[A-Za-z$-,]/g, "");
+              if (!$element.hasClass('no-validation'))
+                ex.values[$element.attr('id')] = value.replace(/[A-Za-z$-,]/g, "");
+              else
+                ex.values[$element.attr('id')] = value;
             } else {
               ex.values[$element.attr('id')] = [];
 
