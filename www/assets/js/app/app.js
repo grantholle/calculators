@@ -258,11 +258,15 @@ define(['app/calculators/' + window.app + '_calculate', 'fastclick', 'magnific',
             var scrollTo = ($(document).scrollTop() + $.waypoints('viewportHeight') > $resultsSection.offset().top ? $resultsSection.offset().top : $resultsSection.offset().top + $seeResults.outerHeight());
 
             e.preventDefault();
+
+            if ($seeResults.hasClass('ready'))
+              scrollTo = scrollTo - 18;
+
             $seeResults.removeClass('ready');
 
             $body.animate({
               scrollTop: scrollTo
-            }, 400);
+            }, 500);
           });
 
         },
