@@ -29,7 +29,7 @@ define(['jquery', 'slider'], function ($) {
 
           $body.on('swapCompetitor', swapCompetitor);
 
-          $body.trigger('refreshCalculation', [$toggle.find('button.active').data('compare')]);
+          $body.trigger('slidersInitialized');
 
         },
 

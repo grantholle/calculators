@@ -1,4 +1,4 @@
-define(['fastclick', 'magnific', 'iscroll', 'waypoints'], function () {
+define(['app/calculators/' + window.app + '_calculate', 'fastclick', 'magnific', 'iscroll', 'waypoints'], function (calculator) {
 
   var app = (function () {
 
@@ -16,6 +16,7 @@ define(['fastclick', 'magnific', 'iscroll', 'waypoints'], function () {
         $sendResults = $('a#send-link'),
         $seeResults = $('a.see-results'),
         $resultsSection = $('section#results'),
+        $exportables = $('.exportable'),
 
         // Sliders
         $sliders = $('div.perc-slider'),
@@ -25,16 +26,12 @@ define(['fastclick', 'magnific', 'iscroll', 'waypoints'], function () {
         conversionSlider,
         mpgSlider,
         fuelSlider,
-        pdfUrl = 'http://perc-pdf-generator.dev01.40digits.net/',
-        appUrl = 'http://google.com',
 
         // Variables that are based on viewport
         appWidth = $window.width(),
 
         init = function () {
           FastClick.attach(document.body);
-
-          // scrolling = new IScroll('body');
           
           bindings();
         },
@@ -175,11 +172,22 @@ define(['fastclick', 'magnific', 'iscroll', 'waypoints'], function () {
             $body.trigger('changesMade');
 
           }).on('slidersInitialized', function (e) { // Once the sliders are done, we can get to work
+            
+            // Do the sticky footer stuff if relevant
             stickyFooter();
+            
+            // Import data if relevant
+            importApp();
+            
+            // Trigger class made and refresh calculation
             $body.trigger('changesMade');
           }).on('changesMade', function (e) {
+
+            // Update the see results 
             $seeResults.addClass('ready');
-            $body.trigger('refreshCalculation', [competitor]);
+
+            // Refresh the calculation
+            calculator.refresh(competitor);
           }).on('refreshWaypoint', function () {
             $.waypoints('refresh');
           }).on('moveTooltip', moveTooltip);
@@ -213,18 +221,29 @@ define(['fastclick', 'magnific', 'iscroll', 'waypoints'], function () {
 
           // Send dat link, yo!
           $sendResults.click(function (e) {
-            var link = pdfUrl + '?data=' + window.btoa(JSON.stringify(calculate.results())),
-                emails = $modal.find('input[type=text]').val().replace(',', ';').replace(' ', ''),
-                mailto = 'mailto:' + emails,
-                subject = 'See%20results%20from%20the%20Autogas%20Propane%20Calculator',
-                body = 'A%20FRIEND%20SHARED%20THEIR%20AUTOGAS%20PROPANE%20CALCULATOR%20RESULTS.%0ASomeone%20wants%20you%20to%20know%20about%20the%20cost%20savings%20of%20clean%2C%20American-made%20propane.%20Below%2C%20you%E2%80%99ll%20find%20results%20from%20the%20Autogas%20Propane%20Calculator.%0A%0A' + link + '%0A%0ACALCULATE%20YOUR%20OWN%20COST%20SAVINGS.%0AFind%20out%20how%20much%20propane%20could%20be%20saving%20you%20with%20the%20Autogas%20Propane%20Calculator.%20Follow%20the%20link%20to%20complete%20your%20own%20cost%20comparison%2C%20and%20then%20share%20it%20with%20friends.%0A%0A' + appUrl;
+            var data = {
+              data: JSON.stringify({
+                app: window.app,
+                results: window.btoa(JSON.stringify(calculator.results())),
+                import: exportApp(),
+                email: $modal.find('input[type=text]').val()
+              })
+            };
 
-            $(e.currentTarget).attr('href', mailto + '?subject=' + subject + '&body=' + body);
-            // e.preventDefault();
+            e.preventDefault();
 
-            // trigger thank you
-            $modal.find('div.default').hide();
-            $modal.find('div.thank-you').show();
+            // Make the ajax request
+            $.ajax({
+              type: 'GET',
+              cache: false,
+              data: data,
+              url: 'http://perc-pdf.local/email.php'
+            }).done(function () {
+              // trigger thank you
+              $modal.find('div.default').hide();
+              $modal.find('div.thank-you').show();
+            });
+
           });
 
           // Close the share modal
@@ -243,6 +262,46 @@ define(['fastclick', 'magnific', 'iscroll', 'waypoints'], function () {
               scrollTop: scrollTo
             }, 400);
           });
+
+        },
+
+        exportApp = function () {
+          var ex = {
+            competitor: competitor,
+            values: {}
+          };
+
+          $exportables.each(function (index, element) {
+            var $element = $(element),
+                value = $element.val();
+
+            if (typeof value !== 'object') {
+              ex.values[$element.attr('id')] = value.replace(/[A-Za-z$-,]/g, "");
+            } else {
+              ex.values[$element.attr('id')] = [];
+
+              $.each(value, function (i, v) {
+                ex.values[$element.attr('id')].push(parseFloat(v.replace(/[A-Za-z$-,]/g, "")));
+              });
+            }
+          });
+
+          return ex;
+        },
+
+        importApp = function () {
+          var data = getParameter('data');
+          
+          if (data) {
+            data = $.parseJSON(window.atob(data));
+
+            $toggle.find('button').removeClass('active');
+            $toggle.find('button[data-compare=' + data.competitor + ']').addClass('active');
+
+            $.each(data.values, function (index, value) {
+              $('#' + index).val(value);
+            });
+          }
 
         },
 
@@ -318,6 +377,13 @@ define(['fastclick', 'magnific', 'iscroll', 'waypoints'], function () {
           } else {
             $body.removeClass('extend');
           }
+        },
+
+        getParameter = function (name) {
+          name = name.replace(/[\[]/, "\\[").replace(/[\]]/, "\\]");
+          var regex = new RegExp("[\\?&]" + name + "=([^&#]*)"),
+            results = regex.exec(location.search);
+          return results === null ? "" : decodeURIComponent(results[1].replace(/\+/g, " "));
         },
 
         capitalize = function (string) {

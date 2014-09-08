@@ -17,13 +17,22 @@ define(['jquery', 'slider'], function ($) {
         $body = $('body'),
         exports = {},
 
+        init = function () {
+
+          createSliders();
+          events();
+
+        },
+
         events = function () {
 
           $body.on('swapCompetitor', swapCompetitor);
 
+          $body.trigger('slidersInitialized');
+
         },
 
-        init = function () {
+        createSliders = function () {
 
           // Tool tip action
           var customToolTipDiesel = $.Link({
@@ -111,7 +120,7 @@ define(['jquery', 'slider'], function ($) {
             }
           });
 
-          $body.trigger('refreshCalculation', ['diesel']);
+          $body.trigger('slidersInitialized');
         },
 
         swapCompetitor = function () {

@@ -50,7 +50,7 @@
           <div>
             <div class="increment-input">
               <button class="decrement" data-value="-1"><i class="icon-backarrow"></i></button>
-              <input data-min="1" data-max="100" data-step="1" value="10" type="number" id="mower-input" />
+              <input class="exportable" data-min="1" data-max="100" data-step="1" value="10" type="number" id="mower-input" />
               <button class="increment" data-value="1"><i class="icon-forwardarrow"></i></button>
             </div>
           </div>
@@ -61,7 +61,7 @@
           <div>
             <div class="increment-input">
               <button class="decrement" data-value="-100"><i class="icon-backarrow"></i></button>
-              <input data-min="600" data-max="1400" data-step="100" value="1000" type="number" id="annual-hours" />
+              <input class="exportable" data-min="600" data-max="1400" data-step="100" value="1000" type="number" id="annual-hours" />
               <button class="increment" data-value="100"><i class="icon-forwardarrow"></i></button>
             </div>
           </div>
@@ -76,7 +76,7 @@
               <span class="label">Per Mower</span>
             </div>
             <!-- end tooltip -->
-            <div class="input-slider perc-slider" id="propane-mower-slider"></div>
+            <div class="input-slider perc-slider exportable" id="propane-mower-slider"></div>
           </div>
         </section>
         
@@ -89,7 +89,7 @@
               <span class="label">Per Mower</span>
             </div>
             <!-- end tooltip -->
-            <div class="input-slider perc-slider" id="competitor-mower-slider"></div>
+            <div class="input-slider perc-slider exportable" id="competitor-mower-slider"></div>
           </div>
         </section>
         
@@ -102,8 +102,11 @@
               <span class="label">Propane</span>
             </div>
             <!-- end tooltip -->
+            
             <span class="difference-maker" id="fuel-difference"></span>
-            <div class="range-slider perc-slider" id="price-per-gallon"></div>
+
+            <div class="range-slider perc-slider exportable" id="price-per-gallon"></div>
+
             <!-- tooltip -->
             <div class="tooltip tooltip-bottom comp-fuel-price">
               <span class="label compare">Diesel</span>
