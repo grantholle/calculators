@@ -323,8 +323,6 @@ define(['app/calculators/' + window.app + '_calculate', 'fastclick', 'magnific',
 
         // Checks whether the app has data connection
         checkConnection = function () {
-          console.log(navigator.connection);
-
           if (!navigator.onLine) {
             return false;
           } else if (typeof navigator.connection !== 'undefined' && navigator.connection.type === Connection.NONE) {
