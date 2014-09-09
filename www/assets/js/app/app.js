@@ -213,10 +213,17 @@ define(['app/calculators/' + window.app + '_calculate', 'fastclick', 'magnific',
           $shareBtn.magnificPopup({
             showCloseBtn: false,
             callbacks: {
+              open: function () {
+                if (!checkConnection()) {
+                  $modal.find('div.default').hide();
+                  $modal.find('div.no-connection').show();
+                }
+              },
               close: function () {
                 $modal.find('input[type=text]').val('');
                 $modal.find('div.default').show();
                 $modal.find('div.thank-you').hide();
+                $modal.find('div.no-connection').hide();
               }
             }
           });
@@ -312,6 +319,19 @@ define(['app/calculators/' + window.app + '_calculate', 'fastclick', 'magnific',
             });
           }
 
+        },
+
+        // Checks whether the app has data connection
+        checkConnection = function () {
+          console.log(navigator.connection);
+
+          if (!navigator.onLine) {
+            return false;
+          } else if (typeof navigator.connection !== 'undefined' && navigator.connection.type === Connection.NONE) {
+            return false;
+          }
+
+          return true;
         },
 
         swapCompetitor = function ($target) {

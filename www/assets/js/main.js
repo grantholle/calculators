@@ -6,7 +6,7 @@ define(['app/config'], function(config) {
   var toRequire = ['app/sliders/' + window.app + '_sliders', 'app/calculators/' + window.app + '_calculate', 'app/app', 'jquery'];
 
   require(toRequire, function (sliders, calc, app) {
-    sliders.init();
+    document.addEventListener('deviceready', sliders.init, false);
   });
 
 });
