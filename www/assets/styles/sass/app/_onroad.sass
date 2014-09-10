@@ -69,6 +69,22 @@
         background: $color-purple
         border-color: $color-darkpurple
 
+  .operating-costs
+    +mq-min-medium
+
+      li
+        height: 28px
+
+        &:first-child
+          line-height: 28px
+
+        &:nth-child(2), &:last-child
+          line-height: 1.1em
+          padding-top: 2px
+
+        &.active
+          height: 32px
+
   .lifetime-costs
 
     li
