@@ -27,6 +27,8 @@ define(['app/calculators/' + window.app + '_calculate', 'fastclick', 'magnific',
         mpgSlider,
         fuelSlider,
 
+        emailEndpoint = 'http://perc-pdf-generator.dev01.40digits.net/email.php',
+
         // Variables that are based on viewport
         appWidth = $window.width(),
 
@@ -246,7 +248,7 @@ define(['app/calculators/' + window.app + '_calculate', 'fastclick', 'magnific',
               type: 'GET',
               cache: false,
               data: data,
-              url: 'http://perc-pdf.local/email.php'
+              url: emailEndpoint
             }).done(function () {
               // trigger thank you
               $modal.find('div.default').hide();
