@@ -33,6 +33,8 @@ define(['jquery', 'slider'], function ($) {
 
           $body.on('swapCompetitor', swapCompetitor);
 
+          $body.on('initializeSlider', createSliders);
+
           $body.trigger('slidersInitialized');
 
         },

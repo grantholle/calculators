@@ -22,6 +22,7 @@ define(['app/calculators/' + window.app + '_calculate', 'fastclick', 'magnific',
         $sliders = $('div.perc-slider'),
 
         competitor = $toggle.find('button.active').data('compare'), // diesel or gasoline
+        isiOS = false,
         purchaseSlider,
         conversionSlider,
         mpgSlider,
@@ -36,6 +37,8 @@ define(['app/calculators/' + window.app + '_calculate', 'fastclick', 'magnific',
           FastClick.attach(document.body);
           
           bindings();
+
+          iosFixes();
         },
 
         bindings = function () {
@@ -271,6 +274,9 @@ define(['app/calculators/' + window.app + '_calculate', 'fastclick', 'magnific',
             if ($seeResults.hasClass('ready'))
               scrollTo = scrollTo - 18;
 
+            if (isiOS)
+              scrollTo = scrollTo - 20;
+
             $seeResults.removeClass('ready');
 
             $body.animate({
@@ -382,6 +388,18 @@ define(['app/calculators/' + window.app + '_calculate', 'fastclick', 'magnific',
           }
 
           $body.trigger('refreshWaypoint');
+        },
+
+        iosFixes = function () {
+          if (typeof device !== 'undefined' && device.platform.toLowerCase() === 'ios') {
+            $body.css({ paddingTop: 20 });
+            $body.find('div.ios-padding').show();
+            isiOS = true;
+          } else {
+            $body.removeAttr('style');
+            $body.find('div.ios-padding').hide();
+            isiOS = false;
+          }
         },
 
         moveTooltipsAfterResize = function () {

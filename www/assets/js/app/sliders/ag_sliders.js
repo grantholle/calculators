@@ -130,8 +130,6 @@ define(['jquery', 'slider'], function ($) {
     exports.init = init;
     exports.swapCompetitor = swapCompetitor;
 
-    events();
-
     return exports;
 
   })();
