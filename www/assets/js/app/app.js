@@ -324,7 +324,10 @@ define(['app/calculators/' + window.app + '_calculate', 'fastclick', 'magnific',
 
             competitor = data.competitor;
             formattedCompetitor = capitalize(data.competitor);
-            
+
+            // Swap labels
+            $body.find('.compare').html(formattedCompetitor);
+
             $.each(data.values, function (index, value) {
               $('#' + index).val(value);
             });
