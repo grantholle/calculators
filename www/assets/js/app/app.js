@@ -322,6 +322,9 @@ define(['app/calculators/' + window.app + '_calculate', 'fastclick', 'magnific',
             $toggle.find('button').removeClass('active');
             $toggle.find('button[data-compare=' + data.competitor + ']').addClass('active');
 
+            competitor = data.competitor;
+            formattedCompetitor = capitalize(data.competitor);
+            
             $.each(data.values, function (index, value) {
               $('#' + index).val(value);
             });

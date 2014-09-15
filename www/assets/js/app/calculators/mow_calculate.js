@@ -74,7 +74,7 @@ define(['jquery'], function($) {
           currentCompetitor = competitor;
           formattedCompetitor = competitor.charAt(0).toUpperCase() + competitor.slice(1);
           mowers = parseInt($mowers.val(), 10);
-          
+
           fuelCostsPerHour();
           fuelCostsPerYear();
           propaneSavings();
