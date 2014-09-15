@@ -67,7 +67,7 @@ define(['jquery'], function($) {
 
         },
 
-        refresh = function (e, competitor) {
+        refresh = function (competitor) {
           if (typeof competitor === 'undefined')
             competitor = 'diesel';
 

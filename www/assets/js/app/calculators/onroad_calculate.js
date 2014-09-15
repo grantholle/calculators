@@ -58,7 +58,7 @@ define(['jquery'], function ($) {
 
         },
 
-        refresh = function (e, competitor) {
+        refresh = function (competitor) {
           if (typeof competitor === 'undefined')
             competitor = 'diesel';
           
@@ -146,6 +146,10 @@ define(['jquery'], function ($) {
               value: $vehiclePrice.val()
             },
             {
+              label: 'Propane Autogas Conversion or Option Cost',
+              value: $conversionCost.val()
+            },
+            {
               label: 'Propane Average MPG',
               value: $averageMpg.val()[0]
             },
@@ -185,8 +189,8 @@ define(['jquery'], function ($) {
               label: 'Lifetime Ownership Costs',
               body: [
                 ['', 'Per Vehicle', 'Per Mile Average'],
-                ['Propane', '$' + formatNumber(Math.round(onroadResults.prop.perVehicle)), '$' + formatNumber(Math.round(onroadResults.prop.perMile))],
-                [formattedCompetitor, '$' + formatNumber(Math.round(onroadResults.other.perVehicle)), '$' + formatNumber(Math.round(onroadResults.other.perMile))]
+                ['Propane', '$' + formatNumber(Math.round(onroadResults.prop.perVehicle)), $lifetimeCosts.find('div.mile strong.other').html()],
+                [formattedCompetitor, '$' + formatNumber(Math.round(onroadResults.other.perVehicle)), $lifetimeCosts.find('div.mile span.prop').html()]
               ]
             }
           ];
