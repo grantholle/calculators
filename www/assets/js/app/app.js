@@ -315,18 +315,21 @@ define(['app/calculators/' + window.app + '_calculate', 'fastclick', 'magnific',
 
         importApp = function () {
           var data = getParameter('data');
-          
+
           if (data) {
             data = $.parseJSON(window.atob(data));
 
-            $toggle.find('button').removeClass('active');
-            $toggle.find('button[data-compare=' + data.competitor + ']').addClass('active');
 
-            competitor = data.competitor;
-            formattedCompetitor = capitalize(data.competitor);
+            if (typeof data.competitor !== 'undefined') {
+              $toggle.find('button').removeClass('active');
+              $toggle.find('button[data-compare=' + data.competitor + ']').addClass('active');
 
-            // Swap labels
-            $body.find('.compare').html(formattedCompetitor);
+              competitor = data.competitor;
+              formattedCompetitor = capitalize(data.competitor);
+
+              // Swap labels
+              $body.find('.compare').html(formattedCompetitor);
+            }
 
             $.each(data.values, function (index, value) {
               $('#' + index).val(value);

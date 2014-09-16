@@ -119,8 +119,6 @@ define(['jquery', 'slider'], function ($) {
               upper: [ customToolTipBottomFuel ]
             }
           });
-
-          $body.trigger('slidersInitialized');
         },
 
         swapCompetitor = function () {
