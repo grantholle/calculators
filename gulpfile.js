@@ -115,16 +115,9 @@ gulp.task('img', function () {
 gulp.task('html', function () {
   apps.forEach(function (name, i) {
     var source = path.join('./_src/html/', name, 'index.html');
+
     copy(source, path.join('./www', name, 'index.html'));
     copy(source, path.join('./', name, '/www/index.html'));
-
-    // var source = path.join('./_src/html/', name, 'index.html');
-    // var destinations = [
-    //   path.join('./www', name, 'index.html'),
-    //   path.join('./', name, '/www/index.html')
-    // ];
-
-    // copyDestinations(source, destinations);
   });
 });
 

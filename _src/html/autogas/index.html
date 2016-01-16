@@ -3,32 +3,24 @@
   <head>
     <meta charset="utf-8" />
     <meta name="format-detection" content="telephone=no" />
-    <!-- <meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, height=device-height, width=device-width" /> -->
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <link rel="stylesheet" type="text/css" href="assets/styles/style.css" />
 
     <script>
       window.app = 'onroad';
     </script>
-    
+
     <script type="text/javascript" src="cordova.js"></script>
     <script type="text/javascript" src="cordova_plugins.js"></script>
 
     <script type='text/javascript'>
-    (function (d, t) {
-      var bh = d.createElement(t), s = d.getElementsByTagName(t)[0];
-      bh.type = 'text/javascript';
-      bh.src = '//www.bugherd.com/sidebarv2.js?apikey=fvdxpc2ypvclr6vzbyqw2q';
-
-      s.parentNode.insertBefore(bh, s);
-      })(document, 'script');
     </script>
-    
+
     <title>PERC</title>
   </head>
   <body class="perc-onroad">
     <div class="ios-padding"></div>
-    
+
     <header>
       <img class="mobile" src="assets/img/header.jpg" width="100%" />
       <img class="tablet" src="assets/img/header-tablet.jpg" width="100%" />
@@ -47,14 +39,14 @@
             </div>
           </div>
         </section>
-        
+
         <section class="row has-textinput">
           <h2>Type of Vehicle (optional)</h2>
           <div class="text-input">
             <input class="exportable no-validation" type="text" id="type-of-vehicle" />
           </div>
         </section>
-        
+
         <section class="row has-slider">
           <h2><span class="compare">Diesel</span> Vehicle Purchase <span class="break">Amount</span></h2>
           <div class="slider-wrapper">
@@ -64,7 +56,7 @@
               <span class="label compare">Diesel</span>
             </div>
             <!-- end tooltip -->
-            
+
             <div class="input-slider perc-slider exportable" id="competitor-vehicle-slider"></div>
           </div>
         </section>
@@ -81,9 +73,9 @@
             <div class="input-slider perc-slider exportable" id="conversion-cost-slider"></div>
           </div>
         </section>
-        
+
         <section id="propane-vehicle-cost-row" class="row has-slider">
-          <h2>*Propane Autogas Vehicle Cost</h2>
+          <h2>Propane Autogas Vehicle Cost</h2>
           <div class="slider-wrapper">
             <!-- tooltip -->
             <div class="tooltip tooltip-top">
@@ -104,9 +96,9 @@
               <span class="label">Propane</span>
             </div>
             <!-- end tooltip -->
-            
+
             <div class="range-slider perc-slider exportable" id="average-mpg-slider"></div>
-            
+
             <!-- tooltip -->
             <div class="tooltip tooltip-bottom">
               <span class="label compare">Diesel</span>
@@ -115,7 +107,7 @@
             <!-- end tooltip -->
           </div>
         </section>
-        
+
         <section class="row has-slider has-range price-per-gallon">
           <h2>Price per Gallon</h2>
           <div class="range-wrapper">
@@ -125,10 +117,10 @@
               <span class="label">Propane</span>
             </div>
             <!-- end tooltip -->
-            
+
             <span class="difference-maker" id="fuel-difference"></span>
             <div class="range-slider perc-slider exportable" id="price-per-gallon"></div>
-            
+
             <!-- tooltip -->
             <div class="tooltip tooltip-bottom comp-fuel-price">
               <span class="label compare">Diesel</span>
@@ -159,14 +151,14 @@
                 <div class="propane">
                   <span>Propane Autogas</span>
                   <span class="cost prop"></span>
-                </div>   
+                </div>
                 <div class="competitor">
                   <span><span class="compare">Diesel</span> <strong class="other"></strong></span>
-                </div>             
+                </div>
               </div>
             </div>
           </div>
-          
+
           <div class="result-wrapper tabbed">
             <div class="result-inner operating-costs">
               <h2>Lifetime Operating Costs</h2>
@@ -288,9 +280,6 @@
       </div><!-- end right column -->
 
     </div><!-- end main row content -->
-    <div id="disclaimer">
-        <p>*Propane autogas vehicle cost based on $12,000 conversion cost on $30,000 gasoline vehicle.</p>
-    </div>
 
     <footer>
       <div class="logo-wrapper">
