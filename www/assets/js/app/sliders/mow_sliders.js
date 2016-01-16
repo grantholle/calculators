@@ -37,7 +37,7 @@ define(['jquery', 'slider'], function ($) {
 
         swapCompetitor = function (e) {
           fuelSlider.noUiSlider({
-            start: [2, parseFloat($toggle.find('button.active').data('fuel-default'))]
+            start: [1.50, parseFloat($toggle.find('button.active').data('fuel-default'))]
           }, true);
         },
 
@@ -49,19 +49,19 @@ define(['jquery', 'slider'], function ($) {
               $body.trigger('moveTooltip', [$competitorMowerPrice.parent(), value, a[0].parentNode.offsetLeft]);
             }
           }),
-          
+
           customToolTipPropane = $.Link({
             target: function (value, a, b) {
               $body.trigger('moveTooltip', [$propaneMowerPrice.parent(), value, a[0].parentNode.offsetLeft]);
             }
           }),
-          
+
           customToolTipTopFuel = $.Link({
             target: function (value, a, b) {
               $body.trigger('moveTooltip', [$propaneFuelPrice.parent(), value, a[0].parentNode.offsetLeft, $fuelSliderEle]);
             }
           }),
-          
+
           customToolTipBottomFuel = $.Link({
             target: function (value, a, b) {
               $body.trigger('moveTooltip', [$competitorFuelPrice.parent(), value, a[0].parentNode.offsetLeft, $fuelSliderEle]);
@@ -74,8 +74,8 @@ define(['jquery', 'slider'], function ($) {
             connect: 'lower',
             behaviour: 'snap',
             range: {
-              min: 7500,
-              max: 16500
+              min: 0,
+              max: 25000
             },
             step: 100,
             serialization: {
@@ -94,8 +94,8 @@ define(['jquery', 'slider'], function ($) {
             connect: 'lower',
             behaviour: 'snap',
             range: {
-              min: 7500,
-              max: 16500
+              min: 0,
+              max: 25000
             },
             step: 100,
             serialization: {
@@ -112,11 +112,11 @@ define(['jquery', 'slider'], function ($) {
           // Upper (index 0) is propane
           // Lower (index 1) is competitor
           fuelSlider = $fuelSliderEle.noUiSlider({
-            start: [2, parseFloat($toggle.find('button.active').data('fuel-default'))],
+            start: [1.50, parseFloat($toggle.find('button.active').data('fuel-default'))],
             behaviour: 'snap',
             range: {
-              min: 1.25,
-              max: 5
+              min: .50,
+              max: 6
             },
             step: 0.01,
             serialization: {

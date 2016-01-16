@@ -104,11 +104,11 @@ define(['jquery', 'slider'], function ($) {
           // Upper (index 0) is propane
           // Lower (index 1) is competitor
           fuelSlider = $fuelSliderEle.noUiSlider({
-            start: [2, 3.90],
+            start: [1.5, 2.8],
             behaviour: 'snap',
             range: {
-              min: 1.25,
-              max: 5
+              min: .50,
+              max: 6
             },
             step: 0.01,
             serialization: {

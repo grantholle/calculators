@@ -11,6 +11,7 @@ define(['jquery'], function ($) {
 
         // Value inputs
         $vehiclePrice = $('input#competitor-vehicle-price'),
+        $propaneVehicleCost = $('input#propane-vehicle-cost'),        
         $conversionCost = $('input#conversion-cost'),
         $averageMpg = $('div#average-mpg-slider'),
         $fuelPrice = $('div#price-per-gallon'),
@@ -21,7 +22,6 @@ define(['jquery'], function ($) {
         formattedCompetitor,
 
         constants = {
-          propaneConverstion: 0,
           vehicleLifeMiles: 200000,
           lifetimePmVisits: {
             propane: 40,
@@ -59,28 +59,37 @@ define(['jquery'], function ($) {
         },
 
         refresh = function (competitor) {
-          if (typeof competitor === 'undefined')
-            competitor = 'diesel';
+            if (typeof competitor === 'undefined')
+                competitor = 'diesel';
           
-          currentCompetitor = competitor;
-          formattedCompetitor = competitor.charAt(0).toUpperCase() + competitor.slice(1);
+            currentCompetitor = competitor;
+            formattedCompetitor = competitor.charAt(0).toUpperCase() + competitor.slice(1);
 
-          constants.propaneConverstion = parseInt(cleanNumber($conversionCost.val()), 10);
+            vehicleCosts();
+            operatingCosts();
+            lifetimeCosts();
 
-          vehicleCosts();
-          operatingCosts();
-          lifetimeCosts();
-
-          $body.trigger('refreshWaypoint');
+            $body.trigger('refreshWaypoint');
         },
 
         // Updates labels based on offRoadResults object
         vehicleCosts = function () {
-          onroadResults.other.vehicleCost = parseInt(cleanNumber($vehiclePrice.val()), 10);
-          onroadResults.prop.vehicleCost = onroadResults.other.vehicleCost + constants.propaneConverstion;
+            onroadResults.other.vehicleCost = parseInt(cleanNumber($vehiclePrice.val()), 10);
+          
+              // If diesel,  propane vehicle cost equals price of propane vehicle
+              if(currentCompetitor == 'diesel') {
+                  onroadResults.prop.vehicleCost = parseInt(cleanNumber($propaneVehicleCost.val()), 10);           
+              }
+              // If gasoline, propane vehicle cost equals price of gasoline vehicle plus propane conversion cost
+              else {
+                  onroadResults.prop.vehicleCost = onroadResults.other.vehicleCost + parseInt(cleanNumber($conversionCost.val()), 10);     
+              }
+
+
 
           $vehicleCosts.find('strong.other').html($vehiclePrice.val());
           $vehicleCosts.find('span.prop').html('$' + formatNumber(onroadResults.prop.vehicleCost));
+          $vehicleCosts.find('strong.other').html('$' + formatNumber(onroadResults.other.vehicleCost));
         },
 
         operatingCosts = function () {
@@ -132,6 +141,14 @@ define(['jquery'], function ($) {
         },
 
         resultsInput = function () {
+          if(formattedCompetitor == 'Diesel') {
+              propaneVehicleLabel = 'Propane Autogas Vehicle Cost';
+              propaneVehicleValue = $propaneVehicleCost.val();
+          }            
+          else if(formattedCompetitor == 'Gasoline') {
+              propaneVehicleLabel = 'Propane Autogas Conversion or Option Cost';
+              propaneVehicleValue = $conversionCost.val();              
+          }
           results.input = [
             {
               label: 'Compare Propane Autogas with',
@@ -142,13 +159,13 @@ define(['jquery'], function ($) {
               value: $vehicle.val()
             },
             {
-              label: 'Vehicle Purchase Amount',
-              value: $vehiclePrice.val()
+              label: propaneVehicleLabel,
+              value: propaneVehicleValue
             },
             {
-              label: 'Propane Autogas Conversion or Option Cost',
-              value: $conversionCost.val()
-            },
+              label: formattedCompetitor + ' Vehicle Cost',
+              value: $vehiclePrice.val()
+            },            
             {
               label: 'Propane Average MPG',
               value: $averageMpg.val()[0]
@@ -174,7 +191,7 @@ define(['jquery'], function ($) {
               label: 'Vehicle Cost',
               body: [
                 ['Propane', formattedCompetitor],
-                ['$' + formatNumber(onroadResults.prop.vehicleCost), $vehiclePrice.val()]
+                ['$' + formatNumber(onroadResults.prop.vehicleCost), formatNumber(onroadResults.other.vehicleCost)]
               ]
             },
             {
@@ -189,8 +206,8 @@ define(['jquery'], function ($) {
               label: 'Lifetime Ownership Costs',
               body: [
                 ['', 'Per Vehicle', 'Per Mile Average'],
-                ['Propane', '$' + formatNumber(Math.round(onroadResults.prop.perVehicle)), $lifetimeCosts.find('div.mile strong.other').html()],
-                [formattedCompetitor, '$' + formatNumber(Math.round(onroadResults.other.perVehicle)), $lifetimeCosts.find('div.mile span.prop').html()]
+                ['Propane', '$' + formatNumber(Math.round(onroadResults.prop.perVehicle)), $lifetimeCosts.find('div.mile span.prop').html()],
+                [formattedCompetitor, '$' + formatNumber(Math.round(onroadResults.other.perVehicle)), $lifetimeCosts.find('div.mile strong.other').html()]
               ]
             }
           ];

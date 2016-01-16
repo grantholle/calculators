@@ -28,7 +28,8 @@ define(['app/calculators/' + window.app + '_calculate', 'fastclick', 'magnific',
         mpgSlider,
         fuelSlider,
 
-        emailEndpoint = 'http://perc-pdf-generator.dev01.40digits.net/email.php',
+        emailEndpoint = 'http://www.propanecostcalculator.com/scripts/email.php',
+        emailSent = false,
 
         // Variables that are based on viewport
         appWidth = $window.width(),
@@ -229,34 +230,42 @@ define(['app/calculators/' + window.app + '_calculate', 'fastclick', 'magnific',
                 $modal.find('div.default').show();
                 $modal.find('div.thank-you').hide();
                 $modal.find('div.no-connection').hide();
+
+                emailSent = false;
+                $sendResults.removeClass('disabled');
               }
             }
           });
 
           // Send dat link, yo!
           $sendResults.click(function (e) {
-            var data = {
-              data: JSON.stringify({
-                app: window.app,
-                results: window.btoa(JSON.stringify(calculator.results())),
-                import: exportApp(),
-                email: $modal.find('input[type=text]').val()
-              })
-            };
-
             e.preventDefault();
+            
+            if (!emailSent) {
+              emailSent = true;
+              $sendResults.addClass('disabled');
 
-            // Make the ajax request
-            $.ajax({
-              type: 'GET',
-              cache: false,
-              data: data,
-              url: emailEndpoint
-            }).done(function () {
-              // trigger thank you
-              $modal.find('div.default').hide();
-              $modal.find('div.thank-you').show();
-            });
+              var data = {
+                data: JSON.stringify({
+                  app: window.app,
+                  results: window.btoa(JSON.stringify(calculator.results())),
+                  import: exportApp(),
+                  email: $modal.find('input[type=text]').val()
+                })
+              };
+
+              // Make the ajax request
+              $.ajax({
+                type: 'GET',
+                cache: false,
+                data: data,
+                url: emailEndpoint
+              }).done(function () {
+                // trigger thank you
+                $modal.find('div.default').hide();
+                $modal.find('div.thank-you').show();
+              });
+            }
 
           });
 
@@ -368,12 +377,13 @@ define(['app/calculators/' + window.app + '_calculate', 'fastclick', 'magnific',
 
         },
 
-        moveTooltip = function (e, $tooltip, value, handlePos, $fuelSliderEle) {
-          
+        moveTooltip = function (e, $tooltip, value, handlePos, $sliderEle) {
           // If we're changing the value (not a window resize)
           if (value)
             $tooltip.find('input').val(value);
-
+            
+            
+            
           if (appWidth <= 400) {
             $tooltip.css('left', handlePos);
           } else if (appWidth < 768) {
@@ -381,19 +391,21 @@ define(['app/calculators/' + window.app + '_calculate', 'fastclick', 'magnific',
           } else {
             $tooltip.css('left', handlePos + 6);
           }
-
-          // If it's fuel and we're changing the value (not a window resize)
-          if ($fuelSliderEle && value) {
-            var values = $fuelSliderEle.val(),
-                comp, prop, diff;
+          
+          if ($sliderEle && value) {
+              // If it's fuel and we're changing the value (not a window resize)     
+              switch($sliderEle.attr('id')) {              
+                  case 'price-per-gallon':
+                      var values = $sliderEle.val(), comp, prop, diff;                
+                      if (typeof values[1] !== 'undefined') {        
+                          comp = parseFloat(values[1].replace('$', ''));
+                          prop = parseFloat(values[0].replace('$', ''));
+                          diff = Math.abs(comp - prop);
             
-            if (typeof values[1] !== 'undefined') {
-              comp = parseFloat(values[1].replace('$', ''));
-              prop = parseFloat(values[0].replace('$', ''));
-              diff = Math.abs(comp - prop);
-
-              $fuelDifference.html('$' + diff.toFixed(2));
-            }
+                          $fuelDifference.html('$' + diff.toFixed(2));
+                      }
+                      break;
+              }
           }
 
           $body.trigger('refreshWaypoint');

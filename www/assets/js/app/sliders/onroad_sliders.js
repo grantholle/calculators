@@ -1,17 +1,19 @@
 define(['jquery', 'slider'], function ($) {
 
-  var sliders = (function () {
+var sliders = (function () {
 
     // Sliders
     var $sliders = $('div.perc-slider'),
         $sliderWrap = $('div.has-slider'),
-        $purchaseSliderEle = $('div#competitor-vehicle-slider'),
+        $vehicleCostEle = $('div#competitor-vehicle-slider'),
         $conversionEle = $('div#conversion-cost-slider'),
+        $propaneVehicleEle = $('div#propane-vehicle-cost-slider'),
         $mpgSliderEle = $('div#average-mpg-slider'),
         $fuelSliderEle = $('div#price-per-gallon'),
 
         // Tooltip inputs and regular
         $vehiclePurchasePrice = $('input#competitor-vehicle-price'),
+        $propaneVehicleCost = $('input#propane-vehicle-cost'),
         $conversionCost = $('input#conversion-cost'),
         $propaneAverageMpg = $('input#propane-average-mpg'),
         $averageMpg = $('input#average-mpg'),
@@ -42,36 +44,59 @@ define(['jquery', 'slider'], function ($) {
         createSliders = function () {
 
           // Tool tip action
-          var vehiclePriceTooltip = $.Link({
+          propaneVehicleCostTooltip = $.Link({
             target: function (value, a, b) {
-              $body.trigger('moveTooltip', [$vehiclePurchasePrice.parent(), value, a[0].parentNode.offsetLeft]);
+              $body.trigger('moveTooltip', [$propaneVehicleCost.parent(), value, a[0].parentNode.offsetLeft]);
             }
           }),
-          
+
+          conversionTooltip = $.Link({
+            target: function (value, a, b) {
+                // We must find offset pixels manually since jQuery's offsetLeft method doesn't work with hidden element
+                leftStyle = $(a[0].parentNode).attr('style');
+                offset = leftStyle.replace('left: ', '').replace(';','');
+
+                // Convert percentage to pixels
+                if(offset.indexOf("%") > -1) {
+                    offsetPercent = offset.replace('%', '');
+                    parentWidth = ($('.noUi-base').width());
+                    offset = (offsetPercent/100)*parentWidth;
+                }
+
+                // Ensure offset is integer
+                if(typeof(offset) == 'string') {
+                    offset = parseInt(offset, 10);
+                }
+
+                // Finally trigger the move function
+                $body.trigger('moveTooltip', [$conversionCost.parent(), value, offset, $conversionEle]);
+            }
+          }),
+
           mpgUpperTooltip = $.Link({
             target: function (value, a, b) {
               $body.trigger('moveTooltip', [$propaneAverageMpg.parent(), value, a[0].parentNode.offsetLeft]);
             }
           }),
-          
+
           mpgLowerTooltip = $.Link({
             target: function (value, a, b) {
               $body.trigger('moveTooltip', [$averageMpg.parent(), value, a[0].parentNode.offsetLeft]);
             }
           }),
-          
-          conversionTooltip = $.Link({
+
+          vehicleCostTooltip = $.Link({
             target: function (value, a, b) {
-              $body.trigger('moveTooltip', [$conversionCost.parent(), value, a[0].parentNode.offsetLeft]);
+              $body.trigger('moveTooltip', [$vehiclePurchasePrice.parent(), value, a[0].parentNode.offsetLeft]);
             }
           }),
-          
+
           customToolTipTopFuel = $.Link({
             target: function (value, a, b) {
               $body.trigger('moveTooltip', [$propaneFuelPrice.parent(), value, a[0].parentNode.offsetLeft, $fuelSliderEle]);
             }
           }),
-          
+
           customToolTipBottomFuel = $.Link({
             target: function (value, a, b) {
               $body.trigger('moveTooltip', [$competitorFuelPrice.parent(), value, a[0].parentNode.offsetLeft, $fuelSliderEle]);
@@ -79,14 +104,16 @@ define(['jquery', 'slider'], function ($) {
           });
 
           // Sliders
-          // Vehicle price slider
-          purchaseSlider = $purchaseSliderEle.noUiSlider({
+
+          // Vehicle cost slider
+
+          vehicleCostSlider = $vehicleCostEle.noUiSlider({
             start: parseInt($toggle.find('button.active').data('vehicle-default'), 10),
             connect: 'lower',
             behaviour: 'snap',
             range: {
-              min: 26000,
-              max: 60000
+              min: 0,
+              max: 110000
             },
             step: 100,
             serialization: {
@@ -95,7 +122,7 @@ define(['jquery', 'slider'], function ($) {
                 prefix: '$',
                 decimals: 0
               },
-              lower: [ vehiclePriceTooltip ]
+              lower: [ vehicleCostTooltip ]
             }
           });
 
@@ -119,6 +146,26 @@ define(['jquery', 'slider'], function ($) {
             }
           });
 
+          // Propane Vehicle Cost Slider
+          propaneVehicleSlider = $propaneVehicleEle.noUiSlider({
+            start: 42000,
+            connect: 'lower',
+            behaviour: 'snap',
+            range: {
+              min: 0,
+              max: 110000
+            },
+            step: 100,
+            serialization: {
+              format: {
+                thousand: ',',
+                prefix: '$',
+                decimals: 0
+              },
+              lower: [ propaneVehicleCostTooltip ]
+            }
+          });
+
           // MPG range
           mpgSlider = $mpgSliderEle.noUiSlider({
             start: [11, 14],
@@ -139,11 +186,11 @@ define(['jquery', 'slider'], function ($) {
 
           // Price per gallon
           fuelSlider = $fuelSliderEle.noUiSlider({
-            start: [2, parseFloat($toggle.find('button.active').data('fuel-default'))],
+            start: [1.50, parseFloat($toggle.find('button.active').data('fuel-default'))],
             behaviour: 'snap',
             range: {
-              min: 1.25,
-              max: 5
+              min: .50,
+              max: 6
             },
             step: 0.01,
             serialization: {
@@ -158,12 +205,27 @@ define(['jquery', 'slider'], function ($) {
 
         swapCompetitor = function () {
           fuelSlider.noUiSlider({
-            start: [2, parseFloat($toggle.find('button.active').data('fuel-default'))]
+            start: [1.50, parseFloat($toggle.find('button.active').data('fuel-default'))]
           }, true);
 
-          purchaseSlider.noUiSlider({
+          vehicleCostSlider.noUiSlider({
             start: parseInt($toggle.find('button.active').data('vehicle-default'), 10)
           }, true);
+
+
+          conversionSlider.noUiSlider({}, true);
+
+
+          // If diesel
+          if($('button.active').data('compare') == 'diesel') {
+              $('#conversion-cost-row').hide();
+              $('#propane-vehicle-cost-row').show();
+          }
+          else {
+              $('#conversion-cost-row').show();
+              $('#propane-vehicle-cost-row').hide();
+          }
+
         };
 
     exports.init = init;
