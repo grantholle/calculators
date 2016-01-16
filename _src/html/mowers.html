@@ -3,26 +3,15 @@
   <head>
     <meta charset="utf-8" />
     <meta name="format-detection" content="telephone=no" />
-    <!-- <meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, height=device-height, width=device-width" /> -->
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <link rel="stylesheet" type="text/css" href="assets/styles/style.css" />
 
     <script>
       window.app = 'mow';
     </script>
-    
+
     <script type="text/javascript" src="cordova.js"></script>
     <script type="text/javascript" src="cordova_plugins.js"></script>
-
-    <script type='text/javascript'>
-    (function (d, t) {
-      var bh = d.createElement(t), s = d.getElementsByTagName(t)[0];
-      bh.type = 'text/javascript';
-      bh.src = '//www.bugherd.com/sidebarv2.js?apikey=auyej13r1i7uyqi8r9hb9w';
-      s.parentNode.insertBefore(bh, s);
-      })(document, 'script');
-    </script>
-    
     <title>PERC</title>
   </head>
   <body class="perc-offroad">
@@ -46,7 +35,7 @@
             </div>
           </div>
         </section>
-        
+
         <section class="row has-increment">
           <h2>Number of Mowers</h2>
           <div>
@@ -57,7 +46,7 @@
             </div>
           </div>
         </section>
-        
+
         <section class="row has-increment remove-margin">
           <h2>Total Hours Mowed <span class="break">per Year (per mower)</span></h2>
           <div>
@@ -81,7 +70,7 @@
             <div class="input-slider perc-slider exportable" id="propane-mower-slider"></div>
           </div>
         </section>
-        
+
         <section class="row has-slider">
           <h2><span class="compare">Gasoline</span> Mower <span class="break">Purchase Amount</span></h2>
           <div class="slider-wrapper">
@@ -94,7 +83,7 @@
             <div class="input-slider perc-slider exportable" id="competitor-mower-slider"></div>
           </div>
         </section>
-        
+
         <section class="row has-slider has-range">
           <h2>Price per Gallon</h2>
           <div class="range-wrapper">
@@ -104,7 +93,7 @@
               <span class="label">Propane</span>
             </div>
             <!-- end tooltip -->
-            
+
             <span class="difference-maker" id="fuel-difference"></span>
 
             <div class="range-slider perc-slider exportable" id="price-per-gallon"></div>
@@ -121,7 +110,7 @@
       </div><!-- end left column -->
 
       <a href="#results" class="see-results">See results</a>
-        
+
       <div class="right-column">
 
         <section class="row results-container" id="results">

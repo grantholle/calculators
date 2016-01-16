@@ -49,19 +49,19 @@ define(['jquery', 'slider'], function ($) {
               $body.trigger('moveTooltip', [$competitorMowerPrice.parent(), value, a[0].parentNode.offsetLeft]);
             }
           }),
-          
+
           customToolTipPropane = $.Link({
             target: function (value, a, b) {
               $body.trigger('moveTooltip', [$propaneMowerPrice.parent(), value, a[0].parentNode.offsetLeft]);
             }
           }),
-          
+
           customToolTipTopFuel = $.Link({
             target: function (value, a, b) {
               $body.trigger('moveTooltip', [$propaneFuelPrice.parent(), value, a[0].parentNode.offsetLeft, $fuelSliderEle]);
             }
           }),
-          
+
           customToolTipBottomFuel = $.Link({
             target: function (value, a, b) {
               $body.trigger('moveTooltip', [$competitorFuelPrice.parent(), value, a[0].parentNode.offsetLeft, $fuelSliderEle]);
@@ -74,8 +74,8 @@ define(['jquery', 'slider'], function ($) {
             connect: 'lower',
             behaviour: 'snap',
             range: {
-              min: 4000,
-              max: 16500
+              min: 0,
+              max: 25000
             },
             step: 100,
             serialization: {
@@ -94,8 +94,8 @@ define(['jquery', 'slider'], function ($) {
             connect: 'lower',
             behaviour: 'snap',
             range: {
-              min: 4000,
-              max: 16500
+              min: 0,
+              max: 25000
             },
             step: 100,
             serialization: {

@@ -1,4 +1,4 @@
-define(['app/calculators/' + window.app + '_calculate', 'fastclick', 'magnific', 'iscroll', 'waypoints'], function (calculator) {
+define(['app/calculator', 'fastclick', 'magnific', 'iscroll', 'waypoints'], function (calculator) {
 
   var app = (function () {
 
@@ -36,7 +36,7 @@ define(['app/calculators/' + window.app + '_calculate', 'fastclick', 'magnific',
 
         init = function () {
           FastClick.attach(document.body);
-          
+
           bindings();
 
           iosFixes();
@@ -139,7 +139,7 @@ define(['app/calculators/' + window.app + '_calculate', 'fastclick', 'magnific',
 
             if ($input.val() !== '')
               $input.data('original-string', $input.val());
-            
+
             $input.val('');
           }).on('keypress', 'input[type=text], input[type=number], input[type=currency]', function (e) {
             if (e.keyCode === 13) {
@@ -155,7 +155,7 @@ define(['app/calculators/' + window.app + '_calculate', 'fastclick', 'magnific',
                 if ($input.attr('type') === 'number')
                   $input.attr('type', 'currency');
               }
-              
+
               $input.val($input.data('original-string'));
             } else if ($input.parent().hasClass('increment-input')) { // This is an increment
               roundInput($input);
@@ -180,18 +180,18 @@ define(['app/calculators/' + window.app + '_calculate', 'fastclick', 'magnific',
             $body.trigger('changesMade');
 
           }).on('slidersInitialized', function (e) { // Once the sliders are done, we can get to work
-            
+
             // Do the sticky footer stuff if relevant
             stickyFooter();
-            
+
             // Import data if relevant
             importApp();
-            
+
             // Trigger class made and refresh calculation
             $body.trigger('changesMade');
           }).on('changesMade', function (e) {
 
-            // Update the see results 
+            // Update the see results
             $seeResults.addClass('ready');
 
             // Refresh the calculation
@@ -240,7 +240,7 @@ define(['app/calculators/' + window.app + '_calculate', 'fastclick', 'magnific',
           // Send dat link, yo!
           $sendResults.click(function (e) {
             e.preventDefault();
-            
+
             if (!emailSent) {
               emailSent = true;
               $sendResults.addClass('disabled');
@@ -378,7 +378,7 @@ define(['app/calculators/' + window.app + '_calculate', 'fastclick', 'magnific',
         },
 
         moveTooltip = function (e, $tooltip, value, handlePos, $fuelSliderEle) {
-          
+
           // If we're changing the value (not a window resize)
           if (value)
             $tooltip.find('input').val(value);
@@ -395,7 +395,7 @@ define(['app/calculators/' + window.app + '_calculate', 'fastclick', 'magnific',
           if ($fuelSliderEle && value) {
             var values = $fuelSliderEle.val(),
                 comp, prop, diff;
-            
+
             if (typeof values[1] !== 'undefined') {
               comp = parseFloat(values[1].replace('$', ''));
               prop = parseFloat(values[0].replace('$', ''));

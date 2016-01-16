@@ -21,15 +21,12 @@ var copy = function (source, destination) {
 var copyDestinations = function (source, destinations) {
   destinations.forEach(function (destination, i) {
 
-    fs.stat(destination, function (err, stat) {
+    mkdirp(destination, function (err) {
+      if (err) {
+        return console.error(err);
+      }
 
-      mkdirp(destination, function (err) {
-        if (err) {
-          return console.error(err);
-        }
-
-        copy(source, destination);
-      });
+      copy(source, destination);
     });
   });
 };
@@ -62,7 +59,7 @@ gulp.task('sass', function () {
 });
 
 gulp.task('js', function () {
-  var source = './_src/js';
+  var js = './_src/js';
 
   apps.forEach(function (name, i) {
     var destinations = [
@@ -70,7 +67,27 @@ gulp.task('js', function () {
       path.join('./', name, '/www/assets/js')
     ];
 
-    copyDestinations(source, destinations);
+    destinations.forEach(function (destination, j) {
+      mkdirp(path.join(destination, 'vendor'), function () {
+        copy(path.join(js, 'vendor'), path.join(destination, 'vendor'));
+      });
+
+      // gulp.src(path.join(js, 'index.js')).pipe(gulp.dest(path.join(destination, 'index.js')));
+      // gulp.src(path.join(js, 'main.js')).pipe(gulp.dest(path.join(destination, 'main.js')));
+      // gulp.src(path.join(js, 'app', 'app.js')).pipe(gulp.dest(path.join(destination, 'app', 'app.js')));
+      // gulp.src(path.join(js, 'app', 'config.js')).pipe(gulp.dest(path.join(destination, 'app', 'config.js')));
+      // gulp.src(path.join(js, 'sliders', name + '.js')).pipe(gulp.dest(path.join(destination, 'app', 'sliders.js')));
+      // gulp.src(path.join(js, 'calculators', name + '.js')).pipe(gulp.dest(path.join(destination, 'app', 'calculator.js')));
+
+      mkdirp(path.join(destination, 'app'), function () {
+        copy(path.join(js, 'index.js'), path.join(destination, 'index.js'));
+        copy(path.join(js, 'main.js'), path.join(destination, 'main.js'));
+        copy(path.join(js, 'app', 'app.js'), path.join(destination, 'app', 'app.js'));
+        copy(path.join(js, 'app', 'config.js'), path.join(destination, 'app', 'config.js'));
+        copy(path.join(js, 'app', 'sliders', name + '.js'), path.join(destination, 'app', 'sliders.js'));
+        copy(path.join(js, 'app', 'calculators', name + '.js'), path.join(destination, 'app', 'calculator.js'));
+      });
+    });
   });
 });
 
@@ -114,7 +131,7 @@ gulp.task('img', function () {
 
 gulp.task('html', function () {
   apps.forEach(function (name, i) {
-    var source = path.join('./_src/html/', name, 'index.html');
+    var source = path.join('./_src/html/', name + '.html');
 
     copy(source, path.join('./www', name, 'index.html'));
     copy(source, path.join('./', name, '/www/index.html'));
