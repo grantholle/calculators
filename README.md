@@ -1,20 +1,24 @@
 # PERC Cordova Apps
-There are 3 separate applications. They all share the same CSS and JavaScript assets. They were developed using Cordova 3.5.
+There are 3 separate applications for both web and native Android and iOS, as well as php scripts for sending email and generating pdfs.
 
-## Configuration
-On line `31` of `www/assets/js/app/app.js`, change the `emailEndpoint` to the appropriate address for the email sending script.
+## Installation
 
-## Building
+Install Cordova
 
-1. Install [Cordova CLI](http://cordova.apache.org/docs/en/3.5.0/guide_cli_index.md.html#The%20Command-Line%20Interface)
-2. In each project directory there should be a www, plugins, and platforms directory
-3. In the root of the project, add the Android and iOS platform
-  `cordova add platform ios`
-  `cordova add platform android`
-4. There should already be plugins in the repo, but if you want to add them clean, delete their contents and run the following commands:
-  `cordova plugin add org.apache.cordova.device`
-  `cordova plugin add org.apache.cordova.network-information`
-5. Build the applications
-  `cordova build ios`
-  `cordova build android`
-6. Deploy built apps
+```
+$ npm i -g cordova
+```
+
+Install development depencencies
+
+```
+$ npm i
+```
+
+## Development
+
+This project contains 3 web-instances and 3 Cordova projects. The web instances are in `./www` and the Cordova projects are in `autogas`, `irrigation`, and `mowers`.
+
+Assets for images, fonts, css, and js are kept in `./_src`. Edit the asset files in that location while running `gulp watch` and the assets will be copied/compiled to both the Cordova projects and the web instances. The `./assets` directory contains all the necessary images (icons and splashes) for the native apps.
+
+There's also `gulp production` that minifies the js assets.
