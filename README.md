@@ -17,7 +17,7 @@ $ npm i
 
 ## Development
 
-This project contains 3 web-instances and 3 Cordova projects. The web instances are in `./www` and the Cordova projects are in `autogas`, `irrigation`, and `mowers`.
+This project contains 3 web-instances and 3 Cordova projects. The web instances are in `./www` and the Cordova projects are in `./autogas`, `./irrigation`, and `./mowers`.
 
 Assets for images, fonts, css, and js are kept in `./_src`. Edit the asset files in that location while running `gulp watch` and the assets will be copied/compiled to both the Cordova projects and the web instances. The `./assets` directory contains all the necessary images (icons and splashes) for the native apps.
 

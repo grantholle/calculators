@@ -1,12 +1,1 @@
-define({
-  requirejs: {
-    paths: {
-      jquery: ['vendor/jquery-2.1.1.min'],
-      waypoints: ['vendor/waypoints.min'],
-      iscroll: ['vendor/iscroll'],
-      slider: ['vendor/jquery.nouislider.min'],
-      magnific: ['vendor/jquery.magnific-popup.min'],
-      fastclick: ['vendor/fastclick']
-    }
-  }
-});
+define({requirejs:{paths:{jquery:["vendor/jquery-2.1.1.min"],waypoints:["vendor/waypoints.min"],iscroll:["vendor/iscroll"],slider:["vendor/jquery.nouislider.min"],magnific:["vendor/jquery.magnific-popup.min"],fastclick:["vendor/fastclick"]}}});

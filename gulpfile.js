@@ -31,15 +31,21 @@ var copyDestinations = function (source, destinations) {
   });
 };
 
-gulp.task('production', function() {
-  return gulp.src('./_src/js/**/*.js')
-    .pipe(uglify())
-    .pipe(gulp.dest('./www/autogas/assets/js'))
-    .pipe(gulp.dest('./www/irrigation/assets/js'))
-    .pipe(gulp.dest('./www/mowers/assets/js'))
-    .pipe(gulp.dest('./autogas/www/assets/js'))
-    .pipe(gulp.dest('./irrigation/www/assets/js'))
-    .pipe(gulp.dest('./mowers/www/assets/js'));
+gulp.task('production', ['default'], function() {
+  apps.forEach(function (name, i) {
+    gulp.src(path.join('./', name, '/www/assets/js/**/*.js'))
+      .pipe(uglify())
+      .pipe(gulp.dest(path.join('./', name, '/www/assets/js')));
+  });
+
+  // return gulp.src('./_src/js/**/*.js')
+  //   .pipe(uglify())
+    // .pipe(gulp.dest('./www/autogas/assets/js'))
+    // .pipe(gulp.dest('./www/irrigation/assets/js'))
+    // .pipe(gulp.dest('./www/mowers/assets/js'))
+    // .pipe(gulp.dest('./autogas/www/assets/js'))
+    // .pipe(gulp.dest('./irrigation/www/assets/js'))
+    // .pipe(gulp.dest('./mowers/www/assets/js'));
 });
 
 gulp.task('sass', function () {
@@ -140,14 +146,12 @@ gulp.task('html', function () {
 
 gulp.task('remove-assets', function () {
   apps.forEach(function (name, i) {
-    var source = './_src/img/' + name;
-
     exec( 'rm -Rf ' + path.join('./www', name, 'assets'));
     exec( 'rm -Rf ' + path.join('./', name, '/www/assets'));
   });
 });
 
-gulp.task('default', ['remove-assets', 'fonts', 'webfonts', 'img', 'sass', 'js']);
+gulp.task('default', ['remove-assets', 'img', 'sass', 'js', 'fonts', 'webfonts']);
 
 gulp.task('watch', ['remove-assets', 'fonts', 'webfonts', 'img', 'sass', 'js', 'html'], function () {
   gulp.watch('./_src/sass/**/*.sass', ['sass']);

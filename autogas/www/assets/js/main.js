@@ -1,12 +1,1 @@
-define(['app/config'], function(config) {
-
-  // config dat mug.
-  requirejs.config(config.requirejs);
-
-  var toRequire = ['app/sliders', 'app/calculator', 'app/app', 'jquery'];
-
-  require(toRequire, function (sliders, calc, app) {
-    document.addEventListener('deviceready', sliders.init, false);
-  });
-
-});
+define(["app/config"],function(e){requirejs.config(e.requirejs);var i=["app/sliders","app/calculator","app/app","jquery"];require(i,function(e,i,r){document.addEventListener("deviceready",e.init,!1)})});
